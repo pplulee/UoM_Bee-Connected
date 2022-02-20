@@ -6,20 +6,21 @@ include ("function.php");
 
 
 //Enable error reporting
-ini_set("display_errors","On");
-error_reporting(E_ALL);
-
-
-$conn = @mysqli_connect($servername, $username, $password, $dbname);  //Database connection
-if(!$conn)
-{
-    die ("MySQL connection error:".mysqli_connect_error($conn));
+if ($Sys_config["debug"]){
+    ini_set("display_errors","On");
+    error_reporting(E_ALL);
 }
+
+
+if ($Sys_config["mysql_enable"]){
+    $conn = @mysqli_connect($Sys_config["db_host"], $Sys_config["db_user"], $Sys_config["db_password"], $Sys_config["db_database"]);  //Database connection
+}
+
 
 //Initialize session
 session_start();
 if (!(isset($_SESSION["isLogin"]))){
-    $_SESSION["isLogin"]=FALSE;
+    $_SESSION["isLogin"]=false;
 }
 
 //Initialize bootstrap

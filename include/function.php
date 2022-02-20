@@ -11,5 +11,5 @@ function logout(){
 //Get user's name by userID
 function getname($userid){
     global $conn;
-    return mysqli_fetch_assoc(mysqli_query($conn, "SELECT username FROM user WHERE userid='".$userid."';"))['username'];
+    return mysqli_fetch_assoc(mysqli_query($conn, "SELECT username FROM user WHERE userid='{$userid}';"))['username'];
 }

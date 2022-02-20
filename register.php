@@ -12,9 +12,9 @@ if (isset($_SESSION["isLogin"]) AND $_SESSION["isLogin"]==TRUE){
 function userexist($username){
     global $conn;
     if (mysqli_num_rows(mysqli_query($conn, "SELECT username FROM user WHERE username='{$username}';")) == 0){
-        return FALSE;
+        return false;
     }else{
-        return TRUE;
+        return true;
     }
 }
 

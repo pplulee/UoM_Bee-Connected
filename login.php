@@ -12,7 +12,7 @@ if (isset($_SESSION["isLogin"]) AND $_SESSION["isLogin"]==TRUE){
 function login($username,$password){
     global $conn;
     if (mysqli_num_rows(mysqli_query($conn, "SELECT username FROM user WHERE username='{$username}';")) == 0){
-        return FALSE;
+        return false;
     }
     else{
         return password_verify($password,mysqli_fetch_assoc(mysqli_query($conn, "SELECT password FROM user WHERE username='{$username}';"))["password"]);
@@ -21,15 +21,15 @@ function login($username,$password){
 
 function startlogin($username,$password){
     global $conn;
-    if (login($username,$password) == TRUE){
-        $_SESSION["isLogin"]=TRUE;
+    if (login($username,$password)){
+        $_SESSION["isLogin"]=true;
         $_SESSION["username"]=$_POST["username"];
         $_SESSION["userid"]=mysqli_fetch_assoc(mysqli_query($conn, "SELECT userid FROM user WHERE username='{$username}';"))["userid"];
         echo "<div class='alert alert-success' role='alert'><p>Login successfully, will jump to the home page</p></div>";
         echo "<script>setTimeout(\"javascript:location.href='index.php'\", 1000);</script>";
     }
     else{
-        $_SESSION["isLogin"]=FALSE;
+        $_SESSION["isLogin"]=false;
         echo "<div class=\"alert alert-danger\" role=\"alert\"><p>Incorrect username or password</p></div>";
     }
 }
