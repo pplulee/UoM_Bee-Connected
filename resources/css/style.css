@@ -1,17 +1,42 @@
+body{
+  background: #a441e8;
+  background: linear-gradient(to right, #5c2684 0%, #a441e8 46%, #e670ff 100%);
+}
 .main{
-    background-image: url('../images/bg_origin.png');
-    /*background-repeat: none;*/
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
     width: 100%;
-    height: 100%;
+    height: 70%;
+}
+.login-footer{
+    background-image: url('../images/footer.png');
+    background-position: center center;
+    background-repeat: repeat-x;
+    background-size:80% auto;
+    height:30%;
+    position:absolute;
+    top:70%;
+    width: 100%;
+}
+.logo{
+  width: 400px;
+  position: absolute;
+  padding: 20px;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  top: 40%;
+  color: white;
+}
+.logo h1{
+  font-size: 2.2em;
+  text-align: left;
+}
+.logo img{
+    height: 300px;
 }
 .login-box {
     position: absolute;
     top: 40%;
     left: 70%;
-    width: 400px;
+    width: 480px;
     padding: 40px;
     transform: translate(-50%, -50%);
     background: #FFB21D;
@@ -65,7 +90,7 @@
     font-size: 14px;
   }
   
-  .login-box form a {
+  .login-box form .login_btn {
     position: relative;
     display: inline-block;
     padding: 20px 40px;
@@ -78,8 +103,21 @@
     margin-top: 40px;
     letter-spacing: 4px
   }
-  
-  .login-box a:hover {
+  .login-box form .sign_btn {
+    position: relative;
+    display: inline-block;
+    padding: 20px 40px;
+    color: #522174;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 3px;
+    margin-left: 30px;
+  }
+  .login-box button:hover {
     background: #a441e8;
     color: #FFB21D;
     border-radius: 5px;
@@ -89,17 +127,17 @@
                 0 0 50px #a441e8;
   }
   
-  .login-box a span {
+  .login-box button span {
     position: absolute;
     display: block;
   }
   
-  .login-box a span:nth-child(1) {
+  .login-box button span:nth-child(1) {
     top: 0;
     left: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #522174);
+    background: linear-gradient(90deg, transparent, #a441e8);
     animation: btn-anim1 2s linear infinite;
   }
   
@@ -111,13 +149,27 @@
       left: 100%;
     }
   }
-  
-  .login-box a span:nth-child(2) {
+  h5{
+    all: unset;
+  }
+  h5{
+    margin-left: 20px;
+    padding: 0;
+    color: #a441e8;
+    text-align: center;
+    font-family: 'Grand Hotel', cursive;
+    font-size: 1.2em;
+    text-shadow: 0 0 10px #FFFFFF;
+  }
+  button{
+    all: unset;
+  }
+  .login-box button span:nth-child(2) {
     top: -100%;
     right: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg, transparent, #522174);
+    background: linear-gradient(180deg, transparent, #a441e8);
     animation: btn-anim2 2s linear infinite;
     animation-delay: .25s
   }
@@ -131,12 +183,12 @@
     }
   }
   
-  .login-box a span:nth-child(3) {
+  .login-box button span:nth-child(3) {
     bottom: 0;
     right: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(270deg, transparent, #522174);
+    background: linear-gradient(270deg, transparent, #a441e8);
     animation: btn-anim3 2s linear infinite;
     animation-delay: .5s
   }
@@ -150,12 +202,12 @@
     }
   }
   
-  .login-box a span:nth-child(4) {
+  .login-box button span:nth-child(4) {
     bottom: -100%;
     left: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(360deg, transparent, #522174);
+    background: linear-gradient(360deg, transparent, #a441e8);
     animation: btn-anim4 2s linear infinite;
     animation-delay: .75s
   }

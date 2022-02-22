@@ -5,7 +5,7 @@ function logout(){
     unset($_SESSION['username']);
     unset($_SESSION['password']);
     unset($_SESSION['permission']);
-    exit("<script language='javascript'>alert('You have been successfully logged out');window.location.href='./index.php';</script>");
+    exit("<script>alert('You have been successfully logged out');window.location.href='./index.php';</script>");
 }
 
 //Get user's name by userID
