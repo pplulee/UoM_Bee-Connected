@@ -28,8 +28,6 @@ include("include/common.php");
                     </div>
                 </div>
         </div>
-               <!--<h1>Username</h1> -->
-
             </ul>
         </div>
     </div>
