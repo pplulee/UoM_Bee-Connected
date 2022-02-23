@@ -2,6 +2,7 @@
 //Function for logout
 function logout(){
     unset($_SESSION['isLogin']);
+    unset($_SESSION['userid']);
     unset($_SESSION['username']);
     unset($_SESSION['password']);
     unset($_SESSION['permission']);
@@ -12,4 +13,13 @@ function logout(){
 function getname($userid){
     global $conn;
     return mysqli_fetch_assoc(mysqli_query($conn, "SELECT username FROM user WHERE userid='{$userid}';"))['username'];
+}
+
+function getprofilepic($userid){
+    global $conn;
+    if(file_exists("data/image_profile/$userid.png")){
+        return "data/image_profile/$userid.png";
+    }else{
+        return "data/image_profile/default.png";
+    }
 }
