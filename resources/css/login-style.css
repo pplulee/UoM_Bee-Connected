@@ -28,6 +28,7 @@ body{
 .logo h1{
   font-size: 2.2em;
   text-align: left;
+  margin-top: 5%;
 }
 .logo img{
     height: 300px;
@@ -36,7 +37,8 @@ body{
     position: absolute;
     top: 40%;
     left: 70%;
-    width: 480px;
+    width: 34%;
+    max-width: 500px;
     padding: 40px;
     transform: translate(-50%, -50%);
     background: #FFB21D;
@@ -73,23 +75,15 @@ body{
   }
   .login-box .user-box label {
     position: absolute;
-    top:0;
+    top: -20px;
     left: 0;
     padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
+    font-size: 14px;
+    color: #522174;
     pointer-events: none;
     transition: .2s;
   }
-  
-  .login-box .user-box input:focus ~ label,
-  .login-box .user-box input:valid ~ label {
-    top: -20px;
-    left: 0;
-    color: #522174;
-    font-size: 14px;
-  }
-  
+ 
   .login-box form .login_btn {
     position: relative;
     display: inline-block;
@@ -114,8 +108,7 @@ body{
     overflow: hidden;
     transition: .5s;
     margin-top: 40px;
-    letter-spacing: 3px;
-    margin-left: 30px;
+    letter-spacing: 2px;
   }
   .login-box button:hover {
     background: #a441e8;
@@ -149,11 +142,12 @@ body{
       left: 100%;
     }
   }
-  h5{
+  .login-box h5{
     all: unset;
   }
-  h5{
-    margin-left: 20px;
+  .login-box h5{
+    margin-right: 4%;
+    margin-left: 4%;
     padding: 0;
     color: #a441e8;
     text-align: center;
@@ -161,7 +155,7 @@ body{
     font-size: 1.2em;
     text-shadow: 0 0 10px #FFFFFF;
   }
-  button{
+  .login-box button{
     all: unset;
   }
   .login-box button span:nth-child(2) {

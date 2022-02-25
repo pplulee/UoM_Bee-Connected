@@ -13,7 +13,7 @@ include("include/common.php");
                 <?php
                 if ($_SESSION["isLogin"]){
                     $profilepic_url = getprofilepic($_SESSION["userid"]);
-                    echo "<img src='{$profilepic_url}'/>
+                    echo "<img class = \"profile_pic\" src='{$profilepic_url}'/>
                         <div class='dropdown'>
                             <button class='dropbtn'>{$_SESSION["username"]}
                                 <i class='fa fa-caret-down'></i>
