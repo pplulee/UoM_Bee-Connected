@@ -9,44 +9,54 @@ if (isset($_SESSION["isLogin"]) AND $_SESSION["isLogin"]==TRUE){
     exit;
 }
 
-function login($username,$password){
-    global $conn;
-    if (mysqli_num_rows(mysqli_query($conn, "SELECT username FROM user WHERE username='{$username}';")) == 0){
-        return false;
-    }
-    else{
-        return password_verify($password,mysqli_fetch_assoc(mysqli_query($conn, "SELECT password FROM user WHERE username='{$username}';"))["password"]);
-    }
-}
-
-function startlogin($username,$password){
-    global $conn;
-    if (login($username,$password)){
-        $_SESSION["isLogin"]=true;
-        $_SESSION["username"]=$_POST["username"];
-        $_SESSION["userid"]=mysqli_fetch_assoc(mysqli_query($conn, "SELECT userid FROM user WHERE username='{$username}';"))["userid"];
-        echo "<div class='alert alert-success' role='alert'><p>Login successfully, will jump to the home page</p></div>";
-        echo "<script>setTimeout(\"javascript:location.href='index.php'\", 3000);</script>";
-    }
-    else{
-        $_SESSION["isLogin"]=false;
-        echo "<div class=\"alert alert-danger\" role=\"alert\"><p>Incorrect username or password</p></div>";
-    }
-}
-
 function userexist($username){
     global $conn;
-    if (mysqli_num_rows(mysqli_query($conn, "SELECT username FROM user WHERE username='{$username}';")) == 0){
+    if (mysqli_num_rows(mysqli_query($conn, "SELECT username FROM user WHERE username='$username';")) == 0){
         return false;
     }else{
         return true;
     }
 }
 
+function addloginrecord($username,$status){
+    global $conn;
+    if (userexist($username)){
+        $userid = get_id_by_name($username);
+        $ip = getIp();
+        $datetime = date('Y-m-d H:i:s');
+        mysqli_query($conn, "INSERT INTO user_login (userid, ip, datetime, type) VALUES ('$userid', '$ip', '$datetime', $status);");
+    }
+}
+
+function login($username,$password){
+    global $conn;
+    if (userexist($username)){
+        return password_verify($password,mysqli_fetch_assoc(mysqli_query($conn, "SELECT password FROM user WHERE username='$username';"))["password"]);
+    }else{
+        return false;
+    }
+}
+
+function startlogin($username,$password){
+    if (login($username,$password)){
+        addloginrecord($username,1);
+        $_SESSION["isLogin"]=true;
+        $_SESSION["username"]=$_POST["username"];
+        $_SESSION["userid"]=get_id_by_name($username);
+        echo "<div class='alert alert-success' role='alert'><p>Login successfully, will jump to the home page</p></div>";
+        echo "<script>setTimeout(\"javascript:location.href='index.php'\", 3000);</script>";
+    }
+    else{
+        addloginrecord($username,0);
+        $_SESSION["isLogin"]=false;
+        echo "<div class=\"alert alert-danger\" role=\"alert\"><p>Incorrect username or password</p></div>";
+    }
+}
+
 function register($username,$password){
     global $conn;
     $password = password_hash($password,PASSWORD_DEFAULT);
-    echo mysqli_query($conn, "INSERT INTO user (username, password) VALUES ('{$username}', '{$password}');");
+    mysqli_query($conn, "INSERT INTO user (username, password) VALUES ('{$username}', '{$password}');");
 }
 
 //Click the login bottom

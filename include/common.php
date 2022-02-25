@@ -23,7 +23,7 @@ if (!(isset($_SESSION["isLogin"]))){
     $_SESSION["isLogin"]=false;
 }
 
-//Initialize bootstrap
+//Initialize CSS
 echo'<!DOCTYPE html>
 <html lang="en-GB">
 <head>
