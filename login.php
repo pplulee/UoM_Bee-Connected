@@ -83,7 +83,7 @@ if (isset($_POST['login'])) {
 ?>
 <html lang="en-GB">
 <head>
-    <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/login-style.css">
     <title>Login</title>
 </head>
 <body>
