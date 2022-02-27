@@ -5,8 +5,20 @@ function logout(){
     unset($_SESSION['userid']);
     unset($_SESSION['username']);
     unset($_SESSION['password']);
-    unset($_SESSION['permission']);
     exit("<script>alert('You have been successfully logged out');window.location.href='./index.php';</script>");
+}
+
+function isadmin($userid=""){
+    global $conn;
+    if (!isset($userid) or $userid==""){
+        return false;
+    }
+    if (mysqli_fetch_assoc(mysqli_query($conn, "SELECT permission FROM user WHERE userid='{$userid}';"))['permission'] < 3){
+        return false;
+    }
+    else{
+        return true;
+    }
 }
 
 function get_name_by_id($userid){
