@@ -19,7 +19,7 @@ include("include/common.php");
                                 <i class='fa fa-caret-down'></i>
                             </button>
                             <div class='dropdown-content'>
-                                <a href='#'>Profile</a>
+                                <a href='user.php'>Profile</a>
                                 <a href='index.php?logout'>Logout</a>
                             </div>
                         </div>";
