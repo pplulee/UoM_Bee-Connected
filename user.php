@@ -16,16 +16,20 @@ if (!isset($_SESSION["isLogin"]) or $_SESSION["isLogin"]==false){
     $result = mysqli_fetch_assoc($result);
 }
 ?>
-<html lang="en-GB">
-<head>
-    <link rel="stylesheet" href="resources/css/user-style.css">
-</head>
+    <html lang="en-GB">
+    <head>
+        <link rel="stylesheet" href="resources/css/user-style.css">
+    </head>
 
-<body>
-    <div class = "main">
+    <body>
+    <div class="main">
         <div class="row">
             <div class="col-5">
-                <img class = "user_img" src=<?php echo $profilepic_url; ?>>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <img class="user_img" src=<?php echo $profilepic_url; ?>><br>
+                    <input type="file" name="file">
+                    <input class="btn btn-primary" type="submit" name="upload" value="UPDATE">
+                </form>
             </div>
             <div class="col-7">
                 <form action="" method="post">
@@ -34,7 +38,8 @@ if (!isset($_SESSION["isLogin"]) or $_SESSION["isLogin"]==false){
                         <label>Username</label>
                     </div>
                     <div class="user-box">
-                        <input type="password" name="password" value="" placeholder="Please leave blank if you do not modify">
+                        <input type="password" name="password" value=""
+                               placeholder="Please leave blank if you do not modify">
                         <label>Password</label>
                     </div>
                     <div class="user-box">
@@ -61,5 +66,37 @@ if (isset($_POST["save"])) {
     mysqli_query($conn, "UPDATE user SET bio='{$_POST['motto']}' WHERE userid='{$_SESSION["userid"]}';");
     echo "<div class='alert alert-success' role='alert'>Modified successfully</div>";
     echo "<script>setTimeout(\"javascript:location.href='user.php'\", 1500); </script>";
+}
+function uploadpic()
+{
+    $allowedExts = array("gif", "jpeg", "jpg", "png");
+    $temp = explode(".", $_FILES["file"]["name"]);
+    $extension = end($temp);     // Get the extension
+    if ((($_FILES["file"]["type"] == "image/gif")
+            || ($_FILES["file"]["type"] == "image/jpeg")
+            || ($_FILES["file"]["type"] == "image/jpg")
+            || ($_FILES["file"]["type"] == "image/pjpeg")
+            || ($_FILES["file"]["type"] == "image/x-png")
+            || ($_FILES["file"]["type"] == "image/png"))
+        && ($_FILES["file"]["size"] < 512000)   // Less than 500kb
+        && in_array($extension, $allowedExts)) {
+        if ($_FILES["file"]["error"] > 0) {
+            echo "Upload Error:" . $_FILES["file"]["error"] . "<br>";
+        } else {
+            $existpic = getprofilepic($_SESSION["userid"]);
+            if ($existpic != "data/image_profile/default.png") {
+                // Image already exist
+                unlink("{$_SERVER['DOCUMENT_ROOT']}/{$existpic}");
+            }
+            move_uploaded_file($_FILES["file"]["tmp_name"], "{$_SERVER['DOCUMENT_ROOT']}/data/image_profile/{$_SESSION['userid']}.$extension");
+            echo "<script>setTimeout(\"javascript:location.href='user.php'\", 0);</script>";
+        }
+    } else {
+        echo "Illegal file formats";
+    }
+}
+
+if (isset($_POST["upload"])) {
+    uploadpic();
 }
 ?>

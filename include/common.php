@@ -1,7 +1,6 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
-define('ROOT', dirname(__FILE__).'/');
-include ROOT.'../config.php';
+include $_SERVER['DOCUMENT_ROOT'].'/config.php';
 include ("function.php");
 
 

@@ -11,7 +11,7 @@ include("include/common.php");
         <div>
             <ul class="nav navbar-nav">
                 <?php
-                if ($_SESSION["isLogin"]){
+                if ($_SESSION["isLogin"]) {
                     $profilepic_url = getprofilepic($_SESSION["userid"]);
                     echo "<img class = \"profile_pic\" src='{$profilepic_url}'/>
                         <div class='dropdown'>
@@ -23,11 +23,11 @@ include("include/common.php");
                                 <a href='index.php?logout'>Logout</a>
                             </div>
                         </div>";
-                }else{
+                } else {
                     echo "<a href='login.php'><button type='button' class='btn btn-outline-success'>Login</button></a>";
                 }
                 ?>
         </div>
-            </ul>
+        </ul>
     </div>
 </nav>

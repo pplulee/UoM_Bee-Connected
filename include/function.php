@@ -34,7 +34,16 @@ function get_id_by_name($username){
 function getprofilepic($userid){
     if(file_exists("data/image_profile/$userid.png")){
         return "data/image_profile/$userid.png";
-    }else{
+    }elseif (file_exists("data/image_profile/$userid.jpg")){
+        return "data/image_profile/$userid.jpg";
+    }
+    elseif (file_exists("data/image_profile/$userid.jpeg")){
+        return "data/image_profile/$userid.jpeg";
+    }
+    elseif (file_exists("data/image_profile/$userid.gif")){
+        return "data/image_profile/$userid.gif";
+    }
+    else{
         return "data/image_profile/default.png";
     }
 }
