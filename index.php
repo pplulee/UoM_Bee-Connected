@@ -10,3 +10,13 @@ if (!$_SESSION["isLogin"]) {
 if (isset($_GET["logout"])) {
     logout();
 }
+
+function post_submit($userid,$title,$content,$category){
+    global $conn;
+    if ($_SESSION["permission"]==0){
+        return array(false,"You don't have permission to send post");
+    }else{
+        mysqli_query($conn, "INSERT INTO post (author,title,content,category) VALUES ('$userid','$title','$content','$category')");
+        return array(true, "Success!");
+    }
+}
