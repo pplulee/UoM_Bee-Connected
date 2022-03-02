@@ -20,6 +20,7 @@ if ($Sys_config["mysql_enable"]){
 session_start();
 if (!(isset($_SESSION["isLogin"]))){
     $_SESSION["isLogin"]=false;
+    $_SESSION["permission"]=0;
 }
 
 //Initialize CSS

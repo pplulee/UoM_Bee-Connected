@@ -9,7 +9,11 @@ A forum website by R3 group
 - [x] Login
 - [x] Register
 - [x] Profile page
+- [ ] Profile image upload
 
 #### Main page
-- [ ] Nav bar
-- [ ] index page framework
+- [x] Nav bar
+- [x] index page framework
+- [ ] Categories
+- [ ] Search(Title&Content)
+- [ ] Report function
