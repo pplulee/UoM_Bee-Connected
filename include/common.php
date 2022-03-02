@@ -1,7 +1,6 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
-define('ROOT', dirname(__FILE__).'/');
-include ROOT.'../config.php';
+include $_SERVER['DOCUMENT_ROOT'].'/config.php';
 include ("function.php");
 
 
@@ -23,7 +22,7 @@ if (!(isset($_SESSION["isLogin"]))){
     $_SESSION["isLogin"]=false;
 }
 
-//Initialize bootstrap
+//Initialize CSS
 echo'<!DOCTYPE html>
 <html lang="en-GB">
 <head>
