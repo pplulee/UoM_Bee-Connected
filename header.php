@@ -6,14 +6,29 @@ include("include/common.php");
 <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">Title</a>
+            <a class="navbar-brand" href="index.php">Bee Connected UOM</a>
         </div>
+        <div class="vl1"></div>
+        <p class="post">POSTS</p>
+        <div class="link-top"></div>
         <div>
             <ul class="nav navbar-nav">
+                <div class="search-container">
+                    <input type="text" name="search" placeholder="Search..." class="search-input">
+                    <a href="#" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </div>
+                <div class="vl"></div>
+
                 <?php
                 if ($_SESSION["isLogin"]) {
                     $profilepic_url = getprofilepic($_SESSION["userid"]);
+<<<<<<< HEAD
+                    echo "<img id='user' src='{$profilepic_url}'/>
+=======
                     echo "<img class = \"profile_pic\" src='{$profilepic_url}'/>
+>>>>>>> 5662df1a66069469d0d948b242aeb0949ba2b453
                         <div class='dropdown'>
                             <button class='dropbtn'>{$_SESSION["username"]}
                                 <i class='fa fa-caret-down'></i>
@@ -27,6 +42,12 @@ include("include/common.php");
                     echo "<a href='login.php'><button type='button' class='btn btn-outline-success'>Login</button></a>";
                 }
                 ?>
+                <div class="link-top1"></div>
+
+
+
+
+
         </div>
         </ul>
     </div>

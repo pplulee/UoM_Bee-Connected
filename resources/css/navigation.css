@@ -1,4 +1,40 @@
+<<<<<<< HEAD
+
+
+a.navbar-brand{
+    font-size:23px;
+    font-family:"Verdana", Sans-serif;
+    font-weight: bold;
+    background: linear-gradient(to right ,#a441e8,#ffd400,#a441e8);
+    height: 35px;
+    padding-top: 2px;
+}
+.vl1 {
+    border-left: 7px solid #FFB21D;
+    height: 2000px;
+    position: fixed;
+    left:283px;
+}
+.link-top{
+    width: 290px;
+    height: 1px;
+    border-top: solid #FFB21D 7px;
+    position: fixed;
+    left:0;
+    top:55px;
+}
+.link-top1{
+    width: 185px;
+    height: 1px;
+    border-top: solid #FFB21D 7px;
+    position: fixed;
+    right:0;
+    top:55px;
+}
+img{
+=======
 .profile_pic{
+>>>>>>> 5662df1a66069469d0d948b242aeb0949ba2b453
     width: 45px;
     height: 45px;
     border-radius: 100%;
@@ -44,4 +80,58 @@
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+.search-container{
+    background: #fff;
+    height: 36px;
+    border-radius: 30px;
+    border-style:solid;
+    border-color:#F5C06A;
+    border-width:3px;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.8s;
+    margin-top:6px;
+    margin-right: 120px;
+
+
+    box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, .2),
+    inset -4px -4px 6px 0 rgba(255,255,255,.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+.search-container:hover > .search-input{
+    width: 100px;
+}
+
+.search-container .search-input{
+    background: transparent;
+    border: none;
+    outline:none;
+    width: 0px;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.8s;
+}
+
+.search-container .search-btn .fas{
+    color: #F5C06A;
+}
+.vl {
+    border-left: 7px solid #FFB21D;
+    height: 2000px;
+    position: fixed;
+    right:178px;
+}
+p.post{
+    position: fixed;
+    font-family: "Verdana", San-sserif;
+    font-size: 35px;
+    font-weight: bold;
+    left:330px;
+    top:5px;
 }
