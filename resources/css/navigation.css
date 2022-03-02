@@ -9,7 +9,7 @@ a.navbar-brand{
 }
 .vl1 {
     border-left: 7px solid #FFB21D;
-    height: 2000px;
+    height: 52px;
     position: fixed;
     left:283px;
 }
@@ -118,7 +118,7 @@ a.navbar-brand{
 }
 .vl {
     border-left: 7px solid #FFB21D;
-    height: 2000px;
+    height: 50px;
     position: fixed;
     right:178px;
 }
