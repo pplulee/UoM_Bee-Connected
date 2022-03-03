@@ -19,34 +19,36 @@ if (!isset($_SESSION["isLogin"]) or $_SESSION["isLogin"]==false){
     <html lang="en-GB">
     <head>
         <link rel="stylesheet" href="resources/css/user-style.css">
+        <script src="save.js"></script>
     </head>
 
     <body>
     <div class="main">
         <div class="row">
             <div class="col-5">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="" method="post" enctype="multipart/form-data" name="image_save">
                     <img class="user_img" src=<?php echo $profilepic_url; ?>><br>
-                    <input type="file" name="file">
-                    <input class="btn btn-primary" type="submit" name="upload" value="UPDATE">
+                    <input id="browse" type="file" name="file" hidden>
+                    <input class="btn btn-primary" type="submit" name="upload" value="UPDATE" hidden>
+                    <label for="browse">Choose File</label>
                 </form>
             </div>
             <div class="col-7">
-                <form action="" method="post">
+                <form action="" method="post" name="info_save">
                     <div class="user-box">
                         <input type="text" name="username" value="<?php echo $result['username']; ?>" readonly>
                         <label>Username</label>
                     </div>
                     <div class="user-box">
                         <input type="password" name="password" value=""
-                               placeholder="Please leave blank if you do not modify">
+                               placeholder="Leave blank if you don't want to modify">
                         <label>Password</label>
                     </div>
                     <div class="user-box">
                         <input type="text" name="motto" value="<?php echo $result['bio']; ?>">
                         <label>Motto</label>
                     </div>
-                    <button name="save" id="save" type="submit">SAVE
+                    <button name="save" id="save" type="submit" onclick="submitForms()">SAVE
                     </button>
                 </form>
             </div>
