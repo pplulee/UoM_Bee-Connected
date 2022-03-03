@@ -1,30 +1,30 @@
 <?php
 header('Content-Type: text/html; charset=UTF-8');
-include $_SERVER['DOCUMENT_ROOT'].'/config.php';
-include ("function.php");
+include $_SERVER['DOCUMENT_ROOT'] . '/config.php';
+include("function.php");
 
 
 //Enable error reporting
-if ($Sys_config["debug"]){
-    ini_set("display_errors","On");
+if ($Sys_config["debug"]) {
+    ini_set("display_errors", "On");
     error_reporting(E_ALL);
 }
 
 
-if ($Sys_config["mysql_enable"]){
+if ($Sys_config["mysql_enable"]) {
     $conn = @mysqli_connect($Sys_config["db_host"], $Sys_config["db_user"], $Sys_config["db_password"], $Sys_config["db_database"]);  //Database connection
 }
 
 
 //Initialize session
 session_start();
-if (!(isset($_SESSION["isLogin"]))){
-    $_SESSION["isLogin"]=false;
-    $_SESSION["permission"]=0;
+if (!(isset($_SESSION["isLogin"]))) {
+    $_SESSION["isLogin"] = false;
+    $_SESSION["permission"] = 0;
 }
 
 //Initialize CSS
-echo'<!DOCTYPE html>
+echo '<!DOCTYPE html>
 <html lang="en-GB">
 <head>
     <meta charset="utf-8">

@@ -9,7 +9,7 @@ A forum website by R3 group
 - [x] Login
 - [x] Register
 - [x] Profile page
-- [ ] Profile image upload
+- [x] Profile image upload
 
 #### Main page
 - [x] Nav bar

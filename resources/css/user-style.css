@@ -36,8 +36,8 @@ body{
     0 0 50px #a441e8;
 }
 .user_img{
-    width: 55%;
-    height: 45%;
+    width: 150px;
+    height: 150px;
     border-radius: 100%;
     border:solid 2px #a441e8;
     position: absolute;
