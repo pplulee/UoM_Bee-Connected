@@ -19,10 +19,10 @@ include("include/common.php");
                 </div>
 
                 <div class="profile">
-                <?php
-                if ($_SESSION["isLogin"]) {
-                    $profilepic_url = getprofilepic($_SESSION["userid"]);
-                    echo "<img class = \"profile_pic\" src='{$profilepic_url}'/>
+                    <?php
+                    if ($_SESSION["isLogin"]) {
+                        $profilepic_url = getprofilepic($_SESSION["userid"]);
+                        echo "<img class = \"profile_pic\" src='{$profilepic_url}'/>
                         <div class='dropdown'>
                             <button class='dropbtn'>{$_SESSION["username"]}
                                 <i class='fa fa-caret-down'></i>
@@ -32,10 +32,10 @@ include("include/common.php");
                                 <a href='index.php?logout'>Logout</a>
                             </div>
                         </div>";
-                } else {
-                    echo "<a href='login.php'><button type='button' class='btn btn-outline-success'>Login</button></a>";
-                }
-                ?>
+                    } else {
+                        echo "<a href='login.php'><button type='button' class='btn btn-outline-success'>Login</button></a>";
+                    }
+                    ?>
                 </div>
 
         </div>

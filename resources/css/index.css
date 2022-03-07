@@ -1,33 +1,41 @@
-div.category{
+div.category {
     position: fixed;
     padding-top: 50px;
     height: 755px;
     width: 295px;
-    border-right:7px solid #FFB21D ;
+    border-right: 7px solid #FFB21D;
     background-color: #F8F9FA;
 }
-div.trending{
+
+div.trending {
     position: fixed;
     right: 0;
     height: 755px;
     width: 262px;
-    border-left:7px solid #FFB21D ;
+    border-left: 7px solid #FFB21D;
     background-color: #F8F9FA;
 }
-* {box-sizing: border-box}
-body {font-family: "Lato", sans-serif;}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
 .tab {
     float: left;
     /*border: 7px solid #F4B446;*/
     background-color: white;
     width: 288px;
-    height:1000px;
+    height: 1000px;
 }
 
 .tab button {
     display: block;
     background-color: inherit;
-    color: Black ;
+    color: Black;
     padding: 22px 30px;
     width: 100%;
     border: none;
@@ -54,7 +62,8 @@ body {font-family: "Lato", sans-serif;}
     border-left: none;
     height: 395px;
 }
-p.trending{
+
+p.trending {
     font-size: 27px;
     font-weight: bold;
     font-family: "Verdana", serif;
@@ -62,7 +71,8 @@ p.trending{
     margin-left: 50px;
     margin-top: 20px;
 }
-div.content{
+
+div.content {
     position: fixed;
     background-color: #F8F9FA;
     height: 563px;
@@ -71,15 +81,16 @@ div.content{
     bottom: 200px;
 }
 
-div.sendingPost{
+div.sendingPost {
     position: fixed;
     bottom: 0;
     background-color: #F8F9FA;
     height: 200px;
     width: 883px;
-    left:295px;
-    border-top:7px solid #FFB21D;
+    left: 295px;
+    border-top: 7px solid #FFB21D;
 }
+
 * {
     box-sizing: border-box;
 }

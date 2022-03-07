@@ -10,28 +10,31 @@ function logout(){
 
 function isadmin($userid=""){
     global $conn;
-    if (!isset($userid) or $userid==""){
+    if (!isset($userid) or $userid == "") {
         return false;
     }
-    if (mysqli_fetch_assoc(mysqli_query($conn, "SELECT permission FROM user WHERE userid='{$userid}';"))['permission'] < 3){
+    if (mysqli_fetch_assoc(mysqli_query($conn, "SELECT permission FROM user WHERE userid='{$userid}';"))['permission'] != 255) {
         return false;
-    }
-    else{
+    } else {
         return true;
     }
 }
 
-function get_name_by_id($userid){
+function get_name_by_id($userid)
+{
     global $conn;
     return mysqli_fetch_assoc(mysqli_query($conn, "SELECT username FROM user WHERE userid='$userid';"))['username'];
 }
 
-function get_id_by_name($username){
+function get_id_by_name($username)
+{
     global $conn;
     return mysqli_fetch_assoc(mysqli_query($conn, "SELECT userid FROM user WHERE username='$username';"))['userid'];
 }
-function checklogin(){
-    if (!isset($_SESSION["isLogin"]) or $_SESSION["isLogin"]==false){
+
+function checklogin()
+{
+    if (!isset($_SESSION["isLogin"]) or $_SESSION["isLogin"] == false) {
         echo "<script>
                 setTimeout(\"javascript:location.href='login.php'\", 0);
               </script>";
@@ -39,19 +42,39 @@ function checklogin(){
     }
 }
 
-function getprofilepic($userid){
-    if(file_exists("data/image_profile/$userid.png")){
+function userexist($username)
+{
+    global $conn;
+    if (mysqli_num_rows(mysqli_query($conn, "SELECT username FROM user WHERE username='$username';")) == 0) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function register($username, $password)
+{
+    global $conn;
+    if (userexist($username)) {
+        return false;
+    } else {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        mysqli_query($conn, "INSERT INTO user (username, password) VALUES ('{$username}', '{$password}');");
+        return true;
+    }
+}
+
+function getprofilepic($userid)
+{
+    if (file_exists("data/image_profile/$userid.png")) {
         return "data/image_profile/$userid.png";
-    }elseif (file_exists("data/image_profile/$userid.jpg")){
+    } elseif (file_exists("data/image_profile/$userid.jpg")) {
         return "data/image_profile/$userid.jpg";
-    }
-    elseif (file_exists("data/image_profile/$userid.jpeg")){
+    } elseif (file_exists("data/image_profile/$userid.jpeg")) {
         return "data/image_profile/$userid.jpeg";
-    }
-    elseif (file_exists("data/image_profile/$userid.gif")){
+    } elseif (file_exists("data/image_profile/$userid.gif")) {
         return "data/image_profile/$userid.gif";
-    }
-    else{
+    } else {
         return "data/image_profile/default.png";
     }
 }

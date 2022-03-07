@@ -12,7 +12,7 @@ include ("header.php");
 $result = mysqli_query($conn,"SELECT userid,username,bio,permission FROM user;");
 if (mysqli_num_rows($result)>0){
     while ($row = mysqli_fetch_assoc($result)){
-        echo "<tr><th>{$row['userid']}</th><td>{$row['username']}</td><td>{$row['bio']}</td><td>{$row['permission']}</td><td><a href='edituser.php?action=edit&id={$row['userid']}' class='btn btn-xs btn-info'>Edit</a></td>";
+        echo "<tr><th>{$row['userid']}</th><td>{$row['username']}</td><td>{$row['bio']}</td><td>{$row['permission']}</td><td><a href='edituser.php?action=edit&id={$row['userid']}' class='btn btn-primary'>Edit</a></td>";
     }
 }
 ?>

@@ -3,7 +3,7 @@ include("header.php");
 checklogin();
 $profilepic_url = getprofilepic($_SESSION["userid"]);
 $result = mysqli_query($conn, "SELECT * FROM user WHERE userid='{$_SESSION["userid"]}';");
-if (mysqli_num_rows($result) == 0){
+if (mysqli_num_rows($result) == 0) {
     echo '<div class="alert alert-danger" role="alert"><p>Wrong parameters</p></div>';
     exit;
 }
@@ -85,4 +85,5 @@ function uploadpic()
         echo "Illegal file formats";
     }
 }
+
 ?>

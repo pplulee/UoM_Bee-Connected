@@ -7,9 +7,10 @@ include("header.php");
 } else {
     echo "If you see this message, it means you are logged in\n";
 }
+}*/
 if (isset($_GET["logout"])) {
     logout();
-}*/
+}
 ?>
 <link rel="stylesheet" href="resources/css/index.css">
 <div class="category">
@@ -87,12 +88,21 @@ if (isset($_GET["logout"])) {
         </div>
         <div class="col-75">
             <select id="country" name="country">
-                <option value="Exercise">Exercise</option>
+                <!--<option value="Exercise">Exercise</option>
                 <option value="Fashion">Fashion</option>
                 <option value="Food">Food</option>
                 <option value="Shopping">Shopping</option>
                 <option value="Study">Study</option>
-                <option value="Travel">Travel</option>
+                <option value="Travel">Travel</option>!-->
+                <?php
+
+                $result = mysqli_query($conn, "SELECT name FROM category WHERE enable='1';");
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<option value='{$row['name']}'>{$row['name']}</option>";
+                    }
+                }
+                ?>
             </select>
         </div>
     </div>
@@ -107,7 +117,5 @@ if (isset($_GET["logout"])) {
     <div class="row">
         <input type="submit" value="Submit" style="width:100px">
     </div>
-    </form>
-</div>
 </div>
 

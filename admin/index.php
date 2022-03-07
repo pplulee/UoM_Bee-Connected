@@ -8,7 +8,11 @@ include("header.php");
     <ul class="list-group">
         <li class="list-group-item">
             <b>PHP version:</b><?php echo phpversion() ?>
-            <?php if(ini_get('safe_mode')) { echo '线程安全'; } else { echo '非线程安全'; } ?>
+            <?php if (ini_get('safe_mode')) {
+                echo '线程安全';
+            } else {
+                echo '非线程安全';
+            } ?>
         </li>
         <li class="list-group-item">
             <b>MySQL version:</b><?php echo mysqli_get_server_version($conn) ?>

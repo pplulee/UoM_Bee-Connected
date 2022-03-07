@@ -9,16 +9,6 @@ if (isset($_SESSION["isLogin"]) and $_SESSION["isLogin"] == TRUE) {
     exit;
 }
 
-function userexist($username)
-{
-    global $conn;
-    if (mysqli_num_rows(mysqli_query($conn, "SELECT username FROM user WHERE username='$username';")) == 0) {
-        return false;
-    } else {
-        return true;
-    }
-}
-
 function addloginrecord($username, $status)
 {
     global $conn;
@@ -56,12 +46,6 @@ function startlogin($username, $password)
     }
 }
 
-function register($username, $password)
-{
-    global $conn;
-    $password = password_hash($password, PASSWORD_DEFAULT);
-    mysqli_query($conn, "INSERT INTO user (username, password) VALUES ('{$username}', '{$password}');");
-}
 
 //Click the login bottom
 if (isset($_POST['login'])) {
@@ -73,14 +57,13 @@ if (isset($_POST['login'])) {
 } elseif (isset($_POST['register'])) {
     if (!isset($_POST["username"]) or !isset($_POST["password"])) {
         echo "<div class='alert alert-danger' role='alert'><p>Username or password cannot be empty</p></div>";
-    } elseif (userexist($_POST["username"])) {
-        echo "<div class='alert alert-danger' role='alert'><p>This user already exists</p></div>";
-    } else {
-        register($_POST["username"], $_POST["password"]);
+    } elseif (register($_POST["username"], $_POST["password"])) {
         echo "<div class='alert alert-success' role='alert'><p>Register successfully, page will refresh</p></div>";
         echo "<script>
                 setTimeout(\"javascript:location.href=''\", 3000);
               </script>";
+    } else {
+        echo "<div class='alert alert-danger' role='alert'><p>This user already exists</p></div>";
     }
 }
 ?>

@@ -17,7 +17,13 @@ if (!isset($_SESSION['isLogin']) or !isadmin($_SESSION["userid"])){
                     <a class="nav-link" href="../index.php">Website index</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="user.php">Manage User</a>
+                    <a class="nav-link" href="user.php">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="category.php">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="loginrecord.php">Login Record</a>
                 </li>
             </ul>
         </div>

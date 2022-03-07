@@ -45,8 +45,7 @@ if (isset($_POST["submit"])){
         $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
         mysqli_query($conn, "UPDATE user SET password='{$password}' WHERE userid='{$_GET['id']}';");
     }
-    mysqli_query($conn, "UPDATE user SET bio='{$_POST['bio']}' WHERE userid='{$_GET['id']}';");
-    mysqli_query($conn, "UPDATE user SET permission='{$_POST['permission']}' WHERE userid='{$_GET['id']}';");
+    mysqli_query($conn, "UPDATE user SET bio='{$_POST['bio']}', permission='{$_POST['permission']}' WHERE userid='{$_GET['id']}';");
     echo "<div class='alert alert-success' role='alert'><p>Modified successfully, will return to user list soon</p></div>";
     echo "<script>setTimeout(\"javascript:location.href='user.php'\", 1000);</script>";
     exit;
