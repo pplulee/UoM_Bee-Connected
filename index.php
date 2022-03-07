@@ -15,6 +15,4 @@ if (isset($_GET["logout"])) {
 <div class="category">
 
 </div>
-<div class="trending">
-
-</div>
+<div class="trending"></div>

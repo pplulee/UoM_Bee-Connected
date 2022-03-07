@@ -1,0 +1,15 @@
+div.category{
+    padding-top: 50px;
+    height: 755px;
+    width: 295px;
+    border-right:7px solid #FFB21D ;
+    background-color: #F8F9FA;
+}
+div.trending{
+    margin-top: -755px;
+    margin-left: 1178px;
+    height: 755px;
+    width: 250px;
+    border-left:7px solid #FFB21D ;
+    background-color: #F8F9FA;
+}
