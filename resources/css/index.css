@@ -1,15 +1,55 @@
 div.category{
     padding-top: 50px;
-    height: 755px;
-    width: 295px;
-    border-right:7px solid #FFB21D ;
+    height: 1000px;
+    width: 1010px;
+   border-right:7px solid #FFB21D;
     background-color: #F8F9FA;
 }
+* {box-sizing: border-box}
+body {font-family: "Lato", sans-serif;}
+.tab {
+    float: left;
+    /*border: 7px solid #F4B446;*/
+    background-color: white;
+    width: 288px;
+    height:1000px;
+}
+
+.tab button {
+    display: block;
+    background-color: inherit;
+    color: Black ;
+    padding: 22px 30px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+.tabcontent {
+    float: left;
+    padding: 0px 12px;
+   /* border: 5px solid #F4B446;*/
+    width: 70%;
+    border-left: none;
+    height: 395px;
+}
 div.trending{
-    margin-top: -755px;
-    margin-left: 1178px;
-    height: 755px;
-    width: 250px;
-    border-left:7px solid #FFB21D ;
+    margin-top: -1000px;
+    margin-left: 288px;
+    height: 1000px;
+    width: 30px;
+  border-left:7px solid #FFB21D ;
     background-color: #F8F9FA;
 }
