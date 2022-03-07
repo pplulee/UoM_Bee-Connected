@@ -1,8 +1,17 @@
 div.category{
+    position: fixed;
     padding-top: 50px;
-    height: 1000px;
-    width: 1010px;
-   border-right:7px solid #FFB21D;
+    height: 755px;
+    width: 295px;
+    border-right:7px solid #FFB21D ;
+    background-color: #F8F9FA;
+}
+div.trending{
+    position: fixed;
+    right: 0;
+    height: 755px;
+    width: 262px;
+    border-left:7px solid #FFB21D ;
     background-color: #F8F9FA;
 }
 * {box-sizing: border-box}
@@ -40,16 +49,87 @@ body {font-family: "Lato", sans-serif;}
 .tabcontent {
     float: left;
     padding: 0px 12px;
-   /* border: 5px solid #F4B446;*/
+    /* border: 5px solid #F4B446;*/
     width: 70%;
     border-left: none;
     height: 395px;
 }
-div.trending{
-    margin-top: -1000px;
-    margin-left: 288px;
-    height: 1000px;
-    width: 30px;
-  border-left:7px solid #FFB21D ;
+p.trending{
+    font-size: 27px;
+    font-weight: bold;
+    font-family: "Verdana", serif;
+    color: black;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+div.content{
+    position: fixed;
     background-color: #F8F9FA;
+    height: 563px;
+    width: 883px;
+    left: 295px;
+    bottom: 200px;
+}
+
+div.sendingPost{
+    position: fixed;
+    bottom: 0;
+    background-color: #F8F9FA;
+    height: 200px;
+    width: 883px;
+    left:295px;
+    border-top:7px solid #FFB21D;
+}
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 600px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    margin-left: 10px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "Verdana", serif;
+}
+
+input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    margin-left: 700px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }

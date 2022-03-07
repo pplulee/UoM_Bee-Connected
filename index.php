@@ -25,33 +25,33 @@ if (isset($_GET["logout"])) {
 
     <div id="Exercise" class="tabcontent">
         <h2>Exercise</h2>
-        <p> Londonis the capital city of England.</p>
+        <p> ......</p>
     </div>
 
 
     <div id="Fashion" class="tabcontent">
         <h2>Fashion</h2>
-        <p>Tokyo is the capital of Japan.</p>
+        <p>......</p>
     </div>
 
     <div id="Food" class="tabcontent">
         <h2>Food</h2>
-        <p>Paris is the capital of France.</p>
+        <p>......</p>
     </div>
 
     <div id="Shopping" class="tabcontent">
         <h2>Shopping</h2>
-        <p>London is the capital city of England.</p>
+        <p>......</p>
     </div>
 
     <div id="Study" class="tabcontent">
         <h2>Study</h2>
-        <p>London is the capital city of England.</p>
+        <p>......</p>
     </div>
 
     <div id="Travel" class="tabcontent">
         <h2>Travel</h2>
-        <p>London is the capital city of England.</p>
+        <p>......</p>
     </div>
 
 
@@ -74,4 +74,37 @@ if (isset($_GET["logout"])) {
     </script>
 
 </div>
-<div class="trending"></div>
+</div>
+<div class="trending">
+    <p class="trending">Trending</p>
+</div>
+<div class="content">
+</div>
+<div class="sendingPost">
+    <div class="row">
+        <div class="col-25">
+            <label for="country">Categories</label>
+        </div>
+        <div class="col-75">
+            <select id="country" name="country">
+                <option value="australia">Sports</option>
+                <option value="canada">Study</option>
+                <option value="usa">Music</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-25">
+            <label for="subject">Post</label>
+        </div>
+        <div class="col-75">
+            <textarea id="subject" name="subject" placeholder="Write your post" style="height:80px"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <input type="submit" value="Submit" style="width:100px">
+    </div>
+    </form>
+</div>
+</div>
+

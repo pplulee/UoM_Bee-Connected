@@ -51,7 +51,8 @@ div.dropdown{
     width: 100px;
     min-width: 100px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    z-index: 1;
+    position: absolute;
+    z-index: 9999;
 }
 
 .dropdown-content a {
