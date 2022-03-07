@@ -87,9 +87,12 @@ if (isset($_GET["logout"])) {
         </div>
         <div class="col-75">
             <select id="country" name="country">
-                <option value="australia">Sports</option>
-                <option value="canada">Study</option>
-                <option value="usa">Music</option>
+                <option value="Exercise">Exercise</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Food">Food</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Study">Study</option>
+                <option value="Travel">Travel</option>
             </select>
         </div>
     </div>
