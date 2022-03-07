@@ -1,4 +1,17 @@
+div.navbar-header{
+    height: 50px;
+    border-bottom:7px solid #FFB21D;
+    border-right:7px solid #FFB21D ;
+    padding-left: 0px;
+}
+div.profile{
+    border-left:7px solid #FFB21D ;
+    border-bottom:7px solid #FFB21D ;
+    width: 250px;
+    height: 50px;
+    padding-left: 0px;
 
+}
 a.navbar-brand{
     font-size:23px;
     font-family: "Verdana", Sans-serif, serif;
@@ -7,48 +20,35 @@ a.navbar-brand{
     height: 35px;
     padding-top: 2px;
 }
-.vl1 {
-    border-left: 7px solid #FFB21D;
-    height: 52px;
-    position: fixed;
-    left:283px;
-}
-.link-top{
-    width: 290px;
-    height: 1px;
-    border-top: solid #FFB21D 7px;
-    position: fixed;
-    left:0;
-    top:55px;
-}
-.link-top1{
-    width: 185px;
-    height: 1px;
-    border-top: solid #FFB21D 7px;
-    position: fixed;
-    right:0;
-    top:55px;
-}
+
 .profile_pic{
+    margin-left: 40px;
+    margin-top: -3px;
     width: 45px;
     height: 45px;
     border-radius: 100%;
     border:solid 2px purple;
+}
+button.btn.btn-outline-success{
+    margin-left: 80px;
+}
+div.dropdown{
+    margin-left: 100px;
+    margin-top: -40px;
 }
 .dropdown .dropbtn {
     font-size: 20px;
     font-family: "Verdana", serif;
     border: none;
     color: black;
-    padding-top: 5px;
     font-weight: bold;
     background-color:#F8F9FA;
 }
 
 .dropdown-content {
     display: none;
-    position: fixed;
     background-color: #f9f9f9;
+    width: 100px;
     min-width: 100px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
@@ -90,7 +90,7 @@ a.navbar-brand{
     cursor: pointer;
     transition: 0.8s;
     margin-top:6px;
-    margin-right: 120px;
+    margin-right: 40px;
 
 
     box-shadow:  4px 4px 6px 0 rgba(255,255,255,.3),
@@ -116,12 +116,7 @@ a.navbar-brand{
 .search-container .search-btn .fas{
     color: #F5C06A;
 }
-.vl {
-    border-left: 7px solid #FFB21D;
-    height: 50px;
-    position: fixed;
-    right:178px;
-}
+
 p.post{
     position: fixed;
     font-family: "Verdana", San-sserif;

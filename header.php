@@ -8,9 +8,7 @@ include("include/common.php");
         <div class="navbar-header">
             <a class="navbar-brand" href="index.php">Bee Connected UOM</a>
         </div>
-        <div class="vl1"></div>
         <p class="post">POSTS</p>
-        <div class="link-top"></div>
         <div>
             <ul class="nav navbar-nav">
                 <div class="search-container">
@@ -19,7 +17,8 @@ include("include/common.php");
                         <i class="fas fa-search"></i>
                     </a>
                 </div>
-                <div class="vl"></div>
+
+                <div class="profile">
                 <?php
                 if ($_SESSION["isLogin"]) {
                     $profilepic_url = getprofilepic($_SESSION["userid"]);
@@ -37,8 +36,8 @@ include("include/common.php");
                     echo "<a href='login.php'><button type='button' class='btn btn-outline-success'>Login</button></a>";
                 }
                 ?>
+                </div>
 
-                <div class="link-top1"></div>
         </div>
         </ul>
     </div>
