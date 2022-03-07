@@ -12,23 +12,58 @@ MySQL - 8.0.12 : Database - webtest
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*Table structure for table `category` */
+
+DROP TABLE IF EXISTS `category`;
+
+CREATE TABLE `category` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `enable` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `category` */
+
+insert  into `category`(`id`,`name`,`enable`) values 
+(1,'Exercise',1),
+(2,'Fashion',1),
+(3,'Food',1),
+(4,'Shopping',1),
+(5,'Study',1),
+(14,'Travel',1);
+
 /*Table structure for table `post` */
 
 DROP TABLE IF EXISTS `post`;
 
 CREATE TABLE `post` (
   `pid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'post ID',
-  `title` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-  `category` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `title` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `category` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `author` int(11) NOT NULL COMMENT 'linked to userid',
-  `mainpost` int(11) unsigned zerofill DEFAULT NULL COMMENT 'if not 0 then belongs to a post',
-  `hide` tinyint(1) unsigned zerofill DEFAULT NULL COMMENT 'visible or not',
+  `hide` tinyint(1) unsigned NOT NULL COMMENT 'visible or not',
   PRIMARY KEY (`pid`),
   KEY `author` (`author`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `post` */
+
+/*Table structure for table `reply` */
+
+DROP TABLE IF EXISTS `reply`;
+
+CREATE TABLE `reply` (
+  `rid` bigint(20) NOT NULL AUTO_INCREMENT,
+  `post_id` bigint(20) NOT NULL,
+  `reply_to` bigint(20) NOT NULL DEFAULT '0' COMMENT '0 if reply to main post',
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `visible` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`rid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `reply` */
 
 /*Table structure for table `report` */
 
@@ -55,14 +90,14 @@ CREATE TABLE `user` (
   `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `bio` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-  `permission` tinyint(4) DEFAULT '0',
+  `permission` tinyint(3) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `user` */
 
 insert  into `user`(`userid`,`username`,`password`,`bio`,`permission`) values 
-(1,'admin','$2y$10$XirbpwFpgc5fVRUkTqhYnuqPBGI3i5Ie7Jm8nJRNfptGd/Qg9p4FS',NULL,0);
+(1,'admin','$2y$10$C9YZ0Ff5NfIpV1pd7xzCTu2d2w6QRE1SFJfA2cN9/PME549zqIwUa','test121',255);
 
 /*Table structure for table `user_login` */
 
@@ -78,6 +113,10 @@ CREATE TABLE `user_login` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `user_login` */
+
+insert  into `user_login`(`id`,`userid`,`ip`,`datetime`,`type`) values 
+(1,1,'127.0.0.1','2022-03-08 05:08:38',1),
+(2,1,'127.0.0.1','2022-03-08 05:59:33',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
