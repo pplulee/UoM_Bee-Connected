@@ -1,3 +1,6 @@
+.navbar{
+    height: 8vh;
+}
 div.navbar-header {
     height: 50px;
     border-bottom: 7px solid #FFB21D;
