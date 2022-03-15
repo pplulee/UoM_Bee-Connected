@@ -43,12 +43,15 @@ CREATE TABLE `post` (
   `category` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `author` int(11) NOT NULL COMMENT 'linked to userid',
-  `hide` tinyint(1) unsigned NOT NULL COMMENT 'visible or not',
+  `hide` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'visible or not',
   PRIMARY KEY (`pid`),
   KEY `author` (`author`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `post` */
+
+insert  into `post`(`pid`,`title`,`category`,`content`,`author`,`hide`) values 
+(5,'test_title','','test_post',1,0);
 
 /*Table structure for table `reply` */
 
@@ -58,7 +61,7 @@ CREATE TABLE `reply` (
   `rid` bigint(20) NOT NULL AUTO_INCREMENT,
   `post_id` bigint(20) NOT NULL,
   `reply_to` bigint(20) NOT NULL DEFAULT '0' COMMENT '0 if reply to main post',
-  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `visible` tinyint(3) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`rid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -97,7 +100,7 @@ CREATE TABLE `user` (
 /*Data for the table `user` */
 
 insert  into `user`(`userid`,`username`,`password`,`bio`,`permission`) values 
-(1,'admin','$2y$10$C9YZ0Ff5NfIpV1pd7xzCTu2d2w6QRE1SFJfA2cN9/PME549zqIwUa','test121',255);
+(1,'admin','$2y$10$C9YZ0Ff5NfIpV1pd7xzCTu2d2w6QRE1SFJfA2cN9/PME549zqIwUa','',255);
 
 /*Table structure for table `user_login` */
 
@@ -106,17 +109,13 @@ DROP TABLE IF EXISTS `user_login`;
 CREATE TABLE `user_login` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `userid` bigint(20) DEFAULT NULL,
-  `ip` text COLLATE utf8_unicode_ci,
+  `ip` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `datetime` datetime DEFAULT NULL,
   `type` tinyint(1) DEFAULT NULL,
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `user_login` */
-
-insert  into `user_login`(`id`,`userid`,`ip`,`datetime`,`type`) values 
-(1,1,'127.0.0.1','2022-03-08 05:08:38',1),
-(2,1,'127.0.0.1','2022-03-08 05:59:33',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

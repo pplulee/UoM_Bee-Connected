@@ -20,6 +20,11 @@ function isadmin($userid=""){
     }
 }
 
+function get_permission($username){
+    global $conn;
+    return mysqli_fetch_assoc(mysqli_query($conn, "SELECT permission FROM user WHERE username='{$username}';"))['permission'];
+}
+
 function get_name_by_id($userid)
 {
     global $conn;
@@ -107,7 +112,7 @@ function post_submit($userid, $title, $content, $category)
     if ($_SESSION["permission"] == 0) {
         return array(false, "You don't have permission to send post");
     } else {
-        mysqli_query($conn, "INSERT INTO post (author,title,content,category) VALUES ('$userid','$title','$content','$category')");
+        mysqli_query($conn, "INSERT INTO post (author,title,content,category) VALUES ('$userid','$title','$content','$category');");
         return array(true, "Success!");
     }
 }

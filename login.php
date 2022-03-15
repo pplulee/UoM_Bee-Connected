@@ -36,6 +36,7 @@ function startlogin($username, $password)
         addloginrecord($username, 1);
         $_SESSION["isLogin"] = true;
         $_SESSION["username"] = $_POST["username"];
+        $_SESSION["permission"] = get_permission($username);
         $_SESSION["userid"] = get_id_by_name($username);
         echo "<div class='alert alert-success' role='alert'><p>Login successfully, will jump to the home page</p></div>";
         echo "<script>setTimeout(\"javascript:location.href='index.php'\", 3000);</script>";
