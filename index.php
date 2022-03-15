@@ -75,7 +75,6 @@ if (isset($_GET["logout"])) {
     </script>
 
 </div>
-</div>
 <div class="trending">
     <p class="trending">Trending</p>
 </div>
