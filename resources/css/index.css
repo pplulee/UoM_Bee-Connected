@@ -1,11 +1,13 @@
-body {
+body, .main {
     height: 100%;
-    overflow: hidden;
 }
-
+.container-fluid{
+    width: 100%;
+    padding: 0;
+}
 .col, .col-6 {
-    height: 90.5vh;
-    font-size: 1.6em;
+    height: 91.3vh;
+    font-size: 3vh;
     padding-top: 5px;
     padding-left: 0;
 }
@@ -13,6 +15,7 @@ body {
 .row {
     border-top: 10px solid #FFB21D;
     margin: 0;
+    height: 91.3vh;
 }
 
 .row .categories h2, .row .trending h2 {
@@ -67,11 +70,6 @@ body {
     transition: .2s;
 }
 
-.trending {
-    border-left: 10px solid #FFB21D;
-    box-sizing: border-box;
-}
-
 .col-8 {
     padding: 0;
 }
@@ -86,7 +84,7 @@ body {
 .input_area {
     padding: 2%;
     width: 100%;
-    height: 100%;
+    height: 30%;
     position: relative;
     background-color: #F5F5F5;
 }
@@ -95,10 +93,11 @@ textarea {
     resize: none;
     width: 100%;
     border-color: #FFB21D;
-    border-width: 5px;
+    border-width: 2px;
     border-radius: 10px;
     padding: 10px;
     outline: none;
+    font-size: 2.3vh;
 }
 
 .input_text {
@@ -107,11 +106,13 @@ textarea {
     position: absolute;
     left: 0;
     top: 0;
-    padding: 2%;
+    padding-right: 2%;
+    padding-left: 2%;
+    padding-bottom: 2%;
 }
 
 textarea:hover {
-    border-width: 8px;
+    border-width: 3px;
     transition: .2s;
     outline: none;
 }
@@ -134,7 +135,7 @@ textarea:hover {
     color: white;
 }
 
-.send_post:hover, select:hover {
+.send_post:hover, .choose_submit select:hover {
     background: #a441e8;
     color: #FFB21D;
     transition: .5s;
@@ -145,7 +146,7 @@ textarea:hover {
     cursor: pointer;
 }
 
-select {
+.choose_submit select {
     width: 100%;
     border: none;
     border-radius: 10px;
@@ -156,7 +157,7 @@ select {
     appearance: none;
     padding: 10px;
     color: white;
-    font-size: 1.2em;
+    font-size: 2.6vh;
 }
 
 .trending {
@@ -164,8 +165,28 @@ select {
     background: #6B2C91;
     color: white;
     font-weight: bold;
-    border-right: 10px solid #FFB21D;
+    border-left: 10px solid #FFB21D;
     box-sizing: border-box;
     padding-right: 0;
     transition: .2s;
+}
+
+.post_title{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    resize: none;
+    width: 30%;
+   border-style: solid;
+    border-color: #FFB21D;
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 5px 5px 5px 10px;
+    outline: none;
+    font-size: 2.5vh;
+}
+
+.post_title:hover{
+    border-width: 3px;
+    transition: .2s;
+    outline: none;
 }

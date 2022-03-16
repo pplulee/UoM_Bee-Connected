@@ -20,8 +20,7 @@ if (isset($_GET["logout"])) {
     <link rel="stylesheet" href="resources/css/index.css">
 
     <div class="main">
-        <div
-        = "container">
+        <div class = "container-fluid">
         <div class="row">
 
             <div class="col categories">
@@ -67,8 +66,8 @@ if (isset($_GET["logout"])) {
                 <div class="input_area">
                     <form action="" name="categories" method="post">
                         <div class="input_text">
-                            <input type="text" name="title" placeholder="Title" required>
-                            <textarea name="input_post" id="" cols="80" rows=6
+                            <input type="text" class = "post_title" name="title" placeholder="Your title goes here" required>
+                            <textarea name="input_post" id="post_self" cols="80" rows=4
                                       placeholder="What's on Your mind?" required></textarea>
                         </div>
                         <div class="choose_submit">

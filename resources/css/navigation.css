@@ -1,12 +1,14 @@
 .navbar {
-    height: 8vh;
+    height: 7.5vh;
+    padding-top: 3px;
+    background-color: #F5F5F5;
 }
 
 div.navbar-header {
-    height: 50px;
-    border-bottom: 7px solid #FFB21D;
-    border-right: 7px solid #FFB21D;
-    padding-bottom: 0;
+    height: 7.5vh;
+    width: 20%;
+    padding: 0 0 0 10px;
+    font-size: 2.5em;
 }
 
 div.profile {
@@ -17,14 +19,16 @@ div.profile {
     padding-left: 0;
 
 }
+.navbar-header a, a:visited, a:hover, a:active {
+    text-decoration: none;
+}
 
-a.navbar-brand {
-    font-size: 23px;
-    font-family: "Verdana", Sans-serif, serif;
-    font-weight: bold;
-    background: linear-gradient(to right, #a441e8, #ffd400, #a441e8);
-    height: 35px;
-    padding-top: 2px;
+.navbar-header a{
+    color: #a441e8;
+    text-align: center;
+    font-family: 'Grand Hotel', cursive;
+    text-shadow: 0 0 10px #FFB21D;
+    height: 100%;
 }
 
 .profile_pic {
@@ -128,11 +132,3 @@ div.dropdown {
     color: #F5C06A;
 }
 
-p.post {
-    position: fixed;
-    font-family: "Verdana", San-sserif, serif;
-    font-size: 35px;
-    font-weight: bold;
-    left: 330px;
-    top: 5px;
-}
