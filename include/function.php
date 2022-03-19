@@ -116,3 +116,14 @@ function post_submit($userid, $title, $content, $category)
         return array(true, "Success!");
     }
 }
+
+function post_report($userid, $postid, $reason)
+{
+    global $conn;
+    if ($userid == 0) {
+        return array(false, "No permission");
+    } else {
+        mysqli_query($conn, "INSERT INTO report (pid, userid, comment) VALUES ('$postid','$userid','$reason');");
+        return array(true, "Success!");
+    }
+}
