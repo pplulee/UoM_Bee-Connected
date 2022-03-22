@@ -38,6 +38,8 @@ switch ($_GET["action"]) {
                 </div>
             </div>
             <div class='form-group'>
+                <label>Icon</label><br>
+                <input type='text' class='form-control' name='icon' value='{$result['icon']}' required>
                 <label>Enable</label><br>
                 <input type='text' class='form-control' name='enable' value='{$result['enable']}' required>
             </div>
@@ -52,7 +54,7 @@ switch ($_GET["action"]) {
 }
 
 if (isset($_POST["submit"])) {
-    mysqli_query($conn, "UPDATE category SET name='{$_POST['name']}', enable='{$_POST['enable']}' WHERE id='{$_GET['id']}';");
+    mysqli_query($conn, "UPDATE category SET name='{$_POST['name']}', enable='{$_POST['enable']}', icon='{$_POST["icon"]}' WHERE id='{$_GET['id']}';");
     echo "<div class='alert alert-success' role='alert'><p>Modified successfully, will return to user list soon</p></div>";
     echo "<script>setTimeout(\"javascript:location.href='category.php'\", 1000);</script>";
     exit;
