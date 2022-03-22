@@ -19,19 +19,20 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `icon` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
   `enable` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `category` */
 
-insert  into `category`(`id`,`name`,`enable`) values 
-(1,'Exercise',1),
-(2,'Fashion',1),
-(3,'Food',1),
-(4,'Shopping',1),
-(5,'Study',1),
-(14,'Travel',1);
+insert  into `category`(`id`,`name`,`icon`,`enable`) values 
+(2,'Fashion','fa-solid fa-shirt',1),
+(3,'Food','fa-solid fa-burger',1),
+(4,'Shopping','fa-solid fa-basket-shopping',1),
+(5,'Study','fa-solid fa-graduation-cap',1),
+(14,'Travel','fa-solid fa-compass',1),
+(15,'Sport','fa-solid fa-futbol',1);
 
 /*Table structure for table `post` */
 
@@ -46,12 +47,13 @@ CREATE TABLE `post` (
   `hide` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'visible or not',
   PRIMARY KEY (`pid`),
   KEY `author` (`author`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `post` */
 
 insert  into `post`(`pid`,`title`,`category`,`content`,`author`,`hide`) values 
-(5,'test_title','','test_post',1,0);
+(5,'test_title','Exercise','test_post',1,0),
+(7,'test','','111',1,0);
 
 /*Table structure for table `reply` */
 
@@ -113,9 +115,12 @@ CREATE TABLE `user_login` (
   `datetime` datetime DEFAULT NULL,
   `type` tinyint(1) DEFAULT NULL,
   KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `user_login` */
+
+insert  into `user_login`(`id`,`userid`,`ip`,`datetime`,`type`) values 
+(8,1,'127.0.0.1','2022-03-23 00:06:27',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
