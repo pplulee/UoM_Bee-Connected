@@ -3,12 +3,11 @@ include("include/common.php");
 ?>
 
 <link rel="stylesheet" href="resources/css/navigation.css">
-<nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
+<nav class="navbar navbar-expand-lg" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">Bee Connected UOM</a>
+            <a href="index.php">Bee Connected!</a>
         </div>
-        <p class="post">POSTS</p>
         <div>
             <ul class="nav navbar-nav">
                 <div class="search-container">

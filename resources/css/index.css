@@ -1,11 +1,13 @@
-body {
+body, .main {
     height: 100%;
-    overflow: hidden;
 }
-
+.container-fluid{
+    width: 100%;
+    padding: 0;
+}
 .col, .col-6 {
-    height: 90.5vh;
-    font-size: 1.6em;
+    height: 91.3vh;
+    font-size: 3vh;
     padding-top: 5px;
     padding-left: 0;
 }
@@ -13,6 +15,7 @@ body {
 .row {
     border-top: 10px solid #FFB21D;
     margin: 0;
+    height: 91.3vh;
 }
 
 .row .categories h2, .row .trending h2 {
@@ -61,15 +64,10 @@ body {
     background: #6B2C91;
     color: white;
     font-weight: bold;
-    border-right: 10px solid #FFB21D;
+    border-right: 5px solid #FFB21D;
     box-sizing: border-box;
     padding-right: 0;
     transition: .2s;
-}
-
-.trending {
-    border-left: 10px solid #FFB21D;
-    box-sizing: border-box;
 }
 
 .col-8 {
@@ -81,12 +79,15 @@ body {
     border-bottom: 5px solid #FFB21D;
     box-sizing: border-box;
     width: 100%;
+    padding: 2%;
+    overflow: auto;
+    overflow-x: hidden;
 }
 
 .input_area {
     padding: 2%;
     width: 100%;
-    height: 100%;
+    height: 30%;
     position: relative;
     background-color: #F5F5F5;
 }
@@ -95,10 +96,11 @@ textarea {
     resize: none;
     width: 100%;
     border-color: #FFB21D;
-    border-width: 5px;
+    border-width: 2px;
     border-radius: 10px;
     padding: 10px;
     outline: none;
+    font-size: 2.3vh;
 }
 
 .input_text {
@@ -107,11 +109,13 @@ textarea {
     position: absolute;
     left: 0;
     top: 0;
-    padding: 2%;
+    padding-right: 2%;
+    padding-left: 2%;
+    padding-bottom: 2%;
 }
 
 textarea:hover {
-    border-width: 8px;
+    border-width: 3px;
     transition: .2s;
     outline: none;
 }
@@ -134,7 +138,7 @@ textarea:hover {
     color: white;
 }
 
-.send_post:hover, select:hover {
+.send_post:hover, .choose_submit select:hover {
     background: #a441e8;
     color: #FFB21D;
     transition: .5s;
@@ -145,7 +149,7 @@ textarea:hover {
     cursor: pointer;
 }
 
-select {
+.choose_submit select {
     width: 100%;
     border: none;
     border-radius: 10px;
@@ -156,7 +160,7 @@ select {
     appearance: none;
     padding: 10px;
     color: white;
-    font-size: 1.2em;
+    font-size: 2.6vh;
 }
 
 .trending {
@@ -164,8 +168,198 @@ select {
     background: #6B2C91;
     color: white;
     font-weight: bold;
-    border-right: 10px solid #FFB21D;
+    border-left: 5px solid #FFB21D;
     box-sizing: border-box;
     padding-right: 0;
     transition: .2s;
 }
+
+.post_title{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    resize: none;
+    width: 30%;
+   border-style: solid;
+    border-color: #FFB21D;
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 5px 5px 5px 10px;
+    outline: none;
+    font-size: 2.5vh;
+}
+
+.post_title:hover{
+    border-width: 3px;
+    transition: .2s;
+    outline: none;
+}
+.main_post{
+    width: 100%;
+    border-color: #FFB21D;
+    border-width: 2px;
+    border-radius: 10px;
+    border-style: solid;
+    font-size: 2.3vh;
+    height: 33.3%;
+    display: block;
+    padding: 1%;
+    position: relative;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+    transition: .2s;
+}
+.img_name_report{
+    width: 20%;
+    /*border-right: 1px solid #a441e8;*/
+    position: absolute;
+    box-sizing: border-box;
+    height: 87%;
+}
+.img_name_report img{
+    width: 12vh;
+    height: 12vh;
+    border-radius: 100%;
+    border: solid 2px #a441e8;
+    position: absolute;
+    object-fit: cover;
+    top:0;
+    left: 3%;
+}
+.img_name_report button {
+    all: unset;
+}
+
+.img_name_report button{
+    position: absolute;
+    left: 80%;
+    top: 1vh;
+    width: 1.7vh;
+    height: 1.7vh;
+    padding: 2px 5px 4px 5px;
+    color: #FFB21D;
+    font-size: 1.4vh;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    border: 2px solid #a441e8;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #a441e8;
+    font-weight: bold;
+}
+.img_name_report h1{
+    position: absolute;
+    top: 13vh;
+    left: 10%;
+    font-size: 2vh;
+    color: #a441e8;
+    font-weight: bold;
+    overflow: hidden;
+    transition: .2s;
+}
+.text_2{
+    opacity: 0;
+}
+.img_name_report button:hover .text_1{
+    opacity: 0;
+}
+.img_name_report button:hover{
+    width: 24%;
+    left: 60%;
+    cursor: pointer;
+    box-shadow: 0 0 1px #a441e8,
+    0 0 3px #a441e8,
+    0 0 15px #a441e8,
+    0 0 30px #a441e8;
+}
+.img_name_report button:hover .text_2{
+    opacity: 100;
+    color: #FFB21D;
+    position: absolute;
+    font-size: 1.4vh;
+    top:10%;
+    transition: .2s;
+}
+.post_content{
+    position: absolute;
+    width: 79%;
+    left: 21%;
+    height: 87%;
+    text-align: left;
+    transition: .2s;
+}
+
+.post_content h1{
+    position: absolute;
+    top: 0.5vh;
+    left: 2%;
+    font-size: 2.2vh;
+    color: #522174;
+    transition: .2s;
+}
+.post_content p{
+    position: absolute;
+    width: 95%;
+    top: 4vh;
+    left: 2%;
+    padding-right: 2.5%;
+    color: #522174;
+    transition: .2s;
+    font-size: 1.8vh;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.post_content button{
+    all: unset;
+}
+.post_content button{
+    opacity:0;
+    position: absolute;
+    right: -5%;
+    top: 0;
+    width: auto;
+    padding: 3px;
+    font-size: 1.5vh;
+    transition: 0.5s;
+    border-radius: 5px;
+}
+.post_content:hover button{
+    opacity: 100;
+    right: 1px;
+    top:0;
+    width: auto;
+    padding: 4px;
+    font-size: 1.5vh;
+    background-color: #522174;
+    color: #FFB21D;
+    transition: .4s;
+    cursor: pointer;
+}
+
+#main_post::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px #FFB21D;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+#main_post::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+#main_post::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear,
+    left bottom,
+    left top,
+    color-stop(0.44, #5c2684),
+    color-stop(0.72, #a441e8),
+    color-stop(0.86, #e670ff));
+}
+
