@@ -1,7 +1,7 @@
 .navbar {
     height: 7.5vh;
     padding-top: 3px;
-    background-color:  #63308C;
+    background: linear-gradient(to right, #5c2684 0%, #a441e8 46%, #e670ff 100%);
 }
 
 div.navbar-header {
