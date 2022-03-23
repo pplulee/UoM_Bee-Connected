@@ -1,7 +1,7 @@
 .navbar {
     height: 7.5vh;
     padding-top: 3px;
-    background-color: #F5F5F5;
+    background-color:  #63308C;
 }
 
 div.navbar-header {
@@ -12,8 +12,6 @@ div.navbar-header {
 }
 
 div.profile {
-    border-left: 7px solid #FFB21D;
-    border-bottom: 7px solid #FFB21D;
     width: 250px;
     height: 50px;
     padding-left: 0;
@@ -24,11 +22,14 @@ div.profile {
 }
 
 .navbar-header a{
-    color: #a441e8;
+    color: #F0E25F;
     text-align: center;
     font-family: 'Grand Hotel', cursive;
     text-shadow: 0 0 10px #FFB21D;
     height: 100%;
+    margin-top: 0;
+    margin-left: 223% ;
+    position:relative;
 }
 
 .profile_pic {
@@ -40,9 +41,7 @@ div.profile {
     border: solid 2px purple;
 }
 
-button.btn.btn-outline-success {
-    margin-left: 80px;
-}
+
 
 div.dropdown {
     margin-left: 100px;
@@ -104,8 +103,8 @@ div.dropdown {
     align-items: center;
     cursor: pointer;
     transition: 0.8s;
-    margin-top: 6px;
-    margin-right: 40px;
+    margin-top: 9px;
+    margin-right: -20px;
 
 
     box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
@@ -132,3 +131,46 @@ div.dropdown {
     color: #F5C06A;
 }
 
+span{
+    position: relative;
+    display: inline-flex;
+    width: 90px;
+    height: 40px;
+    margin-left: 40%;
+    margin-top: 5px;
+}
+span a{
+    font-size: 19px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transform-style: preserve-3d;
+    transform: translateZ(-25px);
+    transition: transform .25s;
+    font-family: "Verdana", serif;
+
+}
+span a:before,
+span a:after{
+    position: absolute;
+    content: "Login";
+    height: 45px;
+    width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #9B49E1;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+span a:before{
+    color: #9B49E1;
+    background: #F4B546;
+    transform: rotateY(0deg) translateZ(25px);
+}
+span a:after{
+    color: #F4B546;
+    transform: rotateX(90deg) translateZ(25px);
+}
+span a:hover{
+    transform: translateZ(-25px) rotateX(-90deg);
+}
