@@ -35,32 +35,35 @@ if (isset($_GET["logout"])) {
                 </ul>
             </div>
             <div class="col-8 content">
-            <?php
-                    $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' ORDER BY pid asc;");
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $userid = $row["author"];
-                        $username = get_name_by_id($userid);
-                        $userpic = getprofilepic($userid);
-                        echo "
-                        <div class='posts {$row["pid"]}'>
-                            <div class='main_post' id='main_post'>
-                                <div class = 'img_name_report' id = 'img_name_report'>
-                                    <img src='$userpic'>
-                                    <h1>$username</h1>
-                                    <button>
-                                        <p class = 'text_1'>!</p>
-                                        <p class = 'text_2'>Report</p>
-                                    </button>
-                                </div>
-                                <div class = 'post_content' >
-                                    <h1>[{$row["category"]}]{$row["title"]}</h1>
-                                    <p id = 'post_content_p'>{$row["content"]}</p>
-                                    <button onclick='read_more()' id='readmore()'>Read more</button>
-                                </div>
-                            </div>
-                        </div>";
-                    }
-            ?>
+                <div class='posts' id="posts">
+
+                    <?php
+                            $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' ORDER BY pid asc;");
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $userid = $row["author"];
+                                $username = get_name_by_id($userid);
+                                $userpic = getprofilepic($userid);
+                                echo "
+                               
+                                    <div class='main_post' id='main_post'>
+                                        <div class = 'img_name_report' id = 'img_name_report'>
+                                            <img src='$userpic'>
+                                            <h1>$username</h1>
+                                            <button>
+                                                <p class = 'text_1'>!</p>
+                                                <p class = 'text_2'>Report</p>
+                                            </button>
+                                        </div>
+                                        <div class = 'post_content' >
+                                            <h1>[{$row["category"]}]{$row["title"]}</h1>
+                                            <p id = 'post_content_p'>{$row["content"]}</p>
+                                            <button onclick='read_more()' id='readmore()'>Read more</button>
+                                        </div>
+                                    </div>
+                                ";
+                            }
+                    ?>
+                </div>
                 <div class="input_area">
                     <form action="" name="categories" method="post">
                         <div class="input_text">
