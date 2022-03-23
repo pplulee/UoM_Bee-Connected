@@ -6,7 +6,7 @@ include("include/common.php");
 <nav class="navbar navbar-expand-lg" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="index.php">Bee Connected!</a>
+            <a href="index.php">BeeConnected!</a>
         </div>
         <div>
             <ul class="nav navbar-nav">
@@ -32,7 +32,7 @@ include("include/common.php");
                             </div>
                         </div>";
                     } else {
-                        echo "<a href='login.php'><button type='button' class='btn btn-outline-success'>Login</button></a>";
+                        echo "<span><a href='login.php'></a></span>";
                     }
                     ?>
 
