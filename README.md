@@ -14,9 +14,9 @@ A forum website by R3 group
 #### Main page
 - [x] Nav bar
 - [x] index page framework
-- [ ] Categories php part
+- [x] Categories php part
 - [x] Post input box
-- [ ] Post submit
+- [x] Post submit
 - [ ] Search(Title&Content)
 - [ ] Report function
 
@@ -24,7 +24,7 @@ A forum website by R3 group
 - [x] User management
 - [x] Category management
 - [x] Login record display
-- [ ] Limitation on item number
+- [x] Limitation on item number
 
 #### Database
 - [x] user

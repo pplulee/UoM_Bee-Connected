@@ -69,7 +69,7 @@ function uploadpic()
             || ($_FILES["profile_pic"]["type"] == "image/pjpeg")
             || ($_FILES["profile_pic"]["type"] == "image/x-png")
             || ($_FILES["profile_pic"]["type"] == "image/png"))
-        && ($_FILES["profile_pic"]["size"] < 512000)   // Less than 500kb
+        && ($_FILES["profile_pic"]["size"] < 1024000)   // Less than 500kb
         && in_array($extension, $allowedExts)) {
         if ($_FILES["profile_pic"]["error"] > 0) {
             echo "Upload Error:" . $_FILES["profile_pic"]["error"] . "<br>";
@@ -82,7 +82,7 @@ function uploadpic()
             move_uploaded_file($_FILES["profile_pic"]["tmp_name"], "{$_SERVER['DOCUMENT_ROOT']}/data/image_profile/{$_SESSION['userid']}.$extension");
         }
     } else {
-        echo "Illegal file formats";
+        echo "<script>alert('Illegal file formats or file too large');window.location.href='';</script>";
     }
 }
 

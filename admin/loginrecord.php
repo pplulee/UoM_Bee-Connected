@@ -18,7 +18,7 @@ include("header.php");
                 </thead>
                 <?php
 
-                $result = mysqli_query($conn, "SELECT user.userid,user.username,user_login.id,user_login.ip,user_login.datetime,user_login.type FROM user, user_login WHERE user.userid=user_login.userid;");
+                $result = mysqli_query($conn, "SELECT user.userid,user.username,user_login.id,user_login.ip,user_login.datetime,user_login.type FROM user, user_login WHERE user.userid=user_login.userid ORDER BY user_login.id desc LIMIT 25;");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<tr><th>{$row['id']}</th><td>{$row['userid']}</td><td>{$row['username']}</td><td>{$row['ip']}</td><td>{$row['datetime']}</td><td>{$row['type']}</td></tr>";

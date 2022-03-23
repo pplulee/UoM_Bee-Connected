@@ -13,13 +13,11 @@ if (isset($_GET["logout"])) {
 }
 ?>
     <head>
-        <script src="https://kit.fontawesome.com/44dce3cb72.js" crossorigin="anonymous"></script>
         <script src="resources/js/read_more.js"></script>
     </head>
     <link rel="stylesheet" href="resources/css/index.css">
-
     <div class="main">
-        <div class = "container-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col categories">
                 <h2>Categories</h2>
@@ -36,14 +34,13 @@ if (isset($_GET["logout"])) {
             </div>
             <div class="col-8 content">
                 <div class='posts' id="posts">
-
                     <?php
-                            $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' ORDER BY pid asc;");
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $userid = $row["author"];
-                                $username = get_name_by_id($userid);
-                                $userpic = getprofilepic($userid);
-                                echo "
+                    $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' ORDER BY pid desc;");
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $userid = $row["author"];
+                        $username = get_name_by_id($userid);
+                        $userpic = getprofilepic($userid);
+                        echo "
                                
                                     <div class='main_post' id='main_post'>
                                         <div class = 'img_name_report' id = 'img_name_report'>
@@ -61,11 +58,11 @@ if (isset($_GET["logout"])) {
                                         </div>
                                     </div>
                                 ";
-                            }
+                    }
                     ?>
                 </div>
                 <div class="input_area">
-                    <form action="" name="categories" method="post">
+                    <form action="" method="post">
                         <div class="input_text">
                             <input type="text" class="post_title" name="title" placeholder="Your title goes here"
                                    required>
@@ -73,7 +70,7 @@ if (isset($_GET["logout"])) {
                                       placeholder="What's on Your mind?" required></textarea>
                         </div>
                         <div class="choose_submit">
-                            <select id="post_category" name="catlist" form="categories">
+                            <select id="post_category" name="category">
                                 <?php
                                 $result = mysqli_query($conn, "SELECT name FROM category WHERE enable='1';");
                                 if (mysqli_num_rows($result) > 0) {
@@ -83,11 +80,10 @@ if (isset($_GET["logout"])) {
                                 }
                                 ?>
                             </select>
-                            <input type="hidden" id="select_content" name="select_content"/>
                             <button class="send_post" name="send_post" type=submit><i
                                         class="fa-solid fa-paper-plane"></i></button>
-                            <button class="send_post" name="send_post" type=submit><i class="fa-solid fa-paperclip"></i></button>
-
+                            <button class="send_post" name="attachment" type=submit><i
+                                        class="fa-solid fa-paperclip"></i></button>
                         </div>
                     </form>
                 </div>
@@ -101,6 +97,11 @@ if (isset($_GET["logout"])) {
     </div>
 <?php
 if (isset($_POST["send_post"])) {
-    $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["select_content"]);
-    echo "<script>alert('{$feed[1]}');window.location.href='./index.php';</script>";
+    if (!$_SESSION["isLogin"]){
+        echo "<script>alert('You are not logged in!');window.location.href='./index.php';</script>";
+        exit;
+    }else {
+        $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["category"]);
+        echo "<script>alert('{$feed[1]}');window.location.href='./index.php';</script>";
+    }
 }
