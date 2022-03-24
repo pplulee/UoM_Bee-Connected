@@ -20,7 +20,7 @@ if (isset($_GET["logout"])) {
     <div class="container-fluid">
         <div class="row">
             <div class="col categories">
-                <h2>Categories</h2>
+                <a href="index.php"><h2>Categories</h2></a>
                 <ul class="menu-hover-fill flex flex-col items-start leading-none text-2xl uppercase space-y-4">
                     <?php
                     $result = mysqli_query($conn, "SELECT name,icon FROM category WHERE enable='1';");
@@ -35,7 +35,11 @@ if (isset($_GET["logout"])) {
             <div class="col-8 content">
                 <div class='posts' id="posts">
                     <?php
-                    if (isset($_GET["category"])){
+                    if (isset($_GET["search"])&&(isset($_GET["category"]))){
+                        $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND caregory = {$_GET["category"]} AND content LIKE '%{$_GET["search"]}%' ORDER BY pid DESC;");
+                    }else if (isset($_GET["search"])){
+                        $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND content LIKE '%{$_GET["search"]}%' ORDER BY pid DESC;");
+                    }else if (isset($_GET["category"])){
                         $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND category = '{$_GET["category"]}' ORDER BY pid DESC;");
                     }else {
                         $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' ORDER BY pid DESC;");

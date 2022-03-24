@@ -10,12 +10,14 @@ include("include/common.php");
         </div>
         <div>
             <ul class="nav navbar-nav">
+                <form name="search" action="index.php" method="get">
                 <div class="search-container">
-                    <input type="text" name="search" placeholder="Search..." class="search-input">
-                    <a href="#" class="search-btn">
-                        <i class="fas fa-search"></i>
-                    </a>
+                        <input type="text" name="search" placeholder="Search..." class="search-input">
+                        <a href="javascript:document.search.submit();" class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </a>
                 </div>
+                </form>
 
                 <div class="profile">
                     <?php
