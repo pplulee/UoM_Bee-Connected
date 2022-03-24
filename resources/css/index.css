@@ -74,7 +74,7 @@ body, .main {
     transition: .2s;
 }
 .categories i{
-    margin-right: 5px;
+    margin-right: 7px;
 }
 .col-8 {
     padding: 0;
@@ -291,6 +291,29 @@ textarea:hover {
     font-size: 1.4vh;
     top:10%;
     transition: .2s;
+
+}
+.img_name_report .delete_post:hover{
+    width: 24%;
+    left: 60%;
+    cursor: pointer;
+    box-shadow: 0 0 1px red,
+    0 0 5px red,
+    0 0 25px red,
+    0 0 50px red;
+}
+.img_name_report .delete_post:hover .text_1{
+    opacity: 0;
+}
+.img_name_report .delete_post:hover .text_2{
+    opacity: 100;
+    color: #FFB21D;
+    position: absolute;
+    font-size: 1.4vh;
+    top:10%;
+    transition: .2s;
+    font-weight: bold;
+
 }
 .post_content{
     position: absolute;
@@ -331,7 +354,7 @@ textarea:hover {
     opacity:0;
     position: absolute;
     right: -5%;
-    top: 0;
+    top: 80%;
     width: auto;
     padding: 3px;
     font-size: 1.5vh;
@@ -341,7 +364,7 @@ textarea:hover {
 .post_content:hover button{
     opacity: 100;
     right: 1px;
-    top:0;
+    top: 80%;
     width: auto;
     padding: 4px;
     font-size: 1.5vh;
@@ -382,16 +405,17 @@ textarea:hover {
     position: absolute;
     left: 80%;
     top: 5vh;
-    width: 3.2vh;
-    height: 3.2vh;
-    padding: 4px 1px 0 1px;
+    width: 1.7vh;
+    height: 1.7vh;
+    padding: 2px 5px 4px 5px;
     color: #FFB21D;
-    font-size: 1.7vh;
+    font-size: 1.4vh;
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
     text-align: center;
     background-color: red;
-    border-radius: 100px;
+    border: 2px solid red;
+    border-radius: 10px;
 }

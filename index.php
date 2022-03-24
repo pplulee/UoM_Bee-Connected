@@ -68,7 +68,8 @@ if (isset($_GET["logout"])) {
                             if($_SESSION["userid"]==$userid){
                                 echo "
                                                 <a class = 'delete_post' href='index.php?".$pid."'>
-                                                    <i class='fa-solid fa-trash-can'></i>
+                                                    <i class='fa-solid fa-trash-can text_1'></i>         
+                                                    <p class = 'text_2'>DELETE</p>
                                                 </a> ";
                                 }
                         }
