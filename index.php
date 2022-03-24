@@ -48,17 +48,31 @@ if (isset($_GET["logout"])) {
                         $userid = $row["author"];
                         $username = get_name_by_id($userid);
                         $userpic = getprofilepic($userid);
+                        $pid = $row["pid"];
                         echo "
                                
                                     <div class='main_post' id='main_post'>
                                         <div class = 'img_name_report' id = 'img_name_report'>
                                             <img src='$userpic'>
                                             <h1>$username</h1>
-                                            <button>
+                                            <button class = 'report'>
                                                 <p class = 'text_1'>!</p>
                                                 <p class = 'text_2'>Report</p>
-                                            </button>
-                                        </div>
+                                            </button>";
+                            if(isset($_GET[$pid])){
+                                $delete = mysqli_query($conn,"DELETE FROM `post` WHERE `pid` = $pid");
+                                echo "<script>window.location.href='./index.php' </script>";
+                            }
+
+                        if ($_SESSION["isLogin"]){
+                            if($_SESSION["userid"]==$userid){
+                                echo "
+                                                <a class = 'delete_post' href='index.php?".$pid."'>
+                                                    <i class='fa-solid fa-trash-can'></i>
+                                                </a> ";
+                                }
+                        }
+                                 echo "       </div>
                                         <div class = 'post_content' >
                                             <h1><b>{$row["category"]}:</b> {$row["title"]}</h1>
                                             <p id = 'post_content_p'>{$row["content"]}</p>
@@ -73,7 +87,7 @@ if (isset($_GET["logout"])) {
                     <form action="" method="post">
                         <div class="input_text">
                             <input type="text" class="post_title" name="title" placeholder="Your title goes here"
-                                   required>
+                                   required maxlength="50">
                             <textarea name="input_post" id="post_self" cols="80" rows=4
                                       placeholder="What's on Your mind?" required></textarea>
                         </div>

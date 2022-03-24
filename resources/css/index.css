@@ -236,11 +236,11 @@ textarea:hover {
     top:0;
     left: 3%;
 }
-.img_name_report button {
+.img_name_report .report {
     all: unset;
 }
 
-.img_name_report button{
+.img_name_report .report{
     position: absolute;
     left: 80%;
     top: 1vh;
@@ -272,10 +272,10 @@ textarea:hover {
 .text_2{
     opacity: 0;
 }
-.img_name_report button:hover .text_1{
+.img_name_report .report:hover .text_1{
     opacity: 0;
 }
-.img_name_report button:hover{
+.img_name_report .report:hover{
     width: 24%;
     left: 60%;
     cursor: pointer;
@@ -284,7 +284,7 @@ textarea:hover {
     0 0 25px #a441e8,
     0 0 50px #a441e8;
 }
-.img_name_report button:hover .text_2{
+.img_name_report .report:hover .text_2{
     opacity: 100;
     color: #FFB21D;
     position: absolute;
@@ -308,6 +308,7 @@ textarea:hover {
     font-size: 2.2vh;
     color: #522174;
     transition: .2s;
+    max-lines: 1;
 }
 .post_content p{
     position: absolute;
@@ -374,3 +375,23 @@ textarea:hover {
     color-stop(0.86, #e670ff));
 }
 
+.img_name_report a{
+    all: unset;
+}
+.img_name_report a{
+    position: absolute;
+    left: 80%;
+    top: 5vh;
+    width: 3.2vh;
+    height: 3.2vh;
+    padding: 4px 1px 0 1px;
+    color: #FFB21D;
+    font-size: 1.7vh;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    text-align: center;
+    background-color: red;
+    border-radius: 100px;
+}
