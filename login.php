@@ -2,10 +2,7 @@
 include("header.php");
 //If user is already login, exit this page
 if (isset($_SESSION["isLogin"]) and $_SESSION["isLogin"] == TRUE) {
-    echo "<div class='alert alert-success' role='alert'><p>You are already logged in, you are about to jump to the home page</p></div>";
-    echo "<script>
-                setTimeout(\"javascript:location.href='index.php'\", 3000);
-              </script>";
+    echo "<script>alert('You are already logged in!');window.location.href='index.php';</script>";
     exit;
 }
 
@@ -38,33 +35,31 @@ function startlogin($username, $password)
         $_SESSION["username"] = $_POST["username"];
         $_SESSION["permission"] = get_permission($username);
         $_SESSION["userid"] = get_id_by_name($username);
-        echo "<div class='alert alert-success' role='alert'><p>Login successfully, will jump to the home page</p></div>";
-        echo "<script>setTimeout(\"javascript:location.href='index.php'\", 3000);</script>";
+        echo "<script>alert('Login successfully!');window.location.href='index.php';</script>";
     } else {
         addloginrecord($username, 0);
         $_SESSION["isLogin"] = false;
-        echo "<div class=\"alert alert-danger\" role=\"alert\"><p>Incorrect username or password</p></div>";
+        echo "<script>alert('Incorrect username or password!');window.location.href='login.php';</script>";
     }
 }
 
 
 //Click the login bottom
 if (isset($_POST['login'])) {
-    if (isset($_POST["username"]) or isset($_POST["password"])) {
-        startlogin($_POST["username"], $_POST["password"]);
+    if ($_POST["username"]==null or $_POST["password"]==null) {
+        echo "<script>alert('Username or password cannot be empty!');window.location.href='login.php';</script>";
+        exit;
     } else {
-        echo "<div class='alert alert-danger' role='alert'><p>Username or password cannot be empty</p></div>";
+        startlogin($_POST["username"], $_POST["password"]);
     }
 } elseif (isset($_POST['register'])) {
-    if (!isset($_POST["username"]) or !isset($_POST["password"])) {
-        echo "<div class='alert alert-danger' role='alert'><p>Username or password cannot be empty</p></div>";
+    if ($_POST["username"]==null or $_POST["password"]==null) {
+        echo "<script>alert('Username or password cannot be empty!');window.location.href='login.php';</script>";
+        exit;
     } elseif (register($_POST["username"], $_POST["password"])) {
-        echo "<div class='alert alert-success' role='alert'><p>Register successfully, page will refresh</p></div>";
-        echo "<script>
-                setTimeout(\"javascript:location.href=''\", 3000);
-              </script>";
+        echo "<script>alert('Register successfully!');window.location.href='login.php';</script>";
     } else {
-        echo "<div class='alert alert-danger' role='alert'><p>This user already exists</p></div>";
+        echo "<script>alert('This user already exists!');window.location.href='login.php';</script>";
     }
 }
 ?>

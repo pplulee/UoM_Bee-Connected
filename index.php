@@ -35,7 +35,11 @@ if (isset($_GET["logout"])) {
             <div class="col-8 content">
                 <div class='posts' id="posts">
                     <?php
-                    $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' ORDER BY pid desc;");
+                    if (isset($_GET["category"])){
+                        $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND category = '{$_GET["category"]}' ORDER BY pid DESC;");
+                    }else {
+                        $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' ORDER BY pid DESC;");
+                    }
                     while ($row = mysqli_fetch_assoc($result)) {
                         $userid = $row["author"];
                         $username = get_name_by_id($userid);
@@ -100,7 +104,7 @@ if (isset($_GET["logout"])) {
 <?php
 if (isset($_POST["send_post"])) {
     if (!$_SESSION["isLogin"]){
-        echo "<script>alert('You are not logged in!');window.location.href='./index.php';</script>";
+        echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
         exit;
     }else {
         $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["category"]);
