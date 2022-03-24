@@ -52,7 +52,7 @@ if (isset($_GET["logout"])) {
                                             </button>
                                         </div>
                                         <div class = 'post_content' >
-                                            <h1>[{$row["category"]}]{$row["title"]}</h1>
+                                            <h1><b>{$row["category"]}:</b> {$row["title"]}</h1>
                                             <p id = 'post_content_p'>{$row["content"]}</p>
                                             <button onclick='read_more()' id='readmore()'>Read more</button>
                                         </div>
@@ -82,8 +82,10 @@ if (isset($_GET["logout"])) {
                             </select>
                             <button class="send_post" name="send_post" type=submit><i
                                         class="fa-solid fa-paper-plane"></i></button>
-                            <button class="send_post" name="attachment" type=submit><i
-                                        class="fa-solid fa-paperclip"></i></button>
+
+                            <input id="browse" type="file" name="pic" hidden>
+                            <input class="btn btn-primary" type="submit" name="upload" value="UPDATE" hidden>
+                            <label for="browse" class="send_post" ><i class="fa-solid fa-paperclip"></i></label>
                         </div>
                     </form>
                 </div>
