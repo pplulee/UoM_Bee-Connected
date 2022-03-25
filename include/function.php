@@ -20,7 +20,28 @@ function isadmin($userid=""){
     }
 }
 
-function get_permission($username){
+function isauthor($userid, $postid)
+{
+    global $conn;
+    if ($postid == "" or $userid == "") {
+        return false;
+    }
+    if (isadmin($userid)) {
+        return true;
+    }
+    $result = mysqli_query($conn, "SELECT author FROM post WHERE pid='{$postid}';");
+    if (mysqli_num_rows($result) == 0) {
+        return false;
+    }
+    if (mysqli_fetch_assoc($result)['author'] != $userid) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function get_permission($username)
+{
     global $conn;
     return mysqli_fetch_assoc(mysqli_query($conn, "SELECT permission FROM user WHERE username='{$username}';"))['permission'];
 }
@@ -124,6 +145,17 @@ function post_report($userid, $postid, $reason)
         return array(false, "No permission");
     } else {
         mysqli_query($conn, "INSERT INTO report (pid, userid, comment) VALUES ('$postid','$userid','$reason');");
+        return array(true, "Success!");
+    }
+}
+
+function post_delete($postid, $userid)
+{
+    global $conn;
+    if (!isauthor($postid, $userid) and !isadmin($userid)) {
+        return array(false, "No permission");
+    } else {
+        mysqli_query($conn, "DELETE FROM post WHERE pid='$postid';");
         return array(true, "Success!");
     }
 }

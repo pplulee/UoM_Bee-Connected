@@ -35,13 +35,13 @@ if (isset($_GET["logout"])) {
             <div class="col-8 content">
                 <div class='posts' id="posts">
                     <?php
-                    if (isset($_GET["search"])&&(isset($_GET["category"]))){
+                    if (isset($_GET["search"]) && (isset($_GET["category"]))) {
                         $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND caregory = {$_GET["category"]} AND content LIKE '%{$_GET["search"]}%' ORDER BY pid DESC;");
-                    }else if (isset($_GET["search"])){
+                    } else if (isset($_GET["search"])) {
                         $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND content LIKE '%{$_GET["search"]}%' ORDER BY pid DESC;");
-                    }else if (isset($_GET["category"])){
+                    } else if (isset($_GET["category"])) {
                         $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND category = '{$_GET["category"]}' ORDER BY pid DESC;");
-                    }else {
+                    } else {
                         $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' ORDER BY pid DESC;");
                     }
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -55,25 +55,18 @@ if (isset($_GET["logout"])) {
                                         <div class = 'img_name_report' id = 'img_name_report'>
                                             <img src='$userpic'>
                                             <h1>$username</h1>
-                                            <button class = 'report'>
-                                                <p class = 'text_1'>!</p>
-                                                <p class = 'text_2'>Report</p>
+                                            <button class='report' onclick='window.location.href=index.php?action=report&pid=$pid'>
+                                                <p class='text_1'>!</p>
+                                                <p class='text_2'>Report</p>
                                             </button>";
-                            if(isset($_GET[$pid])){
-                                $delete = mysqli_query($conn,"DELETE FROM `post` WHERE `pid` = $pid");
-                                echo "<script>window.location.href='./index.php' </script>";
-                            }
-
-                        if ($_SESSION["isLogin"]){
-                            if($_SESSION["userid"]==$userid){
-                                echo "
-                                                <a class = 'delete_post' href='index.php?".$pid."'>
-                                                    <i class='fa-solid fa-trash-can text_1'></i>         
-                                                    <p class = 'text_2'>DELETE</p>
-                                                </a> ";
-                                }
+                        if ($_SESSION["isLogin"] and isauthor($_SESSION["userid"], $pid)) {
+                            echo "
+                                    <a href='index.php?action=delete&pid=$pid' class = 'delete_post' >
+                                    <i class='fa-solid fa-trash-can text_1'></i>         
+                                    <p class = 'text_2'>DELETE</p>
+                                    </a> ";
                         }
-                                 echo "       </div>
+                        echo "       </div>
                                         <div class = 'post_content' >
                                             <h1><b>{$row["category"]}:</b> {$row["title"]}</h1>
                                             <p id = 'post_content_p'>{$row["content"]}</p>
@@ -108,7 +101,7 @@ if (isset($_GET["logout"])) {
 
                             <input id="browse" type="file" name="pic" hidden>
                             <input class="btn btn-primary" type="submit" name="upload" value="UPDATE" hidden>
-                            <label for="browse" class="send_post" ><i class="fa-solid fa-paperclip"></i></label>
+                            <label for="browse" class="send_post"><i class="fa-solid fa-paperclip"></i></label>
                         </div>
                     </form>
                 </div>
@@ -122,11 +115,24 @@ if (isset($_GET["logout"])) {
     </div>
 <?php
 if (isset($_POST["send_post"])) {
-    if (!$_SESSION["isLogin"]){
+    if (!$_SESSION["isLogin"]) {
         echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
         exit;
-    }else {
+    } else {
         $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["category"]);
         echo "<script>alert('{$feed[1]}');window.location.href='./index.php';</script>";
+    }
+}
+if (isset($_GET["action"])) {
+    switch ($_GET["action"]) {
+        case "delete":
+            if (!$_SESSION["isLogin"]) {
+                echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
+                exit;
+            } else {
+                $feed = post_delete($_GET["pid"], $_SESSION["userid"]);
+                echo "<script>alert('{$feed[1]}');window.location.href='./index.php';</script>";
+            }
+            break;
     }
 }
