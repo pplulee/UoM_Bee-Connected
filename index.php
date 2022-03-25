@@ -14,6 +14,7 @@ if (isset($_GET["logout"])) {
 ?>
     <head>
         <script src="resources/js/read_more.js"></script>
+        <title>main page</title>
     </head>
     <link rel="stylesheet" href="resources/css/index.css">
     <div class="main">

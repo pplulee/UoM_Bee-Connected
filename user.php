@@ -12,6 +12,7 @@ $result = mysqli_fetch_assoc($result);
     <html lang="en-GB">
     <head>
         <link rel="stylesheet" href="resources/css/user-style.css">
+        <title>user profile</title>
     </head>
     <body>
     <div class="main">
