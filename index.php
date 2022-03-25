@@ -109,6 +109,55 @@ if (isset($_GET["logout"])) {
 
             <div class="col trending">
                 <h2>Trending</h2>
+                <div class="leaderboard">
+                    <div class="head">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="body">
+                        <ol>
+                            <li>
+                                <mark>Title1</mark>
+                                <small>948</small>
+                            </li>
+                            <li>
+                                <mark>Title2</mark>
+                                <small>750</small>
+                            </li>
+                            <li>
+                                <mark>Title3</mark>
+                                <small>684</small>
+                            </li>
+                            <li>
+                                <mark>Title4</mark>
+                                <small>335</small>
+                            </li>
+                            <li>
+                                <mark>Title5</mark>
+                                <small>296</small>
+                            </li>
+                            <li>
+                                <mark>Title6</mark>
+                                <small>270</small>
+                            </li>
+                            <li>
+                                <mark>Title7</mark>
+                                <small>200</small>
+                            </li>
+                            <li>
+                                <mark>Title8</mark>
+                                <small>150</small>
+                            </li>
+                            <li>
+                                <mark>Title9</mark>
+                                <small>100</small>
+                            </li>
+                            <li>
+                                <mark>Title10</mark>
+                                <small>80</small>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
             </div>
 
         </div>

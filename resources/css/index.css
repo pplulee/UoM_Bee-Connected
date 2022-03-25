@@ -419,3 +419,57 @@ textarea:hover {
     border: 2px solid red;
     border-radius: 10px;
 }
+.leaderboard .body {
+    color: snow;
+    width: 105%;
+    margin-left: -20px;
+    font-size: 2vh;
+}
+.leaderboard ol {
+    counter-reset: number;
+}
+
+.leaderboard li {
+    padding: 12px;
+    display: flex;
+}
+.leaderboard li mark {
+    flex-grow: 1;
+    color: snow;
+    background-color: transparent;
+}
+.leaderboard li:before {
+    counter-increment: number;
+    content: counter(number) ".";
+    margin-right: 4px;
+}
+.leaderboard li:nth-child(1) {
+    background: #7401DF;
+}
+.leaderboard li:nth-child(2) {
+    background: #7e14e0;
+}
+.leaderboard li:nth-child(3) {
+    background: #8f30e7;
+}
+.leaderboard li:nth-child(4) {
+    background: #9846e4;
+}
+.leaderboard li:nth-child(5) {
+    background: #9f55e4;
+}
+.leaderboard li:nth-child(6) {
+    background: #a966e7;
+}
+.leaderboard li:nth-child(7) {
+    background: #b175e9;
+}
+.leaderboard li:nth-child(8) {
+    background: #b37fe4;
+}
+.leaderboard li:nth-child(9) {
+    background: #ba83ed;
+}
+.leaderboard li:nth-child(10) {
+    background: #bb90e4;
+}
