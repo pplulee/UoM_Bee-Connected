@@ -29,7 +29,11 @@ include("include/common.php");
                                 <i class='fa fa-caret-down'></i>
                             </button>
                             <div class='dropdown-content'>
-                                <a href='user.php'>Profile</a>
+                                <a href='user.php'>Profile</a>";
+                        if (isadmin($_SESSION["userid"])) {
+                            echo "<a href='admin/index.php'>Admin centre</a>";
+                        }
+                        echo"
                                 <a href='loginrecord.php'>Login Record</a>
                                 <a href='index.php?logout'>Logout</a>
                             </div>
