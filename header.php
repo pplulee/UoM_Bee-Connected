@@ -30,6 +30,7 @@ include("include/common.php");
                             </button>
                             <div class='dropdown-content'>
                                 <a href='user.php'>Profile</a>
+                                <a href='loginrecord.php'>Login Record</a>
                                 <a href='index.php?logout'>Logout</a>
                             </div>
                         </div>";

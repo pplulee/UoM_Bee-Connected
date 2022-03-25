@@ -1,24 +1,44 @@
 <?php
-include ("header.php");
+include("header.php");
 
-if (!isset($_GET["id"])){
+if (!isset($_GET["id"])) {
     echo '<div class="alert alert-danger" role="alert"><p>Wrong parameters</p></div>';
     exit;
-}else {
-    $result = mysqli_query($conn, "SELECT * FROM user WHERE userid='{$_GET['id']}';");
-    if (mysqli_num_rows($result) == 0){
-        echo '<div class="alert alert-danger" role="alert"><p>User not found</p></div>';
+}
+if (!userexist(get_name_by_id($_GET["id"]))) {
+    echo '<div class="alert alert-danger" role="alert"><p>User does not exist</p></div>';
+    exit;
+}
+switch ($_GET["action"]) {
+    case "edit":
+    {
+        $result = mysqli_query($conn, "SELECT * FROM user WHERE userid='{$_GET['id']}';");
+        if (mysqli_num_rows($result) == 0) {
+            echo '<div class="alert alert-danger" role="alert"><p>User not found</p></div>';
+        }
+        $result = mysqli_fetch_assoc($result);
+        break;
+    }
+    case "ban":
+    {
+        mysqli_query($conn, "UPDATE user SET permission=0 WHERE userid='{$_GET['id']}';");
+        echo "<div class='alert alert-success' role='alert'><p>User banned</p></div>";
+        echo "<script>window.location.href='user.php';</script>";
+        break;
+    }
+    default:
+    {
+        echo '<div class="alert alert-danger" role="alert"><p>Wrong parameters</p></div>';
         exit;
     }
-    $result=mysqli_fetch_assoc($result);
 }
 ?>
-<form action='' method='post'>
-    <div class='row'>
-        <div class='col'>
-            <label>User ID</label><br>
-            <input type='text' class='form-control' name='userid' value='<?php echo $result["userid"]?>' readonly>
-        </div>
+    <form action='' method='post'>
+        <div class='row'>
+            <div class='col'>
+                <label>User ID</label><br>
+                <input type='text' class='form-control' name='userid' value='<?php echo $result["userid"] ?>' readonly>
+            </div>
         <div class='col'>
             <label>Username</label><br>
             <input type='text' class='form-control' name='username' value='<?php echo $result["username"]?>' readonly>

@@ -19,20 +19,22 @@ include("header.php");
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Category ID</th>
-                    <th>Name</th>
-                    <th>Visible</th>
+                    <th scope="col">Category ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Visible</th>
                 </tr>
                 </thead>
+                <tbody>
                 <?php
 
                 $result = mysqli_query($conn, "SELECT id,name,enable FROM category;");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr><th>{$row['id']}</th><td>{$row['name']}</td><td>{$row['enable']}</td><td><a href='editcateg.php?action=edit&id={$row['id']}' class='btn btn-primary'>Edit</a><a href='editcateg.php?action=delete&id={$row['id']}' class='btn btn-danger'>Delete</a></td>";
+                        echo "<tr><th scope='row'>{$row['id']}</th><td>{$row['name']}</td><td>{$row['enable']}</td><td><a href='editcateg.php?action=edit&id={$row['id']}' class='btn btn-primary'>Edit</a> <a href='editcateg.php?action=delete&id={$row['id']}' class='btn btn-danger'>Delete</a></td></tr>";
                     }
                 }
                 ?>
+                </tbody>
             </table>
         </div>
     </div>

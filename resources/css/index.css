@@ -2,13 +2,16 @@ body, .main {
     height: 100%;
     overflow: hidden;
 }
-.main{
+
+.main {
     border-bottom: 10px solid #FFB21D;
 }
-.container-fluid{
+
+.container-fluid {
     width: 100%;
     padding: 0;
 }
+
 .col, .col-6 {
     height: 91.3vh;
     font-size: 3vh;
@@ -73,9 +76,11 @@ body, .main {
     padding-right: 0;
     transition: .2s;
 }
-.categories i{
+
+.categories i {
     margin-right: 7px;
 }
+
 .col-8 {
     padding: 0;
 }
@@ -145,9 +150,12 @@ textarea:hover {
     border-radius: 10px;
     color: white;
 }
-.choose_submit label{
-    padding: 2px; !important;
+
+.choose_submit label {
+    padding: 2px;
+!important;
 }
+
 .send_post:hover, .choose_submit select:hover {
     background: #a441e8;
     color: #FFB21D;
@@ -184,12 +192,12 @@ textarea:hover {
     transition: .2s;
 }
 
-.post_title{
+.post_title {
     margin-top: 1%;
     margin-bottom: 1%;
     resize: none;
     width: 30%;
-   border-style: solid;
+    border-style: solid;
     border-color: #FFB21D;
     border-width: 2px;
     border-radius: 10px;
@@ -198,12 +206,13 @@ textarea:hover {
     font-size: 2.5vh;
 }
 
-.post_title:hover{
+.post_title:hover {
     border-width: 3px;
     transition: .2s;
     outline: none;
 }
-.main_post{
+
+.main_post {
     width: 100%;
     border-color: #FFB21D;
     border-width: 2px;
@@ -219,28 +228,31 @@ textarea:hover {
     transition: .2s;
     margin-top: 1%;
 }
-.img_name_report{
+
+.img_name_report {
     width: 20%;
     /*border-right: 1px solid #a441e8;*/
     position: absolute;
     box-sizing: border-box;
     height: 87%;
 }
-.img_name_report img{
+
+.img_name_report img {
     width: 12vh;
     height: 12vh;
     border-radius: 100%;
     border: solid 2px #a441e8;
     position: absolute;
     object-fit: cover;
-    top:0;
+    top: 0;
     left: 3%;
 }
+
 .img_name_report .report {
     all: unset;
 }
 
-.img_name_report .report{
+.img_name_report .report {
     position: absolute;
     left: 80%;
     top: 1vh;
@@ -259,7 +271,8 @@ textarea:hover {
     background-color: #a441e8;
     font-weight: bold;
 }
-.img_name_report h1{
+
+.img_name_report h1 {
     position: absolute;
     top: 13vh;
     left: 10%;
@@ -269,13 +282,16 @@ textarea:hover {
     overflow: hidden;
     transition: .2s;
 }
-.text_2{
+
+.text_2 {
     opacity: 0;
 }
-.img_name_report .report:hover .text_1{
+
+.img_name_report .report:hover .text_1 {
     opacity: 0;
 }
-.img_name_report .report:hover{
+
+.img_name_report .report:hover {
     width: 24%;
     left: 60%;
     cursor: pointer;
@@ -284,16 +300,18 @@ textarea:hover {
     0 0 25px #a441e8,
     0 0 50px #a441e8;
 }
-.img_name_report .report:hover .text_2{
+
+.img_name_report .report:hover .text_2 {
     opacity: 100;
     color: #FFB21D;
     position: absolute;
     font-size: 1.4vh;
-    top:10%;
+    top: 10%;
     transition: .2s;
 
 }
-.img_name_report .delete_post:hover{
+
+.img_name_report .delete_post:hover {
     width: 24%;
     left: 60%;
     cursor: pointer;
@@ -302,20 +320,23 @@ textarea:hover {
     0 0 25px red,
     0 0 50px red;
 }
-.img_name_report .delete_post:hover .text_1{
+
+.img_name_report .delete_post:hover .text_1 {
     opacity: 0;
 }
-.img_name_report .delete_post:hover .text_2{
+
+.img_name_report .delete_post:hover .text_2 {
     opacity: 100;
     color: #FFB21D;
     position: absolute;
     font-size: 1.4vh;
-    top:10%;
+    top: 10%;
     transition: .2s;
     font-weight: bold;
 
 }
-.post_content{
+
+.post_content {
     position: absolute;
     width: 79%;
     left: 21%;
@@ -324,7 +345,7 @@ textarea:hover {
     transition: .2s;
 }
 
-.post_content h1{
+.post_content h1 {
     position: absolute;
     top: 0.5vh;
     left: 2%;
@@ -333,7 +354,8 @@ textarea:hover {
     transition: .2s;
     max-lines: 1;
 }
-.post_content p{
+
+.post_content p {
     position: absolute;
     width: 95%;
     top: 4vh;
@@ -347,11 +369,13 @@ textarea:hover {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-.post_content button{
+
+.post_content button {
     all: unset;
 }
-.post_content button{
-    opacity:0;
+
+.post_content button {
+    opacity: 0;
     position: absolute;
     right: -5%;
     top: 80%;
@@ -361,7 +385,8 @@ textarea:hover {
     transition: 0.5s;
     border-radius: 5px;
 }
-.post_content:hover button{
+
+.post_content:hover button {
     opacity: 100;
     right: 1px;
     top: 80%;
@@ -374,21 +399,18 @@ textarea:hover {
     cursor: pointer;
 }
 
-#posts::-webkit-scrollbar-track
-{
+#posts::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px #FFB21D;
     background-color: #F5F5F5;
     border-radius: 10px;
 }
 
-#posts::-webkit-scrollbar
-{
+#posts::-webkit-scrollbar {
     width: 10px;
     background-color: #F5F5F5;
 }
 
-#posts::-webkit-scrollbar-thumb
-{
+#posts::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-image: -webkit-gradient(linear,
     left bottom,
@@ -398,10 +420,11 @@ textarea:hover {
     color-stop(0.86, #e670ff));
 }
 
-.img_name_report a{
+.img_name_report a {
     all: unset;
 }
-.img_name_report a{
+
+.img_name_report a {
     position: absolute;
     left: 80%;
     top: 5vh;
@@ -419,12 +442,14 @@ textarea:hover {
     border: 2px solid red;
     border-radius: 10px;
 }
+
 .leaderboard .body {
     color: snow;
     width: 105%;
     margin-left: -20px;
     font-size: 2vh;
 }
+
 .leaderboard ol {
     counter-reset: number;
 }
@@ -433,6 +458,7 @@ textarea:hover {
     padding: 12px;
     display: flex;
 }
+
 .leaderboard li mark {
     flex-grow: 1;
     color: snow;
@@ -442,30 +468,39 @@ textarea:hover {
 .leaderboard li:nth-child(1) {
     background: #693696;
 }
+
 .leaderboard li:nth-child(2) {
     background: #70389D;
 }
+
 .leaderboard li:nth-child(3) {
     background: #753AA7;
 }
+
 .leaderboard li:nth-child(4) {
     background: #7B3FAF;
 }
+
 .leaderboard li:nth-child(5) {
     background: #8146B5;
 }
+
 .leaderboard li:nth-child(6) {
     background: #8C50C0;
 }
+
 .leaderboard li:nth-child(7) {
     background: #965CC6;
 }
+
 .leaderboard li:nth-child(8) {
     background: #A069CB;
 }
+
 .leaderboard li:nth-child(9) {
     background: #AB79D4;
 }
+
 .leaderboard li:nth-child(10) {
     background: #B888DF;
 }

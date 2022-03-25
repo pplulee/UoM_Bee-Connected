@@ -44,12 +44,13 @@ if (isset($_GET["logout"])) {
                     } else {
                         $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' ORDER BY pid DESC;");
                     }
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $userid = $row["author"];
-                        $username = get_name_by_id($userid);
-                        $userpic = getprofilepic($userid);
-                        $pid = $row["pid"];
-                        echo "
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            $userid = $row["author"];
+                            $username = get_name_by_id($userid);
+                            $userpic = getprofilepic($userid);
+                            $pid = $row["pid"];
+                            echo "
                                
                                     <div class='main_post' id='main_post'>
                                         <div class = 'img_name_report' id = 'img_name_report'>
@@ -59,14 +60,14 @@ if (isset($_GET["logout"])) {
                                                 <p class='text_1'>!</p>
                                                 <p class='text_2'>Report</p>
                                             </button>";
-                        if ($_SESSION["isLogin"] and isauthor($_SESSION["userid"], $pid)) {
-                            echo "
+                            if ($_SESSION["isLogin"] and isauthor($_SESSION["userid"], $pid)) {
+                                echo "
                                     <a href='index.php?action=delete&pid=$pid' class = 'delete_post' >
                                     <i class='fa-solid fa-trash-can text_1'></i>         
-                                    <p class = 'text_2'>DELETE</p>
+                                    <p class='text_2'>DELETE</p>
                                     </a> ";
-                        }
-                        echo "       </div>
+                            }
+                            echo "       </div>
                                         <div class = 'post_content' >
                                             <h1><b>{$row["category"]}:</b> {$row["title"]}</h1>
                                             <p id = 'post_content_p'>{$row["content"]}</p>
@@ -74,6 +75,9 @@ if (isset($_GET["logout"])) {
                                         </div>
                                     </div>
                                 ";
+                        }
+                    }else{
+                        echo "<h1>No post found</h1>";
                     }
                     ?>
                 </div>
@@ -116,17 +120,15 @@ if (isset($_GET["logout"])) {
                     <div class="body">
                         <ol>
                             <?php
-                            $result = mysqli_query($conn, "SELECT * FROM post ORDER BY view DESC LIMIT 10;");
+                            $result = mysqli_query($conn, "SELECT * FROM post WHERE hide=0 ORDER BY view DESC LIMIT 10;");
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     if (strlen($row["title"]) > 20) {
-                                        $title = substr($row["title"], 0, 20) . "...";
-                                    } else {
-                                        $title = $row["title"];
+                                        $row["title"] = substr($row["title"], 0, 20) . "...";
                                     }
                                     echo "
                                         <li>
-                                            <mark>$title</mark>
+                                            <mark>{$row["title"]}</mark>
                                             <small>{$row["view"]}</small>
                                         </li>";
                                 }

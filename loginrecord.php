@@ -1,5 +1,6 @@
 <?php
 include("header.php");
+checklogin();
 ?>
 <div class="container" style="padding-top:70px;">
     <div class="col-md-12 center-block" style="float: none;">
@@ -11,8 +12,6 @@ include("header.php");
                 <thead>
                 <tr>
                     <th scope="col">Record ID</th>
-                    <th scope="col">User ID</th>
-                    <th scope="col">Username</th>
                     <th scope="col">IP</th>
                     <th scope="col">Time</th>
                     <th scope="col">Status</th>
@@ -20,10 +19,10 @@ include("header.php");
                 </thead>
                 <tbody>
                 <?php
-                $result = mysqli_query($conn, "SELECT user.userid,user.username,user_login.id,user_login.ip,user_login.datetime,user_login.type FROM user, user_login WHERE user.userid=user_login.userid ORDER BY user_login.id desc LIMIT 25;");
+                $result = mysqli_query($conn, "SELECT id,userid,ip,datetime,type FROM user_login WHERE userid={$_SESSION["userid"]} ORDER BY id desc LIMIT 25;");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr><th scope='row'>{$row['id']}</th><td>{$row['userid']}</td><td>{$row['username']}</td><td>{$row['ip']}</td><td>{$row['datetime']}</td><td>{$row['type']}</td></tr>";
+                        echo "<tr><th scope='row'>{$row['id']}</th><td>{$row['ip']}</td><td>{$row['datetime']}</td><td>{$row['type']}</td></tr>";
                     }
                 }
                 ?>

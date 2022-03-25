@@ -21,28 +21,37 @@ function login($username, $password)
 {
     global $conn;
     if (userexist($username)) {
-        return password_verify($password, mysqli_fetch_assoc(mysqli_query($conn, "SELECT password FROM user WHERE username='$username';"))["password"]);
+        if (password_verify($password, mysqli_fetch_assoc(mysqli_query($conn, "SELECT password FROM user WHERE username='$username';"))["password"])) {
+            if (get_permission($username) == 0) {
+                addloginrecord($username, 0);
+                return array(false, "Your account is unavailable");
+            } else {
+                addloginrecord($username, 1);
+                return array(true, "");
+            }
+        } else {
+            addloginrecord($username, 0);
+            return array(false, "Wrong password");
+        }
     } else {
-        return false;
+        return array(false, "User not exist");
     }
 }
 
 function startlogin($username, $password)
 {
-    if (login($username, $password)) {
-        addloginrecord($username, 1);
+    $result = login($username, $password);
+    if ($result[0]) {
         $_SESSION["isLogin"] = true;
-        $_SESSION["username"] = $_POST["username"];
-        $_SESSION["permission"] = get_permission($username);
         $_SESSION["userid"] = get_id_by_name($username);
+        $_SESSION["permission"] = get_permission($username);
+        $_SESSION["username"] = $username;
+        addloginrecord($username, 1);
         echo "<script>alert('Login successfully!');window.location.href='index.php';</script>";
     } else {
-        addloginrecord($username, 0);
-        $_SESSION["isLogin"] = false;
-        echo "<script>alert('Incorrect username or password!');window.location.href='login.php';</script>";
+        echo "<script>alert('$result[1]');window.location.href='login.php';</script>";
     }
 }
-
 
 //Click the login bottom
 if (isset($_POST['login'])) {

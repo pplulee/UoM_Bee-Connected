@@ -17,19 +17,20 @@ div.profile {
     padding-left: 0;
 
 }
+
 .navbar-header a, a:visited, a:hover, a:active {
     text-decoration: none;
 }
 
-.navbar-header a{
+.navbar-header a {
     color: #F0E25F;
     text-align: center;
     font-family: 'Grand Hotel', cursive;
     text-shadow: 0 0 10px #FFB21D;
     height: 100%;
     margin-top: 0;
-    margin-left: 223% ;
-    position:relative;
+    margin-left: 223%;
+    position: relative;
 }
 
 .profile_pic {
@@ -40,7 +41,6 @@ div.profile {
     border-radius: 100%;
     border: solid 2px purple;
 }
-
 
 
 div.dropdown {
@@ -80,7 +80,7 @@ div.dropdown {
 
 }
 
-.topnav a:hover, .dropdown:hover .dropbtn, .dropdown-content a:hover  {
+.topnav a:hover, .dropdown:hover .dropbtn, .dropdown-content a:hover {
     background-color: #6B2C91;
     color: #FFB21D;
 
@@ -131,7 +131,7 @@ div.dropdown {
     color: #F5C06A;
 }
 
-.profile span{
+.profile span {
     position: relative;
     display: inline-flex;
     width: 90px;
@@ -139,7 +139,8 @@ div.dropdown {
     margin-left: 40%;
     margin-top: 5px;
 }
-.profile span a{
+
+.profile span a {
     font-size: 19px;
     font-weight: bold;
     letter-spacing: 1px;
@@ -150,8 +151,9 @@ div.dropdown {
 
 
 }
+
 .profile span a:before,
-.profile span a:after{
+.profile span a:after {
     position: absolute;
     content: "Login";
     height: 45px;
@@ -163,15 +165,18 @@ div.dropdown {
     box-sizing: border-box;
     border-radius: 5px;
 }
-.profile span a:before{
+
+.profile span a:before {
     color: #9B49E1;
     background: #FFB21D;
     transform: rotateY(0deg) translateZ(25px);
 }
-.profile span a:after{
+
+.profile span a:after {
     color: #FFB21D;
     transform: rotateX(90deg) translateZ(25px);
 }
-.profile span a:hover{
+
+.profile span a:hover {
     transform: translateZ(-25px) rotateX(-90deg);
 }

@@ -25,6 +25,9 @@ if (!isset($_SESSION['isLogin']) or !isadmin($_SESSION["userid"])){
                 <li class="nav-item">
                     <a class="nav-link" href="loginrecord.php">Login Record</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="report.php">Report Manage</a>
+                </li>
             </ul>
         </div>
     </div>

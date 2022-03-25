@@ -17,14 +17,17 @@ A forum website by R3 group
 - [x] Categories php part
 - [x] Post input box
 - [x] Post submit
-- [ ] Search(Title&Content)
-- [ ] Report function
+- [x] Search(Title&Content)
+- [x] Report function
+- [ ] Post page
+- [ ] Comment
 
 #### Admin page
 - [x] User management
 - [x] Category management
 - [x] Login record display
 - [x] Limitation on item number
+- [x] Report management
 
 #### Database
 - [x] user
