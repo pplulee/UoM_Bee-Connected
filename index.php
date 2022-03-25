@@ -110,7 +110,7 @@ if (isset($_GET["logout"])) {
             <div class="col trending">
                 <h2>Trending</h2>
                 <div class="leaderboard">
-                    <div class="head">
+                    <div class="head" style="text-align: center;">
                         <i class="fas fa-crown"></i>
                     </div>
                     <div class="body">
