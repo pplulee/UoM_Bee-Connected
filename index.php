@@ -36,9 +36,9 @@ if (isset($_GET["logout"])) {
                 <div class='posts' id="posts">
                     <?php
                     if (isset($_GET["search"]) && (isset($_GET["category"]))) {
-                        $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND caregory = {$_GET["category"]} AND content LIKE '%{$_GET["search"]}%' ORDER BY pid DESC;");
+                        $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND caregory = {$_GET["category"]} AND content LIKE '%{$_GET["search"]}%' OR title LIKE '%{$_GET["search"]}%' ORDER BY pid DESC;");
                     } else if (isset($_GET["search"])) {
-                        $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND content LIKE '%{$_GET["search"]}%' ORDER BY pid DESC;");
+                        $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND content LIKE '%{$_GET["search"]}%' OR title LIKE '%{$_GET["search"]}%' ORDER BY pid DESC;");
                     } else if (isset($_GET["category"])) {
                         $result = mysqli_query($conn, "SELECT * FROM post WHERE hide ='0' AND category = '{$_GET["category"]}' ORDER BY pid DESC;");
                     } else {
@@ -55,7 +55,7 @@ if (isset($_GET["logout"])) {
                                         <div class = 'img_name_report' id = 'img_name_report'>
                                             <img src='$userpic'>
                                             <h1>$username</h1>
-                                            <button class='report' onclick='window.location.href=index.php?action=report&pid=$pid'>
+                                            <button class='report'>
                                                 <p class='text_1'>!</p>
                                                 <p class='text_2'>Report</p>
                                             </button>";
@@ -115,46 +115,23 @@ if (isset($_GET["logout"])) {
                     </div>
                     <div class="body">
                         <ol>
-                            <li>
-                                <mark>Title1</mark>
-                                <small>948</small>
-                            </li>
-                            <li>
-                                <mark>Title2</mark>
-                                <small>750</small>
-                            </li>
-                            <li>
-                                <mark>Title3</mark>
-                                <small>684</small>
-                            </li>
-                            <li>
-                                <mark>Title4</mark>
-                                <small>335</small>
-                            </li>
-                            <li>
-                                <mark>Title5</mark>
-                                <small>296</small>
-                            </li>
-                            <li>
-                                <mark>Title6</mark>
-                                <small>270</small>
-                            </li>
-                            <li>
-                                <mark>Title7</mark>
-                                <small>200</small>
-                            </li>
-                            <li>
-                                <mark>Title8</mark>
-                                <small>150</small>
-                            </li>
-                            <li>
-                                <mark>Title9</mark>
-                                <small>100</small>
-                            </li>
-                            <li>
-                                <mark>Title10</mark>
-                                <small>80</small>
-                            </li>
+                            <?php
+                            $result = mysqli_query($conn, "SELECT * FROM post ORDER BY view DESC LIMIT 10;");
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    if (strlen($row["title"]) > 20) {
+                                        $title = substr($row["title"], 0, 20) . "...";
+                                    } else {
+                                        $title = $row["title"];
+                                    }
+                                    echo "
+                                        <li>
+                                            <mark>$title</mark>
+                                            <small>{$row["view"]}</small>
+                                        </li>";
+                                }
+                            }
+                            ?>
                         </ol>
                     </div>
                 </div>
