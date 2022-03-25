@@ -438,38 +438,34 @@ textarea:hover {
     color: snow;
     background-color: transparent;
 }
-.leaderboard li:before {
-    counter-increment: number;
-    content: counter(number) ".";
-    margin-right: 4px;
-}
+
 .leaderboard li:nth-child(1) {
-    background: #7401DF;
+    background: #693696;
 }
 .leaderboard li:nth-child(2) {
-    background: #7e14e0;
+    background: #70389D;
 }
 .leaderboard li:nth-child(3) {
-    background: #8f30e7;
+    background: #753AA7;
 }
 .leaderboard li:nth-child(4) {
-    background: #9846e4;
+    background: #7B3FAF;
 }
 .leaderboard li:nth-child(5) {
-    background: #9f55e4;
+    background: #8146B5;
 }
 .leaderboard li:nth-child(6) {
-    background: #a966e7;
+    background: #8C50C0;
 }
 .leaderboard li:nth-child(7) {
-    background: #b175e9;
+    background: #965CC6;
 }
 .leaderboard li:nth-child(8) {
-    background: #b37fe4;
+    background: #A069CB;
 }
 .leaderboard li:nth-child(9) {
-    background: #ba83ed;
+    background: #AB79D4;
 }
 .leaderboard li:nth-child(10) {
-    background: #bb90e4;
+    background: #B888DF;
 }
