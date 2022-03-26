@@ -57,10 +57,10 @@ if (isset($_GET["logout"])) {
                                         <div class = 'img_name_report' id = 'img_name_report'>
                                             <img src='$userpic'>
                                             <h1>$username</h1>
-                                            <button class='report'>
+                                            <a class='report'>
                                                 <p class='text_1'>!</p>
                                                 <p class='text_2'>Report</p>
-                                            </button>";
+                                            </a>";
                             if ($_SESSION["isLogin"] and isauthor($_SESSION["userid"], $pid)) {
                                 echo "
                                     <a href='index.php?action=delete&pid=$pid' class = 'delete_post' >
