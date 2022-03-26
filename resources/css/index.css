@@ -407,7 +407,7 @@ textarea:hover {
     position: relative;
     transform: rotate(45deg);
     left: 700px;
-    top: 105px;
+    top: 107px;
 }
 .eye:before {
     content: '';
@@ -419,6 +419,21 @@ textarea:hover {
     border-radius: 70%;
     left: 3px;
     top: 3px;
+}
+span {
+    padding: 8px;
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    color: #984DE0;
+    font-family: "Avenir Next", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: inline-block;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    left: 735px;
+    top: 107px;
 }
 
 #posts::-webkit-scrollbar-track {
