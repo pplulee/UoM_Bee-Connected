@@ -74,6 +74,7 @@ if (isset($_GET["logout"])) {
                                             <p id = 'post_content_p'>{$row["content"]}</p>
                                             <button onclick='read_more()' id='readmore()'>Read more</button>
                                         </div>
+                                      <div class='eye'></div>
                                     </div>
                                 ";
                         }
