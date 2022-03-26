@@ -2,9 +2,7 @@
 include("header.php");
 checklogin();
 ?>
-<head>
-    <title>login record</title>
-</head>
+<title>Login Record</title>
 <div class="container" style="padding-top:70px;">
     <div class="col-md-12 center-block" style="float: none;">
         <div class="table-responsive">

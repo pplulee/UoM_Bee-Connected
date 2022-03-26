@@ -55,14 +55,14 @@ function startlogin($username, $password)
 
 //Click the login bottom
 if (isset($_POST['login'])) {
-    if ($_POST["username"]==null or $_POST["password"]==null) {
+    if ($_POST["username"] == null or $_POST["password"] == null) {
         echo "<script>alert('Username or password cannot be empty!');window.location.href='login.php';</script>";
         exit;
     } else {
         startlogin($_POST["username"], $_POST["password"]);
     }
 } elseif (isset($_POST['register'])) {
-    if ($_POST["username"]==null or $_POST["password"]==null) {
+    if ($_POST["username"] == null or $_POST["password"] == null) {
         echo "<script>alert('Username or password cannot be empty!');window.location.href='login.php';</script>";
         exit;
     } elseif (register($_POST["username"], $_POST["password"])) {

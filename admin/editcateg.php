@@ -6,7 +6,7 @@ if (!isset($_GET["id"]) || !isset($_GET["action"])) {
     echo "<script>setTimeout(\"javascript:location.href='category.php'\", 500);</script>";
     exit;
 }
-
+echo "<title>Edit category</title>";
 switch ($_GET["action"]) {
     case "delete":
         if ((mysqli_num_rows(mysqli_query($conn, "SELECT id FROM category WHERE id='{$_GET['id']}';")) == 0)) {

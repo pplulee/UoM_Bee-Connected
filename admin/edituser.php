@@ -33,35 +33,39 @@ switch ($_GET["action"]) {
     }
 }
 ?>
+    <title>Edit user</title>
     <form action='' method='post'>
         <div class='row'>
             <div class='col'>
                 <label>User ID</label><br>
                 <input type='text' class='form-control' name='userid' value='<?php echo $result["userid"] ?>' readonly>
             </div>
-        <div class='col'>
-            <label>Username</label><br>
-            <input type='text' class='form-control' name='username' value='<?php echo $result["username"]?>' readonly>
+            <div class='col'>
+                <label>Username</label><br>
+                <input type='text' class='form-control' name='username' value='<?php echo $result["username"] ?>'
+                       readonly>
+            </div>
         </div>
-    </div>
-    <div class='form-group'>
-        <label>Bio</label><br>
-        <input type='text' class='form-control' name='bio' value='<?php echo $result["bio"]?>'>
-    </div>
-    <div class='form-group'>
-        <label>Password</label><br>
-        <input type='text' class='form-control' name='password' value='' placeholder='Please leave blank if you do not modify' >
-    </div>
-    <div class='form-group'>
-        <label>Permission</label><br>
-        <input type='text' class='form-control' name='permission' value='<?php echo $result["permission"]?>' required>
-    </div>
-    <input type='submit' name='submit' class='btn btn-primary btn-block' value='Update'>
+        <div class='form-group'>
+            <label>Bio</label><br>
+            <input type='text' class='form-control' name='bio' value='<?php echo $result["bio"] ?>'>
+        </div>
+        <div class='form-group'>
+            <label>Password</label><br>
+            <input type='text' class='form-control' name='password' value=''
+                   placeholder='Please leave blank if you do not modify'>
+        </div>
+        <div class='form-group'>
+            <label>Permission</label><br>
+            <input type='text' class='form-control' name='permission' value='<?php echo $result["permission"] ?>'
+                   required>
+        </div>
+        <input type='submit' name='submit' class='btn btn-primary btn-block' value='Update'>
     </form>
 <?php
-if (isset($_POST["submit"])){
+if (isset($_POST["submit"])) {
     //Change password first
-    if ($_POST["password"]!=""){
+    if ($_POST["password"] != "") {
         $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
         mysqli_query($conn, "UPDATE user SET password='{$password}' WHERE userid='{$_GET['id']}';");
     }

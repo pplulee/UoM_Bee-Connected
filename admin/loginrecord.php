@@ -1,6 +1,7 @@
 <?php
 include("header.php");
 ?>
+<title>Login Record</title>
 <div class="container" style="padding-top:70px;">
     <div class="col-md-12 center-block" style="float: none;">
         <div class="table-responsive">

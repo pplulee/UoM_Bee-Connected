@@ -130,14 +130,29 @@ function is_ip($str)
     return preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $str);
 }
 
-function post_submit($userid, $title, $content, $category)
+function post_submit($userid, $title, $content, $category, $image = "")
 {
     global $conn;
     if ($_SESSION["permission"] == 0) {
         return array(false, "You don't have permission to send post");
     } else {
-        mysqli_query($conn, "INSERT INTO post (author,title,content,category) VALUES ('$userid','$title','$content','$category');");
+        if ($image != "") {
+            mysqli_query($conn, "INSERT INTO post (author,title,content,category,attach_pic) VALUES ('{$userid}','{$title}','{$content}','{$category}','{$image}');");
+        } else {
+            mysqli_query($conn, "INSERT INTO post (author,title,content,category) VALUES ('{$userid}','{$title}','{$content}','{$category}');");
+        }
         return array(true, "Success!");
+    }
+}
+
+function post_getpic($postid)
+{
+    global $conn;
+    $result = mysqli_fetch_assoc(mysqli_query($conn, "SELECT attach_pic FROM post WHERE pid={$postid};"))["attach_pic"];
+    if ($result != "") {
+        return "data/image_post/$result";
+    } else {
+        return "";
     }
 }
 
@@ -147,8 +162,16 @@ function post_report($userid, $postid, $reason)
     if ($userid == 0) {
         return array(false, "No permission");
     } else {
-        mysqli_query($conn, "INSERT INTO report (pid, userid, comment) VALUES ('$postid','$userid','$reason');");
+        mysqli_query($conn, "INSERT INTO report (pid, userid, comment) VALUES ('{$postid}','{$userid}','{$reason}');");
         return array(true, "Success!");
+    }
+}
+
+function post_delete_pic($postid)
+{
+    $result = post_getpic($postid);
+    if ($result != "") {
+        unlink($result);
     }
 }
 
@@ -158,7 +181,43 @@ function post_delete($postid, $userid)
     if (!isauthor($postid, $userid) and !isadmin($userid)) {
         return array(false, "No permission");
     } else {
-        mysqli_query($conn, "DELETE FROM post WHERE pid='$postid';");
+        post_delete_pic($postid);
+        mysqli_query($conn, "DELETE FROM post WHERE pid='{$postid}';");
         return array(true, "Success!");
     }
+}
+
+function reply($postid,$content,$reply_to=0)
+{
+    global $conn;
+    if ($_SESSION["permission"] == 0) {
+        return array(false, "You don't have permission to reply");
+    } else {
+        mysqli_query($conn, "INSERT INTO reply (post_id,userid,content,reply_to) VALUES ('{$postid}','{$_SESSION["userid"]}','{$content}','{$reply_to}');");
+        return array(true, "Success!");
+    }
+}
+
+function check_image_valid($image, $size_limit = 1024000)
+{
+    $allowedExts = array("gif", "jpeg", "jpg", "png");
+    $temp = explode(".", $image["name"]);
+    $extension = end($temp);
+    if ((($image["type"] == "image/gif")
+            || ($image["type"] == "image/jpeg")
+            || ($image["type"] == "image/jpg")
+            || ($image["type"] == "image/pjpeg")
+            || ($image["type"] == "image/x-png")
+            || ($image["type"] == "image/png"))
+        && ($image["size"] < $size_limit)
+        && in_array($extension, $allowedExts)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function upload_image($imagefilename, $path, $filename)
+{
+    move_uploaded_file($imagefilename, "{$_SERVER['DOCUMENT_ROOT']}/{$path}{$filename}");
 }
