@@ -83,6 +83,7 @@ body, .main {
 
 .col-8 {
     padding: 0;
+    height: 100%;
 }
 
 .posts {
