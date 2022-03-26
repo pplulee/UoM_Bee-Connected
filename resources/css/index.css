@@ -83,6 +83,7 @@ body, .main {
 
 .col-8 {
     padding: 0;
+    height: 100%;
 }
 
 .posts {
@@ -156,7 +157,7 @@ textarea:hover {
 !important;
 }
 
-.send_post:hover, .choose_submit select:hover {
+.send_post:hover, .choose_submit select:hover, .send_comment:hover {
     background: #a441e8;
     color: #FFB21D;
     transition: .5s;
@@ -540,4 +541,198 @@ span {
 
 .leaderboard li:nth-child(10) {
     background: #B888DF;
+}
+.post_read_more{
+    height: 100% !important;
+    border: none !important;
+    overflow: auto !important;
+}
+.comment_input{
+    width: 100%;
+    display: block;
+    height: auto;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    margin-top: 1.5vh;
+    padding: 5px;
+    margin-bottom: 2vh;
+}
+.comment_input input{
+    all: unset;
+}
+.comment_input input{
+    width: 95%;
+    border-bottom: 2px solid #FFB21D;
+    font-size: 2.3vh;
+    padding: 2px;
+    display: inline-block;
+}
+.comment_input input:hover{
+    border-bottom: 2px dashed #a441e8;
+    transition: .5s;
+}
+
+.send_comment{
+    width: 4%;
+    display: inline-block;
+    border: none;
+    background-color: #FFB21D;
+    height: 100%;
+    border-radius: 7px;
+    color: white;
+}
+.all_comments{
+    width: 100%;
+    height: auto;
+    margin-top: 1vh;
+    border-top: 2px solid #B888DF;
+}
+.comment{
+    width: fit-content;
+    display: block;
+    background-color: #F5F5F5;
+    padding: 5px;
+    border-radius: 5px;
+    height: fit-content;
+    max-height: 12vh;
+    min-height: 9vh;
+    position: relative;
+    font-size: 1.7vh;
+    overflow: auto;
+    margin-top: 1.3vh;
+}
+.comment .img_user{
+    width: 10%;
+    display: inline-block;
+    height: 100%;
+}
+.img_user img{
+    width: 6vh;
+    height: 6vh;
+    border-radius: 100%;
+    border: solid 1px #a441e8;
+    position: absolute;
+    object-fit: cover;
+    top: 1vh;
+    left: 1.5%;
+}
+.img_user h1{
+    position: absolute;
+    top: 7.5vh;
+    left: 1.5%;
+    font-size: 1.4vh;
+    color: #a441e8;
+    font-weight: bold;
+    overflow: hidden;
+    transition: .2s;
+    margin-bottom: 0;
+}
+.comment_content{
+    display: inline-block;
+    width: 89%;
+    height: 100%;
+}
+.comment_content p{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    color: #522174;
+    transition: .2s;
+}
+.read_more_main{
+    width: 100%;
+    display: block;
+    background-color: #F5F5F5;
+    padding: 5px;
+    border-radius: 5px;
+    height: fit-content;
+    min-height: 20vh;
+    font-size: 2.3vh;
+    border-color: #FFB21D;
+    border-width: 1px;
+    border-style: solid;
+}
+.img_user_report_read_more{
+    display: inline-block;
+    width: 15%;
+    height: 100%;
+    text-align: center;
+    vertical-align: top;
+}
+
+.img_user_report_read_more img{
+    width: 12vh;
+    height: 12vh;
+    border-radius: 100%;
+    border: solid 2px #a441e8;
+    display: block;
+    object-fit: cover;
+    margin: auto;
+    margin-top: 1.5vh !important;
+}
+.img_user_report_read_more h1{
+    display: block;
+    font-size: 2vh;
+    color: #a441e8;
+    font-weight: bold;
+    overflow: hidden;
+    transition: .2s;
+    margin-top: 2vh;
+}
+.post_content_read_more{
+    display: inline-block;
+    width: 84%;
+    height: fit-content;
+    font-size: 2.3vh;
+    padding-left: 1vh;
+}
+.post_content_read_more h1{
+    font-size: 2.2vh;
+    transition: .2s;
+    max-lines: 1;
+    color: #522174;
+    width: 100%;
+    margin-top: 2vh;
+}
+.post_content_read_more p{
+    width: 100%;
+    color: #522174;
+    transition: .2s;
+    font-size: 1.8vh;
+    height: fit-content;
+}
+.img_user_report_read_more .report{
+    all: unset;
+}
+.img_user_report_read_more .report{
+    position: unset !important;
+    display: block !important;
+    margin: auto;
+    margin-top: 2vh !important;
+    width: 1.7vh;
+    height: 1.7vh;
+    padding: 2px 5px 4px 5px;
+    color: #FFB21D;
+    font-size: 1.4vh;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    border: 2px solid #a441e8;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #a441e8;
+    font-weight: bold;
+}
+
+.img_user_report_read_more .report:hover{
+    cursor: pointer;
+    box-shadow: 0 0 1px #a441e8,
+    0 0 5px #a441e8,
+    0 0 25px #a441e8,
+    0 0 50px #a441e8;
+    color: #FFB21D;
+}
+.post_read_more {
+    overflow: auto !important;
 }
