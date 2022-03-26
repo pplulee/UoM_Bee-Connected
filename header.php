@@ -11,12 +11,12 @@ include("include/common.php");
         <div>
             <ul class="nav navbar-nav">
                 <form name="search" action="index.php" method="get">
-                <div class="search-container">
+                    <div class="search-container">
                         <input type="text" name="search" placeholder="Search..." class="search-input">
                         <a href="javascript:document.search.submit();" class="search-btn">
                             <i class="fas fa-search"></i>
                         </a>
-                </div>
+                    </div>
                 </form>
 
                 <div class="profile">
@@ -33,7 +33,7 @@ include("include/common.php");
                         if (isadmin($_SESSION["userid"])) {
                             echo "<a href='admin/index.php'>Admin centre</a>";
                         }
-                        echo"
+                        echo "
                                 <a href='loginrecord.php'>Login Record</a>
                                 <a href='index.php?logout'>Logout</a>
                             </div>

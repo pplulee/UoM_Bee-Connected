@@ -14,7 +14,7 @@ if (isset($_GET["logout"])) {
 ?>
     <head>
         <script src="resources/js/read_more.js"></script>
-        <title>main page</title>
+        <title>Main Page</title>
     </head>
     <link rel="stylesheet" href="resources/css/index.css">
     <div class="main">
@@ -77,13 +77,13 @@ if (isset($_GET["logout"])) {
                                     </div>
                                 ";
                         }
-                    }else{
+                    } else {
                         echo "<h1>No post found</h1>";
                     }
                     ?>
                 </div>
                 <div class="input_area">
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                         <div class="input_text">
                             <input type="text" class="post_title" name="title" placeholder="Your title goes here"
                                    required maxlength="50">
@@ -104,7 +104,7 @@ if (isset($_GET["logout"])) {
                             <button class="send_post" name="send_post" type=submit><i
                                         class="fa-solid fa-paper-plane"></i></button>
 
-                            <input id="browse" type="file" name="pic" hidden>
+                            <input id="browse" type="file" name="post_pic" hidden>
                             <input class="btn btn-primary" type="submit" name="upload" value="UPDATE" hidden>
                             <label for="browse" class="send_post"><i class="fa-solid fa-paperclip"></i></label>
                         </div>
@@ -148,7 +148,23 @@ if (isset($_POST["send_post"])) {
         echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
         exit;
     } else {
-        $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["category"]);
+        if ((file_exists($_FILES["post_pic"]["tmp_name"])) or (is_uploaded_file($_FILES["post_pic"]["tmp_name"]))) {
+            # have image
+            if (check_image_valid($_FILES["post_pic"], 10240000)) {
+                if ($_FILES["post_pic"]["error"] > 0) {
+                    echo "Upload Error:" . $_FILES["post_pic"]["error"] . "<br>";
+                } else {
+                    $temp = explode(".", $_FILES["post_pic"]["name"]);
+                    $extension = end($temp);
+                    $filename = substr(md5(time()), 5, 32) . "." . $extension;
+                    upload_image($_FILES["post_pic"]["tmp_name"], "data/image_post/", "{$filename}");
+                    $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["category"], $filename);
+                }
+            }
+        } else {
+            # no image
+            $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["category"]);
+        }
         echo "<script>alert('{$feed[1]}');window.location.href='./index.php';</script>";
     }
 }
