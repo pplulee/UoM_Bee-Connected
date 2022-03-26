@@ -187,6 +187,17 @@ function post_delete($postid, $userid)
     }
 }
 
+function reply($postid,$content,$reply_to=0)
+{
+    global $conn;
+    if ($_SESSION["permission"] == 0) {
+        return array(false, "You don't have permission to reply");
+    } else {
+        mysqli_query($conn, "INSERT INTO reply (post_id,userid,content,reply_to) VALUES ('{$postid}','{$_SESSION["userid"]}','{$content}','{$reply_to}');");
+        return array(true, "Success!");
+    }
+}
+
 function check_image_valid($image, $size_limit = 1024000)
 {
     $allowedExts = array("gif", "jpeg", "jpg", "png");
