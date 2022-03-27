@@ -56,7 +56,7 @@ if (isset($_POST["comment"])) {
                             <?php
                             if ($_SESSION["isLogin"] and isauthor($_SESSION["userid"], $_GET["pid"])) {
                                 echo "
-                                    <a href='index.php?action=delete&pid={$_GET["pid"]}' class='report'>
+                                    <a href='index.php?action=delete&pid={$_GET["pid"]}' class='report delete_read_more'>
                                         <i class='fa-solid fa-trash-can text_1'></i>
                                     </a>";
                             }
@@ -64,7 +64,7 @@ if (isset($_POST["comment"])) {
                         </div>
                         <div class='post_content_read_more'>
                             <h1><?php echo htmlspecialchars_decode($result_post["title"]); ?></h1>
-                            <p><?php echo htmlspecialchars_decode($result_post["content"]); ?></p>
+                            <p><?php echo htmlspecialchars_decode($result_post["content"]); ?></p><br>
                             <?php
                             $image=post_getpic($_GET["pid"]);
                             if ($image!="") {
@@ -77,7 +77,7 @@ if (isset($_POST["comment"])) {
                         <form action='' method='post'>
                             <input type='text' class='comment_input_content' name='comment'
                                    placeholder='Type Your comment here...'
-                                   required maxlength='50'>
+                                   required maxlength='300'>
                             <input name='pid' type='hidden' value='<?php echo $_GET["pid"]; ?>'>
                             <button class="send_comment" name='send_comment' type=submit><i
                                         class="fa-solid fa-paper-plane"></i></button>
@@ -89,12 +89,17 @@ if (isset($_POST["comment"])) {
                         echo "<div class='all_comments'>";
                         while ($row = mysqli_fetch_assoc($result_reply)){
                             $profile_pic = getprofilepic($row['userid']);
-                            $username= get_name_by_id($row['userid']);
+                            $username = get_name_by_id($row['userid']);
                             echo "
                                 <div class='comment'>
                                     <div class='img_user'>
                                         <img src='{$profile_pic}' >
                                         <h1>{$username}</h1>
+                          
+                                    <a href='' class = 'delete_post' >
+                                    <i class='fa-solid fa-trash-can text_1'></i>        
+                                    </a> 
+
                                     </div>
                                     <div class = 'comment_content'>
                                         <p>{$row['content']}</p>
