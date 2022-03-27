@@ -241,3 +241,9 @@ function addloginrecord($username, $status)
         mysqli_query($conn, "INSERT INTO user_login (userid, ip, datetime, type) VALUES ('$userid', '$ip', '$datetime', $status);");
     }
 }
+
+function view_inc($postid)
+{
+    global $conn;
+    mysqli_query($conn, "UPDATE post SET view=view+1 WHERE pid={$postid};");
+}

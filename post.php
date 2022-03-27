@@ -9,6 +9,7 @@ if (!isset($_GET["pid"]) or $_GET["pid"] == "") {
         echo "<h1>Post not found</h1>";
         exit;
     } else {
+        view_inc($_GET["pid"]);
         $result_post = mysqli_fetch_assoc($result_post);
     }
 }
