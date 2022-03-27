@@ -65,6 +65,12 @@ if (isset($_POST["comment"])) {
                         <div class='post_content_read_more'>
                             <h1><?php echo $result_post["title"]; ?></h1>
                             <p><?php echo $result_post["content"]; ?></p>
+                            <?php
+                            $image=post_getpic($_GET["pid"]);
+                            if ($image!="") {
+                                echo "<img src='{$image}'>";
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class='comment_input'>
