@@ -7,7 +7,7 @@
         <div class="body">
             <ol>
                 <?php
-                $result = mysqli_query($conn, "SELECT * FROM post WHERE hide=0 ORDER BY view DESC LIMIT 10;");
+                $result = mysqli_query($conn, "SELECT * FROM post WHERE hide=0 AND date_sub(curdate(), interval 7 day) <= date(date) ORDER BY view DESC LIMIT 10;");
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
                         if (strlen($row["title"]) > 20) {
