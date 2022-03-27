@@ -13,37 +13,17 @@ if (!isset($_GET["pid"]) or $_GET["pid"] == "") {
         $result_post = mysqli_fetch_assoc($result_post);
     }
 }
-if (isset($_POST["comment"])) {
-    if (!$_SESSION["isLogin"]) {
-        echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
-        exit;
-    } else {
-        $feed = reply($_POST["pid"], $_POST["comment"]);
-        echo "<script>alert('{$feed[1]}');window.location.href='post.php?pid={$_POST["pid"]}';</script>";
-    }
-}
 ?>
-    <head>
-        <title>Post</title>
-    </head>
-    <link rel="stylesheet" href="resources/css/index.css">
-    <div class="main">
+<head>
+    <title>Post</title>
+</head>
+<link rel="stylesheet" href="resources/css/index.css">
+<div class="main">
     <div class="container-fluid">
         <div class="row">
-            <div class="col categories">
-                <a href="index.php"><h2>Categories</h2></a>
-                <ul class="menu-hover-fill flex flex-col items-start leading-none text-2xl uppercase space-y-4">
-                    <?php
-                    $result = mysqli_query($conn, "SELECT name,icon FROM category WHERE enable='1';");
-                    if (mysqli_num_rows($result) > 0) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<a href='index.php?category={$row['name']}'><li class='tablinks'><i class='{$row['icon']}'></i>{$row['name']}</li></a>";
-                        }
-                    }
-                    ?>
-                </ul>
-            </div>
-
+            <?php
+            include "category.php"
+            ?>
             <div class="col-8 content">
                 <div class='posts post_read_more' id="posts">
                     <div class='read_more_main'>
@@ -54,9 +34,9 @@ if (isset($_POST["comment"])) {
                                 !
                             </a>
                             <?php
-                            if ($_SESSION["isLogin"] and isauthor($_SESSION["userid"], $_GET["pid"])) {
+                            if ($_SESSION["isLogin"] and isauthor($_GET["pid"], $_SESSION["userid"], "post")) {
                                 echo "
-                                    <a href='index.php?action=delete&pid={$_GET["pid"]}' class='report delete_read_more'>
+                                    <a href='action.php?action=delete&type=post&id={$_GET["pid"]}' class='report delete_read_more'>
                                         <i class='fa-solid fa-trash-can text_1'></i>
                                     </a>";
                             }
@@ -74,7 +54,7 @@ if (isset($_POST["comment"])) {
                         </div>
                     </div>
                     <div class='comment_input'>
-                        <form action='' method='post'>
+                        <form action='action.php?action=comment_submit' method='post'>
                             <input type='text' class='comment_input_content' name='comment'
                                    placeholder='Type Your comment here...'
                                    required maxlength='300'>
@@ -84,22 +64,27 @@ if (isset($_POST["comment"])) {
                         </form>
                     </div>
                     <?php
-                    $result_reply= mysqli_query($conn, "SELECT userid, content, date FROM reply WHERE post_id={$_GET["pid"]} ORDER BY date DESC;");
+                    $result_reply = mysqli_query($conn, "SELECT rid, userid, content, date FROM reply WHERE post_id={$_GET["pid"]} ORDER BY date DESC;");
                     if (mysqli_num_rows($result_reply) > 0) {
                         echo "<div class='all_comments'>";
-                        while ($row = mysqli_fetch_assoc($result_reply)){
+                        while ($row = mysqli_fetch_assoc($result_reply)) {
                             $profile_pic = getprofilepic($row['userid']);
                             $username = get_name_by_id($row['userid']);
                             echo "
                                 <div class='comment'>
                                     <div class='img_user'>
                                         <img src='{$profile_pic}' >
-                                        <h1>{$username}</h1>
-                          
-                                    <a href='' class = 'delete_post' >
-                                    <i class='fa-solid fa-trash-can text_1'></i>        
-                                    </a> 
-
+                                        <h1>{$username}</h1>";
+                            echo "<a href='report.php?type=comment&id={$row["rid"]}' class='report'>
+                                    !
+                                </a><br>";
+                            if ($_SESSION["isLogin"] and isauthor($row["rid"], $_SESSION["userid"], "comment")) {
+                                echo "
+                                    <a href='action.php?action=delete&type=comment&id={$row["rid"]}' class = 'delete_post' >
+                                        <i class='fa-solid fa-trash-can text_1'></i>
+                                    </a>";
+                            }
+                            echo "
                                     </div>
                                     <div class = 'comment_content'>
                                         <p>{$row['content']}</p>
@@ -111,34 +96,8 @@ if (isset($_POST["comment"])) {
                     ?>
                 </div>
             </div>
-
-            <div class="col trending">
-                <h2>Trending</h2>
-                <div class="leaderboard">
-                    <div class="head" style="text-align: center;">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <div class="body">
-                        <ol>
-                            <?php
-                            $result = mysqli_query($conn, "SELECT * FROM post WHERE hide=0 ORDER BY view DESC LIMIT 10;");
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    if (strlen($row["title"]) > 20) {
-                                        $row["title"] = substr($row["title"], 0, 20) . "...";
-                                    }
-                                    echo "
-                                        <li>
-                                            <mark>{$row["title"]}</mark>
-                                            <small>{$row["view"]}</small>
-                                        </li>";
-                                }
-                            }
-                            ?>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-
+            <?php
+            include "trending.php";
+            ?>
         </div>
     </div>

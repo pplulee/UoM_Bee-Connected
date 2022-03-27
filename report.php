@@ -1,19 +1,5 @@
 <?php
 include("header.php");
-if (isset($_POST["send_report"])) {
-    if (!$_SESSION["isLogin"]) {
-        echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
-        exit;
-    } else {
-        $feed = post_report($_SESSION["userid"], $_POST["type"], $_POST["id"], $_POST["report_reason"]);
-        if ($feed[0] == "success") {
-            echo "<script>alert('Report sent successfully!');window.location.href='index.php';</script>";
-        } else {
-            echo "<script>alert('{$feed[1]}');window.location.href='index.php';</script>";
-        }
-        exit;
-    }
-}
 if (isset($_GET["type"])) {
     switch ($_GET["type"]) {
         case "post":
@@ -99,7 +85,7 @@ if (isset($_GET["type"])) {
                         </div>
                     </div>
                     <div class='comment_input'>
-                        <form action='' method='post'>
+                        <form action='action.php?action=report_submit' method='post'>
                             <input type='text' class='comment_input_content' name='report_reason'
                                    placeholder='Type Your report reason here...'
                                    required maxlength='50'>

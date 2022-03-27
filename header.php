@@ -51,7 +51,7 @@ include("include/common.php");
                         }
                         echo "
                                 <a href='loginrecord.php'>Login Record</a>
-                                <a href='index.php?logout'>Logout</a>
+                                <a href='action.php?action=logout'>Logout</a>
                             </div>
                         </div>";
                     } else {

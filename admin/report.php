@@ -98,8 +98,8 @@ if (isset($_GET["action"])) {
                 <thead>
                 <tr>
                     <th scope="col">Report ID</th>
-                    <th scope="col">Post Title</th>
-                    <th scope="col">Post Content</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Content</th>
                     <th scope="col">Report reason</th>
                     <th scope="col">Date</th>
                     <th scope="col">Operation</th>
@@ -133,7 +133,7 @@ if (isset($_GET["action"])) {
                             }
                             case "comment":
                             {
-                                $result2 = mysqli_query($conn, "SELECT rid, user_id, content FROM reply WHERE rid={$row["id"]} AND visible=1;");
+                                $result2 = mysqli_query($conn, "SELECT rid, userid, content FROM reply WHERE rid={$row["id"]} AND visible=1;");
                                 $row2 = mysqli_fetch_assoc($result2);
                                 $title = "Comment";
                                 if (strlen($row2['content']) > 50) {

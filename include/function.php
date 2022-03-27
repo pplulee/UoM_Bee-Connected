@@ -1,18 +1,16 @@
 <?php
-//Function for logout
 function logout()
 {
-    unset($_SESSION['isLogin']);
+    $_SESSION['isLogin'] = false;
     unset($_SESSION['userid']);
     unset($_SESSION['username']);
-    unset($_SESSION['password']);
-    exit("<script>alert('You have been successfully logged out');window.location.href='./index.php';</script>");
+    exit("<script>alert('You have been successfully logged out');window.location.href='index.php';</script>");
 }
 
-function isadmin($userid = "")
+function isadmin($userid = 0)
 {
     global $conn;
-    if (!isset($userid) or $userid == "") {
+    if (!isset($userid) or $userid == 0) {
         return false;
     }
     if (mysqli_fetch_assoc(mysqli_query($conn, "SELECT permission FROM user WHERE userid='{$userid}';"))['permission'] != 255) {
@@ -22,23 +20,32 @@ function isadmin($userid = "")
     }
 }
 
-function isauthor($userid, $postid)
+function isauthor($id, $userid, $type = "post")
 {
     global $conn;
-    if ($postid == "" or $userid == "") {
+    if ($id == "" or $userid == "" or !is_numeric($id)) {
         return false;
     }
     if (isadmin($userid)) {
         return true;
     }
-    $result = mysqli_query($conn, "SELECT author FROM post WHERE pid='{$postid}';");
-    if (mysqli_num_rows($result) == 0) {
-        return false;
-    }
-    if (mysqli_fetch_assoc($result)['author'] != $userid) {
-        return false;
-    } else {
-        return true;
+    switch ($type) {
+        case "post":
+            $result = mysqli_query($conn, "SELECT author FROM post WHERE pid='{$id}';");
+            if (mysqli_num_rows($result) == 0) {
+                return false;
+            } else {
+                return mysqli_fetch_assoc($result)['author'] == $userid;
+            }
+        case "comment":
+            $result = mysqli_query($conn, "SELECT userid FROM reply WHERE rid='{$id}';");
+            if (mysqli_num_rows($result) == 0) {
+                return false;
+            } else {
+                return mysqli_fetch_assoc($result)['userid'] == $userid;
+            }
+        default:
+            return false;
     }
 }
 
@@ -179,8 +186,11 @@ function post_delete_pic($postid)
 function post_delete($postid, $userid)
 {
     global $conn;
-    if (!isauthor($postid, $userid) and !isadmin($userid)) {
+    if (!isauthor($postid, $userid, "post")) {
         return array(false, "No permission");
+    }
+    if (!is_numeric($postid) or !is_numeric($userid)) {
+        return array(false, "Invalid parameters");
     } else {
         post_delete_pic($postid);
         mysqli_query($conn, "DELETE FROM post WHERE pid='{$postid}';");
@@ -188,13 +198,27 @@ function post_delete($postid, $userid)
     }
 }
 
-function reply($postid,$content,$reply_to=0)
+function comment_delete($commentid, $userid)
+{
+    global $conn;
+    if (!is_numeric($commentid) or !is_numeric($userid)) {
+        return array(false, "Invalid parameters");
+    }
+    if (!isauthor($commentid, $userid, "comment")) {
+        return array(false, "No permission");
+    } else {
+        mysqli_query($conn, "DELETE FROM reply WHERE rid='{$commentid}';");
+        return array(true, "Success!");
+    }
+}
+
+function reply($postid, $content, $reply_to = 0)
 {
     global $conn;
     if ($_SESSION["permission"] == 0) {
         return array(false, "You don't have permission to reply");
     } else {
-        $date=get_time();
+        $date = get_time();
         $content = htmlspecialchars($content);
         mysqli_query($conn, "INSERT INTO reply (post_id,userid,content,reply_to, date) VALUES ('{$postid}','{$_SESSION["userid"]}','{$content}','{$reply_to}', '{$date}');");
         return array(true, "Success!");
