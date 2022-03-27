@@ -41,5 +41,6 @@ echo '<!DOCTYPE html>
     <script src="https://kit.fontawesome.com/44dce3cb72.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
 </body>
 </html>';

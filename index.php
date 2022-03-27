@@ -46,6 +46,7 @@ if (isset($_GET["action"])) {
         <title>Main Page</title>
     </head>
     <link rel="stylesheet" href="resources/css/index.css">
+
     <div class="main">
     <div class="container-fluid">
         <div class="row">
@@ -169,4 +170,7 @@ if (isset($_GET["action"])) {
                 </div>
             </div>
         </div>
+    </div>
+
+
     </div>

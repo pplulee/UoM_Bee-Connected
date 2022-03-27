@@ -1,8 +1,24 @@
 <?php
 include("include/common.php");
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+</div>
+<script>
+    $(window).on('load', function(){
+        setTimeout(removeLoader, 2000); //wait for page load PLUS two seconds.
+    });
+    function removeLoader(){
+        $( ".loader-wrapper" ).fadeOut(500, function() {
+            // fadeOut complete. Remove the loading div
+            $( ".loader-wrapper" ).remove(); //makes page more lightweight
+        });
+    }
+</script>
 <link rel="stylesheet" href="resources/css/navigation.css">
+
 <nav class="navbar navbar-expand-lg" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
