@@ -6,16 +6,7 @@ if (isset($_SESSION["isLogin"]) and $_SESSION["isLogin"] == TRUE) {
     exit;
 }
 
-function addloginrecord($username, $status)
-{
-    global $conn;
-    if (userexist($username)) {
-        $userid = get_id_by_name($username);
-        $ip = getIp();
-        $datetime = date('Y-m-d H:i:s');
-        mysqli_query($conn, "INSERT INTO user_login (userid, ip, datetime, type) VALUES ('$userid', '$ip', '$datetime', $status);");
-    }
-}
+
 
 function login($username, $password)
 {

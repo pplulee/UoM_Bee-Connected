@@ -136,11 +136,8 @@ function post_submit($userid, $title, $content, $category, $image = "")
     if ($_SESSION["permission"] == 0) {
         return array(false, "You don't have permission to send post");
     } else {
-        if ($image != "") {
-            mysqli_query($conn, "INSERT INTO post (author,title,content,category,attach_pic) VALUES ('{$userid}','{$title}','{$content}','{$category}','{$image}');");
-        } else {
-            mysqli_query($conn, "INSERT INTO post (author,title,content,category) VALUES ('{$userid}','{$title}','{$content}','{$category}');");
-        }
+        $date=get_time();
+        mysqli_query($conn, "INSERT INTO post (author,title,content,category,attach_pic, date) VALUES ('{$userid}','{$title}','{$content}','{$category}','{$image}', '{$date}');");
         return array(true, "Success!");
     }
 }
@@ -156,13 +153,14 @@ function post_getpic($postid)
     }
 }
 
-function post_report($userid, $postid, $reason)
+function post_report($userid, $type, $id, $reason = "No reason")
 {
     global $conn;
-    if ($userid == 0) {
+    if ($_SESSION["permission"] == 0 or $userid == "" or $type == "" or $id == "" or !is_numeric($userid) or !is_numeric($id)) {
         return array(false, "No permission");
     } else {
-        mysqli_query($conn, "INSERT INTO report (pid, userid, comment) VALUES ('{$postid}','{$userid}','{$reason}');");
+        $date=get_time();
+        mysqli_query($conn, "INSERT INTO report (id, type, userid, reason, date) VALUES ('{$id}', '{$type}', '{$userid}','{$reason}', '{$date}');");
         return array(true, "Success!");
     }
 }
@@ -193,7 +191,8 @@ function reply($postid,$content,$reply_to=0)
     if ($_SESSION["permission"] == 0) {
         return array(false, "You don't have permission to reply");
     } else {
-        mysqli_query($conn, "INSERT INTO reply (post_id,userid,content,reply_to) VALUES ('{$postid}','{$_SESSION["userid"]}','{$content}','{$reply_to}');");
+        $date=get_time();
+        mysqli_query($conn, "INSERT INTO reply (post_id,userid,content,reply_to, date) VALUES ('{$postid}','{$_SESSION["userid"]}','{$content}','{$reply_to}', '{$date}');");
         return array(true, "Success!");
     }
 }
@@ -217,7 +216,28 @@ function check_image_valid($image, $size_limit = 1024000)
     }
 }
 
+function get_report_type($rid)
+{
+    global $conn;
+    return mysqli_fetch_assoc(mysqli_query($conn, "SELECT type FROM report WHERE reportid={$rid};"))["type"];
+}
+
 function upload_image($imagefilename, $path, $filename)
 {
     move_uploaded_file($imagefilename, "{$_SERVER['DOCUMENT_ROOT']}/{$path}{$filename}");
+}
+
+function get_time(){
+    return date('Y-m-d H:i:s');
+}
+
+function addloginrecord($username, $status)
+{
+    global $conn;
+    if (userexist($username)) {
+        $userid = get_id_by_name($username);
+        $ip = getIp();
+        $datetime = date('Y-m-d H:i:s');
+        mysqli_query($conn, "INSERT INTO user_login (userid, ip, datetime, type) VALUES ('$userid', '$ip', '$datetime', $status);");
+    }
 }

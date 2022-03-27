@@ -5,7 +5,6 @@ if (isset($_GET["logout"])) {
 }
 ?>
     <head>
-        <script src="resources/js/read_more.js"></script>
         <title>Main Page</title>
     </head>
     <link rel="stylesheet" href="resources/css/index.css">
@@ -44,12 +43,11 @@ if (isset($_GET["logout"])) {
                             $userpic = getprofilepic($userid);
                             $pid = $row["pid"];
                             echo "
-                               
                                     <div class='main_post' id='main_post'>
                                         <div class = 'img_name_report' id = 'img_name_report'>
                                             <img src='$userpic'>
                                             <h1>$username</h1>
-                                            <a class='report'>
+                                            <a href='report.php?type=post&id=$pid' class='report'>
                                                 <p class='text_1'>!</p>
                                                 <p class='text_2'>Report</p>
                                             </a>";
@@ -64,7 +62,7 @@ if (isset($_GET["logout"])) {
                                         <div class = 'post_content' >
                                             <h1><b>{$row["category"]}:</b> {$row["title"]}</h1>
                                             <p id = 'post_content_p'>{$row["content"]}</p>
-                                            <button onclick='read_more()' id='readmore()'>Read more</button>
+                                            <a href='post.php?pid=$pid' class='read_more'><button id='readmore'>Read more</button></a>
                                         </div>
                                     </div>
                                 ";
@@ -103,7 +101,6 @@ if (isset($_GET["logout"])) {
                     </form>
                 </div>
             </div>
-
             <div class="col trending">
                 <h2>Trending</h2>
                 <div class="leaderboard">
@@ -131,7 +128,6 @@ if (isset($_GET["logout"])) {
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 <?php

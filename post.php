@@ -1,9 +1,29 @@
 <?php
 include("header.php");
+if (!isset($_GET["pid"]) or $_GET["pid"] == "") {
+    echo "<h1>Post not found</h1>";
+    exit;
+} else {
+    $result_post = mysqli_query($conn, "SELECT pid, title, content, author FROM post WHERE hide='0' AND pid={$_GET["pid"]};");
+    if (mysqli_num_rows($result_post) == 0) {
+        echo "<h1>Post not found</h1>";
+        exit;
+    } else {
+        $result_post = mysqli_fetch_assoc($result_post);
+    }
+}
+if (isset($_POST["comment"])) {
+    if (!$_SESSION["isLogin"]) {
+        echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
+        exit;
+    } else {
+        $feed = reply($_POST["pid"], $_POST["comment"]);
+        echo "<script>alert('{$feed[1]}');window.location.href='post.php?pid={$_POST["pid"]}';</script>";
+    }
+}
 ?>
     <head>
-        <script src="resources/js/read_more.js"></script>
-        <title>main page</title>
+        <title>Post</title>
     </head>
     <link rel="stylesheet" href="resources/css/index.css">
     <div class="main">
@@ -24,142 +44,60 @@ include("header.php");
             </div>
 
             <div class="col-8 content">
-
                 <div class='posts post_read_more' id="posts">
-
-                    <div class = 'read_more_main'>
-                        <div class = 'img_user_report_read_more'>
-                            <img src="" alt="">
-                            <h1>username</h1>
-                            <a class='report'>
+                    <div class='read_more_main'>
+                        <div class='img_user_report_read_more'>
+                            <img src='<?php echo getprofilepic($result_post['author']); ?>'>
+                            <h1><?php echo get_name_by_id($result_post['author']); ?></h1>
+                            <a href='report.php?type=post&id=<?php echo $_GET["pid"]; ?>' class='report'>
                                 !
                             </a>
-                            <a class='report'>
-                                <i class='fa-solid fa-trash-can text_1'></i>
-                            </a>
+                            <?php
+                            if ($_SESSION["isLogin"] and isauthor($_SESSION["userid"], $_GET["pid"])) {
+                                echo "
+                                    <a href='index.php?action=delete&pid={$_GET["pid"]}' class='report'>
+                                        <i class='fa-solid fa-trash-can text_1'></i>
+                                    </a>";
+                            }
+                            ?>
                         </div>
-                        <div class = 'post_content_read_more'>
-                            <h1>Test post for read more</h1>
-                            <p>Lorem ipsum aksjd ajksnd askjdna sdkjnasd aksjnda skdjnas dkjasnd aksjd
-                            asdiasd ais jd asidnawjdn ajnda
-                                d askjdna sdkjnasd aksjnda skdjnas dkjasnd aksjd
-                                asdiasd ais jd asidnawjdn ajnda
-                                d askjdna sdkjnasd aksjnda skdjnas dkjasnd aksjd
-                                asdiasd ais jd asidnawjdn ajnda
-                                d askjdna sdkjnasd aksjnda skdjnas dkjasnd aksjd
-                                asdiasd ais jd asidnawjdn ajnda d askjdna sdkjnasd aksjnda skdjnas dkjasnd aksjd
-                                nas dkjasnd aksjd
-                                asdiasd ais jd asidnawjdn ajndada skdjnas dkjasnd aksjd
-                                asdiasd ais jd asidnawjdn ajnda
-                                d askjdna sdkjnasd aksjnda skdjnas dkjasnd aksjd
-                                asdiasd ais jd asidnawjdn ajnda d askjdna sdkjnasd aksjnda skdjnas dkjasnd aksjd
-                                nas dkjasnd aksjd
-                                asdiasd ais jd asidnawjdn ajndada skdjnas dkjasnd aksjd
-                                asdiasd ais jd asidnawjdn ajnda
-                                d askjdna sdkjnasd aksjnda skdjnas dkjasnd aksjd
-                                asdiasd ais jd asidnawjdn ajnda d askjdna sdkjnasd aksjnda skdjnas dkjasnd aksjd
-                                nas dkjasnd aksjd
-                                asdiasd ais jd a
-                                asdiasd ais jd a
-                                sjknda sdkjsnd akjsnda skdjnsd aksjdnaoisd kjnaksnd kajs
-                            </p>
+                        <div class='post_content_read_more'>
+                            <h1><?php echo $result_post["title"]; ?></h1>
+                            <p><?php echo $result_post["content"]; ?></p>
                         </div>
                     </div>
-
-
-                    <div class = "comment_input">
-                        <form action="" method="post">
-                            <input type="text" class="comment_input_content" name="title" placeholder="Type Your comment here..."
-                                   required maxlength="50">
-                            <button class="send_comment" name="send_comment" type=submit><i
+                    <div class='comment_input'>
+                        <form action='' method='post'>
+                            <input type='text' class='comment_input_content' name='comment'
+                                   placeholder='Type Your comment here...'
+                                   required maxlength='50'>
+                            <input name='pid' type='hidden' value='<?php echo $_GET["pid"]; ?>'>
+                            <button class="send_comment" name='send_comment' type=submit><i
                                         class="fa-solid fa-paper-plane"></i></button>
                         </form>
                     </div>
-
-                    <div class = "all_comments">
-                        <div class = "comment">
-                            <div class = "img_user">
-                                <img src="weifwe.png" alt="">
-                                <h1>username</h1>
-                            </div>
-                            <div class = "comment_content">
-                                <p>qwdkqj wndqwdnk qwdklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwd
-                                    qwdkqjw ndqw dnkqwdkl
-                                    qwdkqj wndqwdnk qwdklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwddklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwd
-                                    qwdkqjw ndqw dnkqwdkl
-                            </div>
-                        </div>
-                        <div class = "comment">
-                            <div class = "img_user">
-                                <img src="weifwe.png" alt="">
-                                <h1>username</h1>
-                            </div>
-                            <div class = "comment_content">
-                                <p>qwdkqj wndqwdnk qwdklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwd
-                                    qwdkqjw ndqw dnkqwdkl
-                                    qwdkqj wndqwdnk qwdklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwddklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwd
-                                    qwdkqjw ndqw dnkqwdkl
-                            </div>
-                        </div>
-                        <div class = "comment">
-                            <div class = "img_user">
-                                <img src="weifwe.png" alt="">
-                                <h1>username</h1>
-                            </div>
-                            <div class = "comment_content">
-                                <p>qwdkqj wndqwdnk qwdklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwd
-                                    qwdkqjw ndqw dnkqwdkl
-                                    qwdkqj wndqwdnk qwdklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwddklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwd
-                                    qwdkqjw ndqw dnkqwdkl
-                            </div>
-                        </div>
-
-                        <div class = "comment">
-                            <div class = "img_user">
-                                <img src="weifwe.png" alt="">
-                                <h1>username</h1>
-                            </div>
-                            <div class = "comment_content">
-                                <p>qwdkqj wndqwdnk qwdklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwd
-                                    qwdkqjw ndqw dnkqwdkl
-                                    qwdkqj wndqwdnk qwdklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwddklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwd
-                                    qwdkqjw ndqw dnkqwdkl
-                            </div>
-                        </div>
-
-                        <div class = "comment">
-                            <div class = "img_user">
-                                <img src="weifwe.png" alt="">
-                                <h1>username</h1>
-                            </div>
-                            <div class = "comment_content">
-                                <p>qwdkqj wndqwdnk qwdklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwd
-                                    qwdkqjw ndqw dnkqwdkl
-                                    qwdkqj wndqwdnk qwdklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwddklqwdkqjwndq  wdnkqwdklqwdkq jwndqwdnk  qwdklq wd kqjwndqwd nkqw dklqwdk qjwndqw dnkqwdkl
-                                    qwdkqj wndq wdn kqwd
-                                    qwdkqjw ndqw dnkqwdkl
-                            </div>
-                        </div>
-                    </div>
-
+                    <?php
+                    $result_reply= mysqli_query($conn, "SELECT userid, content, date FROM reply WHERE post_id={$_GET["pid"]} ORDER BY date DESC;");
+                    if (mysqli_num_rows($result_reply) > 0) {
+                        echo "<div class='all_comments'>";
+                        while ($row = mysqli_fetch_assoc($result_reply)){
+                            $profile_pic = getprofilepic($row['userid']);
+                            $username= get_name_by_id($row['userid']);
+                            echo "
+                                <div class='comment'>
+                                    <div class='img_user'>
+                                        <img src='{$profile_pic}' >
+                                        <h1>{$username}</h1>
+                                    </div>
+                                    <div class = 'comment_content'>
+                                        <p>{$row['content']}</p>
+                                    </div>
+                                </div>";
+                        }
+                        echo "</div>";
+                    }
+                    ?>
                 </div>
-
-
-
             </div>
 
             <div class="col trending">
@@ -192,26 +130,3 @@ include("header.php");
 
         </div>
     </div>
-<?php
-if (isset($_POST["send_post"])) {
-    if (!$_SESSION["isLogin"]) {
-        echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
-        exit;
-    } else {
-        $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["category"]);
-        echo "<script>alert('{$feed[1]}');window.location.href='./index.php';</script>";
-    }
-}
-if (isset($_GET["action"])) {
-    switch ($_GET["action"]) {
-        case "delete":
-            if (!$_SESSION["isLogin"]) {
-                echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
-                exit;
-            } else {
-                $feed = post_delete($_GET["pid"], $_SESSION["userid"]);
-                echo "<script>alert('{$feed[1]}');window.location.href='./index.php';</script>";
-            }
-            break;
-    }
-}
