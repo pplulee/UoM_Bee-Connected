@@ -1,6 +1,35 @@
 <?php
 include("header.php");
 checklogin();
+if (isset($_POST["save"])) {
+    if ($_POST["password"] != "") {
+        //Change password first
+        $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+        mysqli_query($conn, "UPDATE user SET password='{$password}' WHERE userid='{$_SESSION["userid"]}';");
+    }
+    $motto = htmlspecialchars($_POST["motto"]);
+    mysqli_query($conn, "UPDATE user SET bio='{$motto}' WHERE userid='{$_SESSION["userid"]}';");
+    if ((file_exists($_FILES["profile_pic"]["tmp_name"])) or (is_uploaded_file($_FILES["profile_pic"]["tmp_name"]))) {
+        if (check_image_valid($_FILES["profile_pic"], 1024000)) {
+            if ($_FILES["profile_pic"]["error"] > 0) {
+                echo "Upload Error:" . $_FILES["profile_pic"]["error"] . "<br>";
+            } else {
+                $existpic = getprofilepic($_SESSION["userid"]);
+                if ($existpic != "data/image_profile/default.png") {
+                    // Image already exist
+                    unlink("{$_SERVER['DOCUMENT_ROOT']}/{$existpic}");
+                }
+                $temp = explode(".", $_FILES["profile_pic"]["name"]);
+                $extension = end($temp);
+                upload_image($_FILES["profile_pic"]["tmp_name"], "data/image_profile/", "{$_SESSION["userid"]}.$extension");
+            }
+        } else {
+            echo "<script>alert('Illegal image formats or image too large');window.location.href='';</script>";
+        }
+    }
+    echo "<script>alert('Modified successfully');window.location.href='';</script>";
+}
+
 $profilepic_url = getprofilepic($_SESSION["userid"]);
 $result = mysqli_query($conn, "SELECT * FROM user WHERE userid='{$_SESSION["userid"]}';");
 if (mysqli_num_rows($result) == 0) {
@@ -47,31 +76,5 @@ $result = mysqli_fetch_assoc($result);
     </body>
     </html>
 <?php
-if (isset($_POST["save"])) {
-    if ($_POST["password"] != "") {
-        //Change password first
-        $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-        mysqli_query($conn, "UPDATE user SET password='{$password}' WHERE userid='{$_SESSION["userid"]}';");
-    }
-    mysqli_query($conn, "UPDATE user SET bio='{$_POST['motto']}' WHERE userid='{$_SESSION["userid"]}';");
-    if ((file_exists($_FILES["profile_pic"]["tmp_name"])) or (is_uploaded_file($_FILES["profile_pic"]["tmp_name"]))) {
-        if (check_image_valid($_FILES["profile_pic"], 1024000)) {
-            if ($_FILES["profile_pic"]["error"] > 0) {
-                echo "Upload Error:" . $_FILES["profile_pic"]["error"] . "<br>";
-            } else {
-                $existpic = getprofilepic($_SESSION["userid"]);
-                if ($existpic != "data/image_profile/default.png") {
-                    // Image already exist
-                    unlink("{$_SERVER['DOCUMENT_ROOT']}/{$existpic}");
-                }
-                $temp = explode(".", $_FILES["profile_pic"]["name"]);
-                $extension = end($temp);
-                upload_image($_FILES["profile_pic"]["tmp_name"], "data/image_profile/", "{$_SESSION["userid"]}.$extension");
-            }
-        } else {
-            echo "<script>alert('Illegal image formats or image too large');window.location.href='';</script>";
-        }
-    }
-    echo "<script>alert('Modified successfully');window.location.href='';</script>";
-}
+
 ?>

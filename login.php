@@ -12,7 +12,7 @@ function login($username, $password)
 {
     global $conn;
     if (userexist($username)) {
-        if (password_verify($password, mysqli_fetch_assoc(mysqli_query($conn, "SELECT password FROM user WHERE username='$username';"))["password"])) {
+        if (password_verify($password, mysqli_fetch_assoc(mysqli_query($conn, "SELECT password FROM user WHERE username='{$username}';"))["password"])) {
             if (get_permission($username) == 0) {
                 addloginrecord($username, 0);
                 return array(false, "Your account is unavailable");
@@ -49,6 +49,9 @@ if (isset($_POST['login'])) {
     if ($_POST["username"] == null or $_POST["password"] == null) {
         echo "<script>alert('Username or password cannot be empty!');window.location.href='login.php';</script>";
         exit;
+    } else if(!check_username_valid($_POST["username"])) {
+        echo "<script>alert('Username is invalid!');window.location.href='login.php';</script>";
+        exit;
     } else {
         startlogin($_POST["username"], $_POST["password"]);
     }
@@ -56,10 +59,17 @@ if (isset($_POST['login'])) {
     if ($_POST["username"] == null or $_POST["password"] == null) {
         echo "<script>alert('Username or password cannot be empty!');window.location.href='login.php';</script>";
         exit;
-    } elseif (register($_POST["username"], $_POST["password"])) {
-        echo "<script>alert('Register successfully!');window.location.href='login.php';</script>";
-    } else {
-        echo "<script>alert('This user already exists!');window.location.href='login.php';</script>";
+    }else if(!check_username_valid($_POST["username"])) {
+        echo "<script>alert('Username is invalid!');window.location.href='login.php';</script>";
+        exit;
+    }else {
+        $feed=register($_POST["username"], $_POST["password"]);
+        if (!$feed[0]){
+            echo "<script>alert('$feed[1]');window.location.href='login.php';</script>";
+        }else{
+            echo "<script>alert('Register successfully!');window.location.href='login.php';</script>";
+        }
+
     }
 }
 ?>

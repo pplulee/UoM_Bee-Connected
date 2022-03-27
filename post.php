@@ -63,8 +63,8 @@ if (isset($_POST["comment"])) {
                             ?>
                         </div>
                         <div class='post_content_read_more'>
-                            <h1><?php echo $result_post["title"]; ?></h1>
-                            <p><?php echo $result_post["content"]; ?></p>
+                            <h1><?php echo htmlspecialchars_decode($result_post["title"]); ?></h1>
+                            <p><?php echo htmlspecialchars_decode($result_post["content"]); ?></p>
                             <?php
                             $image=post_getpic($_GET["pid"]);
                             if ($image!="") {

@@ -29,8 +29,8 @@ if (isset($_GET["type"])) {
                 } else {
                     $result = mysqli_fetch_assoc($result);
                     $userid = $result["author"];
-                    $title = $result["title"];
-                    $content = $result["content"];
+                    $title = htmlspecialchars_decode($result["title"]);
+                    $content = htmlspecialchars_decode($result["content"]);
                 }
             }
             break;
@@ -49,7 +49,7 @@ if (isset($_GET["type"])) {
                     $result = mysqli_fetch_assoc($result);
                     $userid = $result["userid"];
                     $title = "Comment";
-                    $content = $result["content"];
+                    $content = htmlspecialchars_decode($result["content"]);
                 }
             }
             break;

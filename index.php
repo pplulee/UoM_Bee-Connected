@@ -3,6 +3,44 @@ include("header.php");
 if (isset($_GET["logout"])) {
     logout();
 }
+if (isset($_POST["send_post"])) {
+    if (!$_SESSION["isLogin"]) {
+        echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
+        exit;
+    } else {
+        if ((file_exists($_FILES["post_pic"]["tmp_name"])) or (is_uploaded_file($_FILES["post_pic"]["tmp_name"]))) {
+            # have image
+            if (check_image_valid($_FILES["post_pic"], 10240000)) {
+                if ($_FILES["post_pic"]["error"] > 0) {
+                    echo "Upload Error:" . $_FILES["post_pic"]["error"] . "<br>";
+                } else {
+                    $temp = explode(".", $_FILES["post_pic"]["name"]);
+                    $extension = end($temp);
+                    $filename = substr(md5(time()), 5, 32) . "." . $extension;
+                    upload_image($_FILES["post_pic"]["tmp_name"], "data/image_post/", "{$filename}");
+                    $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["category"], $filename);
+                }
+            }
+        } else {
+            # no image
+            $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["category"]);
+        }
+        echo "<script>alert('{$feed[1]}');window.location.href='./index.php';</script>";
+    }
+}
+if (isset($_GET["action"])) {
+    switch ($_GET["action"]) {
+        case "delete":
+            if (!$_SESSION["isLogin"]) {
+                echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
+                exit;
+            } else {
+                $feed = post_delete($_GET["pid"], $_SESSION["userid"]);
+                echo "<script>alert('{$feed[1]}');window.location.href='./index.php';</script>";
+            }
+            break;
+    }
+}
 ?>
     <head>
         <title>Main Page</title>
@@ -41,6 +79,8 @@ if (isset($_GET["logout"])) {
                             $userid = $row["author"];
                             $username = get_name_by_id($userid);
                             $userpic = getprofilepic($userid);
+                            $content = htmlspecialchars_decode($row["content"]);
+                            $title = htmlspecialchars_decode($row["title"]);
                             $pid = $row["pid"];
                             echo "
                                     <div class='main_post' id='main_post'>
@@ -60,8 +100,8 @@ if (isset($_GET["logout"])) {
                             }
                             echo "       </div>
                                         <div class = 'post_content' >
-                                            <h1><b>{$row["category"]}:</b> {$row["title"]}</h1>
-                                            <p id = 'post_content_p'>{$row["content"]}</p>
+                                            <h1><b>{$row["category"]}:</b> {$title}</h1>
+                                            <p id = 'post_content_p'>{$content}</p>
                                             <a href='post.php?pid=$pid' class='read_more'><button id='readmore'>Read more</button></a>
                                         </div>
                                     </div>
@@ -130,42 +170,3 @@ if (isset($_GET["logout"])) {
             </div>
         </div>
     </div>
-<?php
-if (isset($_POST["send_post"])) {
-    if (!$_SESSION["isLogin"]) {
-        echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
-        exit;
-    } else {
-        if ((file_exists($_FILES["post_pic"]["tmp_name"])) or (is_uploaded_file($_FILES["post_pic"]["tmp_name"]))) {
-            # have image
-            if (check_image_valid($_FILES["post_pic"], 10240000)) {
-                if ($_FILES["post_pic"]["error"] > 0) {
-                    echo "Upload Error:" . $_FILES["post_pic"]["error"] . "<br>";
-                } else {
-                    $temp = explode(".", $_FILES["post_pic"]["name"]);
-                    $extension = end($temp);
-                    $filename = substr(md5(time()), 5, 32) . "." . $extension;
-                    upload_image($_FILES["post_pic"]["tmp_name"], "data/image_post/", "{$filename}");
-                    $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["category"], $filename);
-                }
-            }
-        } else {
-            # no image
-            $feed = post_submit($_SESSION["userid"], $_POST["title"], $_POST["input_post"], $_POST["category"]);
-        }
-        echo "<script>alert('{$feed[1]}');window.location.href='./index.php';</script>";
-    }
-}
-if (isset($_GET["action"])) {
-    switch ($_GET["action"]) {
-        case "delete":
-            if (!$_SESSION["isLogin"]) {
-                echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
-                exit;
-            } else {
-                $feed = post_delete($_GET["pid"], $_SESSION["userid"]);
-                echo "<script>alert('{$feed[1]}');window.location.href='./index.php';</script>";
-            }
-            break;
-    }
-}

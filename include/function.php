@@ -84,11 +84,11 @@ function register($username, $password)
 {
     global $conn;
     if (userexist($username)) {
-        return false;
+        return array(false,"Username already exists");
     } else {
         $password = password_hash($password, PASSWORD_DEFAULT);
         mysqli_query($conn, "INSERT INTO user (username, password) VALUES ('{$username}', '{$password}');");
-        return true;
+        return array(true,"");
     }
 }
 
@@ -137,6 +137,8 @@ function post_submit($userid, $title, $content, $category, $image = "")
         return array(false, "You don't have permission to send post");
     } else {
         $date=get_time();
+        $title = htmlspecialchars($title);
+        $content = htmlspecialchars($content);
         mysqli_query($conn, "INSERT INTO post (author,title,content,category,attach_pic, date) VALUES ('{$userid}','{$title}','{$content}','{$category}','{$image}', '{$date}');");
         return array(true, "Success!");
     }
@@ -160,6 +162,7 @@ function post_report($userid, $type, $id, $reason = "No reason")
         return array(false, "No permission");
     } else {
         $date=get_time();
+        $reason = htmlspecialchars($reason);
         mysqli_query($conn, "INSERT INTO report (id, type, userid, reason, date) VALUES ('{$id}', '{$type}', '{$userid}','{$reason}', '{$date}');");
         return array(true, "Success!");
     }
@@ -192,6 +195,7 @@ function reply($postid,$content,$reply_to=0)
         return array(false, "You don't have permission to reply");
     } else {
         $date=get_time();
+        $content = htmlspecialchars($content);
         mysqli_query($conn, "INSERT INTO reply (post_id,userid,content,reply_to, date) VALUES ('{$postid}','{$_SESSION["userid"]}','{$content}','{$reply_to}', '{$date}');");
         return array(true, "Success!");
     }
@@ -246,4 +250,13 @@ function view_inc($postid)
 {
     global $conn;
     mysqli_query($conn, "UPDATE post SET view=view+1 WHERE pid={$postid};");
+}
+
+function check_username_valid($username)
+{
+    if (preg_match('/^[A-Za-z0-9_-]{4,32}$/', $username)) {
+        return true;
+    } else {
+        return false;
+    }
 }
