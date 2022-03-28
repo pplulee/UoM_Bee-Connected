@@ -1,6 +1,7 @@
 body {
     background: #a441e8;
     background: linear-gradient(to right, #5c2684 0%, #a441e8 46%, #e670ff 100%);
+    overflow-x: hidden;
 }
 
 .col-5 {
