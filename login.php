@@ -7,7 +7,6 @@ if (isset($_SESSION["isLogin"]) and $_SESSION["isLogin"] == TRUE) {
 }
 
 
-
 function login($username, $password)
 {
     global $conn;
@@ -18,7 +17,7 @@ function login($username, $password)
                 return array(false, "Your account is unavailable");
             } else {
                 addloginrecord($username, 1);
-                return array(true, "");
+                return array(true, "Success");
             }
         } else {
             addloginrecord($username, 0);
@@ -49,7 +48,7 @@ if (isset($_POST['login'])) {
     if ($_POST["username"] == null or $_POST["password"] == null) {
         echo "<script>alert('Username or password cannot be empty!');window.location.href='login.php';</script>";
         exit;
-    } else if(!check_username_valid($_POST["username"])) {
+    } else if (!check_username_valid($_POST["username"])) {
         echo "<script>alert('Username is invalid!');window.location.href='login.php';</script>";
         exit;
     } else {
@@ -59,14 +58,14 @@ if (isset($_POST['login'])) {
     if ($_POST["username"] == null or $_POST["password"] == null) {
         echo "<script>alert('Username or password cannot be empty!');window.location.href='login.php';</script>";
         exit;
-    }else if(!check_username_valid($_POST["username"])) {
+    } else if (!check_username_valid($_POST["username"])) {
         echo "<script>alert('Username is invalid!');window.location.href='login.php';</script>";
         exit;
-    }else {
-        $feed=register($_POST["username"], $_POST["password"]);
-        if (!$feed[0]){
+    } else {
+        $feed = register($_POST["username"], $_POST["password"]);
+        if (!$feed[0]) {
             echo "<script>alert('$feed[1]');window.location.href='login.php';</script>";
-        }else{
+        } else {
             echo "<script>alert('Register successfully!');window.location.href='login.php';</script>";
         }
 

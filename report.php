@@ -58,20 +58,9 @@ if (isset($_GET["type"])) {
     <div class="main">
     <div class="container-fluid">
         <div class="row">
-            <div class="col categories">
-                <a href="index.php"><h2>Categories</h2></a>
-                <ul class="menu-hover-fill flex flex-col items-start leading-none text-2xl uppercase space-y-4">
-                    <?php
-                    $result_category = mysqli_query($conn, "SELECT name,icon FROM category WHERE enable='1';");
-                    if (mysqli_num_rows($result_category) > 0) {
-                        while ($row_category = mysqli_fetch_assoc($result_category)) {
-                            echo "<a href='index.php?category={$row_category['name']}'><li class='tablinks'><i class='{$row_category['icon']}'></i>{$row_category['name']}</li></a>";
-                        }
-                    }
-                    ?>
-                </ul>
-            </div>
-
+            <?php
+            include "category.php";
+            ?>
             <div class="col-8 content">
                 <div class='posts post_read_more' id="posts">
                     <div class='read_more_main'>
@@ -97,43 +86,8 @@ if (isset($_GET["type"])) {
                     </div>
                 </div>
             </div>
-
-            <div class="col trending">
-                <h2>Trending</h2>
-                <div class="leaderboard">
-                    <div class="head" style="text-align: center;">
-                        <i class="fas fa-crown"></i>
-                    </div>
-                    <div class="body">
-                        <ol>
-                            <?php
-                            $result = mysqli_query($conn, "SELECT * FROM post WHERE hide=0 ORDER BY view DESC LIMIT 10;");
-                            if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    if (strlen($row["title"]) > 20) {
-                                        $row["title"] = substr($row["title"], 0, 20) . "...";
-                                    }
-                                    echo "
-                                        <li>
-                                            <mark>{$row["title"]}</mark>
-                                            <small>{$row["view"]}</small>
-                                        </li>";
-                                }
-                            }
-                            ?>
-                        </ol>
-                    </div>
-                </div>
-            </div>
+            <?php
+            include "trending.php";
+            ?>
         </div>
     </div>
-<?php
-if (isset($_POST["comment"])) {
-    if (!$_SESSION["isLogin"]) {
-        echo "<script>alert('You are not logged in!');window.location.href='index.php';</script>";
-        exit;
-    } else {
-        $feed = reply($_POST["pid"], $_POST["comment"]);
-        echo "<script>alert('{$feed[1]}');window.location.href='post.php?pid={$_POST["pid"]}';</script>";
-    }
-}
