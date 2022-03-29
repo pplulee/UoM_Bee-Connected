@@ -15,7 +15,7 @@
                         }
                         echo "
                                         <li>
-                                            <mark><a href='post.php?id={$row["pid"]}'>{$row["title"]}</a></mark>
+                                            <mark><a href='post.php?pid={$row["pid"]}'>{$row["title"]}</a></mark>
                                             <small>{$row["view"]}</small>
                                         </li>";
                     }
