@@ -284,3 +284,8 @@ function check_username_valid($username)
         return false;
     }
 }
+
+function get_view($pid){
+    global $conn;
+    return mysqli_fetch_assoc(mysqli_query($conn, "SELECT view FROM post WHERE pid={$pid};"))["view"];
+}

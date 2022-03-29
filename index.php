@@ -32,6 +32,7 @@ include("header.php");
                             $content = htmlspecialchars_decode($row["content"]);
                             $title = htmlspecialchars_decode($row["title"]);
                             $pid = $row["pid"];
+                            $viewnum=get_view($pid);
                             echo "
                                     <div class='main_post' id='main_post'>
                                         <div class = 'img_name_report' id = 'img_name_report'>
@@ -54,7 +55,7 @@ include("header.php");
                                             <p id = 'post_content_p'>$content</p>
                                             <a href='post.php?pid=$pid' class='read_more'><button id='readmore'>Read more</button></a>
                                             <div class='viewicon'></div>
-                                            <span class='viewnum'>1234</span>
+                                            <span class='viewnum'>$viewnum</span>
                                         </div>
                                     </div>
                                 ";
