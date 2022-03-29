@@ -53,6 +53,8 @@ include("header.php");
                                             <h1><b>{$row["category"]}:</b> $title</h1>
                                             <p id = 'post_content_p'>$content</p>
                                             <a href='post.php?pid=$pid' class='read_more'><button id='readmore'>Read more</button></a>
+                                            <div class='viewicon'></div>
+                                            <span class='viewnum'>1234</span>
                                         </div>
                                     </div>
                                 ";

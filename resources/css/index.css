@@ -841,3 +841,40 @@ textarea:hover {
         height: 0;
     }
 }
+.viewicon {
+    padding: 8px;
+    width: 1.5vh;
+    height: 1.5vh;
+    border: solid 2px #984DE0;
+    border-radius: 75% 15%;
+    position: relative;
+    transform: rotate(45deg);
+    left: 85%;
+    top: 1vh;
+}
+.viewicon:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 1.5vh;
+    height: 1.5vh;
+    border: solid 2px #984DE0;
+    border-radius: 70%;
+    left: 90%;
+    top: 0;
+}
+.viewnum {
+    padding: 8px;
+    width: 9px;
+    height: 9px;
+    position: absolute;
+    color: #984DE0;
+    font-family: "Avenir Next", sans-serif;
+    font-weight: 650;
+    text-transform: uppercase;
+    display: inline-block;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    left: 90%;
+    top: 0;
+}
