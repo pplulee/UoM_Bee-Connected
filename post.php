@@ -30,13 +30,13 @@ if (!isset($_GET["pid"]) or $_GET["pid"] == "") {
                         <div class='img_user_report_read_more'>
                             <img src='<?php echo getprofilepic($result_post['author']); ?>'>
                             <h1><?php echo get_name_by_id($result_post['author']); ?></h1>
-                            <a href='report.php?type=post&id=<?php echo $_GET["pid"]; ?>' class='report'>
+                            <a href='report.php?type=post&id=<?php echo $_GET["pid"]; ?>' class='report' title='report'>
                                 !
                             </a>
                             <?php
                             if ($_SESSION["isLogin"] and isauthor($_GET["pid"], $_SESSION["userid"], "post")) {
                                 echo "
-                                    <a href='action.php?action=delete&type=post&id={$_GET["pid"]}' class='report delete_read_more'>
+                                    <a href='action.php?action=delete&type=post&id={$_GET["pid"]}' class='report delete_read_more' title='delete'>
                                         <i class='fa-solid fa-trash-can text_1'></i>
                                     </a>";
                             }
@@ -75,12 +75,12 @@ if (!isset($_GET["pid"]) or $_GET["pid"] == "") {
                                     <div class='img_user'>
                                         <img src='{$profile_pic}' >
                                         <h1>{$username}</h1>";
-                            echo "<a href='report.php?type=comment&id={$row["rid"]}' class='report'>
+                            echo "<a href='report.php?type=comment&id={$row["rid"]}' class='report' title='report'>
                                     !
                                 </a><br>";
                             if ($_SESSION["isLogin"] and isauthor($row["rid"], $_SESSION["userid"], "comment")) {
                                 echo "
-                                    <a href='action.php?action=delete&type=comment&id={$row["rid"]}' class = 'delete_post' >
+                                    <a href='action.php?action=delete&type=comment&id={$row["rid"]}' class = 'delete_post' title='delete'>
                                         <i class='fa-solid fa-trash-can text_1'></i>
                                     </a>";
                             }
