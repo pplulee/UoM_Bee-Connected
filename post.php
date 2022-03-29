@@ -54,7 +54,7 @@ if (!isset($_GET["pid"]) or $_GET["pid"] == "") {
                         </div>
                     </div>
                     <div class='comment_input'>
-                        <form action='action.php?action=comment_submit' method='post'>
+                        <form action='action.php?action=comment_submit' method='post' autocomplete='off'>
                             <input type='text' class='comment_input_content' name='comment'
                                    placeholder='Type Your comment here...'
                                    required maxlength='300'>
