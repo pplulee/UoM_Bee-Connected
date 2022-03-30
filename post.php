@@ -15,7 +15,7 @@ if (!isset($_GET["pid"]) or $_GET["pid"] == "") {
 }
 ?>
 <head>
-    <title>Post</title>
+    <title><?php echo htmlspecialchars_decode($result_post["title"]); ?></title>
 </head>
 <link rel="stylesheet" href="resources/css/index.css">
 <div class="main">
