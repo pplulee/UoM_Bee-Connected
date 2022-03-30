@@ -511,6 +511,7 @@ textarea:hover {
 }
 .leaderboard li a{
     color: white;
+    cursor: pointer;
 }
 .leaderboard li:hover{
     transform: scale(1.1);
