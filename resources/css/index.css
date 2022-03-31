@@ -25,13 +25,24 @@ body, .main {
     height: 91.3vh;
 }
 
-.row .categories h2, .row .trending h2 {
+.row .categories h2 {
     font-size: 1.6em;
     border-bottom: 2px solid #FFB21D;
     padding-bottom: 5px;
     margin-left: 5px;
     margin-right: 5px;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
 
+.row .trending h2 {
+    font-size: 1.6em;
+    border-bottom: 2px solid #FFB21D;
+    padding-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
     color: white;
     text-align: center;
     font-family: 'Lato', sans-serif;
@@ -143,10 +154,11 @@ textarea:hover {
     right: 0;
     text-align: center;
     align-content: center;
+    height: 40%;
 }
 
 .send_post {
-    margin-top: 15.5%;
+    margin-top: 16%;
     border: none;
     background-color: #FFB21D;
     width: 100%;
@@ -157,8 +169,9 @@ textarea:hover {
     font-size: 2.7vh;
     transition: .4s;
 }
-.choose_submit label{
-    font-size: 3vh !important;
+
+.choose_submit label {
+    padding: 3%;
 }
 
 .send_post:hover, .choose_submit select:hover, .send_comment:hover {
@@ -202,7 +215,7 @@ textarea:hover {
     margin-top: 1%;
     margin-bottom: 1%;
     resize: none;
-    width: 30%;
+    width: 50%;
     border-style: solid;
     border-color: #FFB21D;
     border-width: 2px;
@@ -682,7 +695,7 @@ textarea:hover {
     min-height: 20vh;
     font-size: 2.3vh;
     border-color: #FFB21D;
-    border-width: 1px;
+    border-width: 2px;
     border-style: solid;
 }
 
