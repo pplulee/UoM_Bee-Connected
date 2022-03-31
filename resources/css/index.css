@@ -25,13 +25,24 @@ body, .main {
     height: 91.3vh;
 }
 
-.row .categories h2, .row .trending h2 {
+.row .categories h2{
     font-size: 1.6em;
     border-bottom: 2px solid #FFB21D;
     padding-bottom: 5px;
     margin-left: 5px;
     margin-right: 5px;
+    color: white;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    cursor: pointer;
+}
 
+.row .trending h2 {
+    font-size: 1.6em;
+    border-bottom: 2px solid #FFB21D;
+    padding-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
     color: white;
     text-align: center;
     font-family: 'Lato', sans-serif;
@@ -202,7 +213,7 @@ textarea:hover {
     margin-top: 1%;
     margin-bottom: 1%;
     resize: none;
-    width: 30%;
+    width: 50%;
     border-style: solid;
     border-color: #FFB21D;
     border-width: 2px;
