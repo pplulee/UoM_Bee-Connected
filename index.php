@@ -84,13 +84,14 @@ include("header.php");
                                 }
                                 ?>
                             </select>
+                            <input id="browse" type="file" name="post_pic" hidden>
+                            <input class="btn btn-primary" type="submit" name="upload" value="UPDATE" hidden>
+                            <label for="browse" class="send_post"><i class="fa-solid fa-image"></i></label>
+
                             <button class="send_post" name="post_submit" type=submit><i
                                         class="fa-solid fa-paper-plane"></i></button>
 
-                            <input id="browse" type="file" name="post_pic" hidden>
-                            <input class="btn btn-primary" type="submit" name="upload" value="UPDATE" hidden>
-                            <label for="browse" class="send_post"><i class="fa-solid fa-paperclip"></i></label>
-                        </div>
+                          </div>
                     </form>
                 </div>
             </div>

@@ -116,11 +116,10 @@ div.dropdown {
     inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
 }
 
-.search-container:hover > .search-input {
+.search-container:hover > .search-input{
     width: 100px;
 }
-
-.search-container .search-input {
+  .search-container .search-input {
     background: transparent;
     border: none;
     outline: none;

@@ -15,28 +15,41 @@ include("include/common.php");
             // fadeOut complete. Remove the loading div
             $( ".loader-wrapper" ).remove(); //makes page more lightweight
         });
+
+
     }
 </script>
 <link rel="stylesheet" href="resources/css/navigation.css">
 
 <nav class="navbar navbar-expand-lg" role="navigation">
+
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="index.php">BeeConnected!</a>
         </div>
-        <div>
-            <ul class="nav navbar-nav">
-                <form name="search" action="index.php" method="get">
-                    <div class="search-container">
-                        <input type="text" name="search" placeholder="Search..." class="search-input">
-                        <a href="javascript:document.search.submit();" class="search-btn">
-                            <i class="fas fa-search"></i>
-                        </a>
-                    </div>
-                </form>
+        <?php
+        $link_name = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
+        $login_file_name = 'login.php';
+        $user_file_name = 'user.php';
+    if(strcasecmp($link_name, $login_file_name) == 0 || strcasecmp($link_name, $user_file_name) == 0)
+    {
+        echo "";
+    }
+    else{
+        echo '<div>
 
-                <div class="profile">
-                    <?php
+            <ul class="nav navbar-nav" >
+                <form name = "search" action = "index.php" method = "get" >
+                    <div class="search-container" >
+                        <input type = "text" name = "search" placeholder = "Search..." class="search-input" >
+                        <a href = "javascript:document.search.submit();" class="search-btn" >
+                            <i class="fas fa-search" ></i >
+                        </a >
+                    </div >
+                </form >
+
+                <div class="profile">';
+
                     if ($_SESSION["isLogin"]) {
                         $profilepic_url = getprofilepic($_SESSION["userid"]);
                         echo "<img class='profile_pic' src='{$profilepic_url}'/>
@@ -57,11 +70,14 @@ include("include/common.php");
                     } else {
                         echo "<span><a href='login.php'></a></span>";
                     }
-                    ?>
 
-                </div>
+
+      echo   '       </div>
 
         </div>
-        </ul>
+        </ul>';
+         }
+         ?>
     </div>
+
 </nav>
