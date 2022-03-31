@@ -39,6 +39,7 @@ echo '<!DOCTYPE html>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/44dce3cb72.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="./resources/images/favicon_logo.png"/>
 </head>
 <body>
 

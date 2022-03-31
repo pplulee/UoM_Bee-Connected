@@ -65,7 +65,9 @@ body, .main {
     0 0 50px #FFB21D;
     cursor: pointer;
 }
-
+.categories li{
+    transition: .1s;
+}
 .categories {
     padding-bottom: 1%;
     background: #6B2C91;
@@ -113,6 +115,7 @@ textarea {
     padding: 10px;
     outline: none;
     font-size: 2.3vh;
+    transition: .4s;
 }
 
 .input_text {
@@ -143,18 +146,19 @@ textarea:hover {
 }
 
 .send_post {
-    margin-top: 10%;
+    margin-top: 15.5%;
     border: none;
     background-color: #FFB21D;
     width: 100%;
     height: 50%;
     border-radius: 10px;
+    margin-right: 3%;
     color: white;
+    font-size: 2.7vh;
+    transition: .4s;
 }
-
-.choose_submit label {
-    padding: 2px;
-!important;
+.choose_submit label{
+    font-size: 3vh !important;
 }
 
 .send_post:hover, .choose_submit select:hover, .send_comment:hover {
@@ -180,6 +184,7 @@ textarea:hover {
     padding: 10px;
     color: white;
     font-size: 2.6vh;
+    transition: .4s;
 }
 
 .trending {
