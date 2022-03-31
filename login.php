@@ -37,7 +37,7 @@ function startlogin($username, $password)
         $_SESSION["permission"] = get_permission($username);
         $_SESSION["username"] = $username;
         addloginrecord($username, 1);
-        echo "<script>alert('Login successfully!');window.location.href='index.php';</script>";
+        echo "<script>window.location.href='index.php';</script>";
     } else {
         echo "<script>alert('$result[1]');window.location.href='login.php';</script>";
     }

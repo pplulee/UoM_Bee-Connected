@@ -27,7 +27,7 @@ if (isset($_POST["save"])) {
             echo "<script>alert('Illegal image formats or image too large');window.location.href='';</script>";
         }
     }
-    echo "<script>alert('Modified successfully');window.location.href='';</script>";
+    echo "<script>window.location.href='user.php';</script>";
 }
 
 $profilepic_url = getprofilepic($_SESSION["userid"]);
