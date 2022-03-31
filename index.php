@@ -89,7 +89,7 @@ include("header.php");
 
                             <input id="browse" type="file" name="post_pic" hidden>
                             <input class="btn btn-primary" type="submit" name="upload" value="UPDATE" hidden>
-                            <label for="browse" class="send_post"><i class="fa-solid fa-paperclip"></i></label>
+                            <label for="browse" class="send_post"><i class="fa-solid fa-image"></i></label>
                         </div>
                     </form>
                 </div>
