@@ -210,6 +210,7 @@ textarea:hover {
     padding: 5px 5px 5px 10px;
     outline: none;
     font-size: 2.5vh;
+    transition: .4s;
 }
 
 .post_title:hover {
@@ -550,6 +551,7 @@ textarea:hover {
     font-size: 2.3vh;
     padding: 2px;
     display: inline-block;
+    transition: .4s;
 }
 
 .comment_input input:hover {
@@ -682,7 +684,7 @@ textarea:hover {
     min-height: 20vh;
     font-size: 2.3vh;
     border-color: #FFB21D;
-    border-width: 1px;
+    border-width: 2px;
     border-style: solid;
 }
 
@@ -848,29 +850,15 @@ textarea:hover {
     }
 }
 .viewicon {
-    padding: 1.1vh;
     width: 1.5vh;
     height: 3vh;
-    border: solid 2px #984DE0;
-    border-radius: 75% 15%;
     position: relative;
-    transform: rotate(50deg);
     left: 84%;
-    top: 0;
+    top: -0.5vh;
+    color: #984DE0;
 }
-.viewicon:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 1.5vh;
-    height: 1.5vh;
-    border: solid 2px #984DE0;
-    border-radius: 70%;
-    left: 15%;
-    top: 17%;
-}
+
 .viewnum {
-    padding: 8px;
     width: 1.5vh;
     height: 1.5vh;
     position: absolute;
@@ -883,5 +871,5 @@ textarea:hover {
     font-style: italic;
     letter-spacing: 0.05em;
     left: 90%;
-    top: -0.5vh;
+    top: 0;
 }

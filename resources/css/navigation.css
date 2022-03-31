@@ -119,7 +119,8 @@ div.dropdown {
 .search-container:hover > .search-input{
     width: 100px;
 }
-  .search-container .search-input {
+
+.search-container .search-input {
     background: transparent;
     border: none;
     outline: none;
@@ -128,6 +129,12 @@ div.dropdown {
     font-size: 16px;
     transition: 0.8s;
 }
+
+.search-container .search-input:focus {
+    width: 100px;
+}
+
+
 
 .search-container .search-btn .fas {
     color: #F5C06A;
