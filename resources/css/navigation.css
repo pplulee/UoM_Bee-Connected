@@ -129,10 +129,6 @@ div.dropdown {
     transition: 0.8s;
 }
 
-.search-container .search-input:focus {
-    width: 100px;
-}
-
 .search-container .search-btn .fas {
     color: #F5C06A;
 }

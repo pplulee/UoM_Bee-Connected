@@ -2,7 +2,7 @@
 include("header.php");
 ?>
 <head>
-    <title>BeeConnected!</title>
+    <title>Main Page</title>
 </head>
 <link rel="stylesheet" href="resources/css/index.css">
 
